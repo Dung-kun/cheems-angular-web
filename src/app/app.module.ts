@@ -3,17 +3,15 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LayoutComponent } from './theme/layout/layout.component';
-import { HeaderComponent } from './theme/header/header.component';
-import { FooterComponent } from './theme/footer/footer.component';
+import { LayoutModule } from './theme/layout/layout.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LayoutComponent,
   ],
   imports: [
     BrowserModule,
+    LayoutModule,
     AppRoutingModule
   ],
   providers: [],

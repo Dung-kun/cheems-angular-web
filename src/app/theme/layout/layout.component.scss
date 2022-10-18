@@ -1,0 +1,15 @@
+.clr {
+  clear: both;
+  }
+
+.content {
+  height: 50%;
+  flex: 1;
+}
+
+.wrapper {
+  min-height: 100vh;
+  margin: 0;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}

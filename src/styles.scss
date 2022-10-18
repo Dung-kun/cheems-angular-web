@@ -1,6 +1,16 @@
 /* You can add global styles to this file, and also import other style files */
+@import './assets/css/root-style.scss';
+
+
+@font-face {
+  font-family: 'Josefin Sans';
+  src: url(./assets/fonts/JosefinSans-VariableFont_wght.ttf);
+}
+
 body {
   font-family: 'Josefin Sans';
-  font-size: 1.3em;
+  font-size: 16px;
   color: #42464e;
+  line-height: 19px;
 }
+
