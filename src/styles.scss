@@ -1,16 +1,21 @@
-/* You can add global styles to this file, and also import other style files */
-@import './assets/css/root-style.scss';
-
-
 @font-face {
   font-family: 'Josefin Sans';
   src: url(./assets/fonts/JosefinSans-VariableFont_wght.ttf);
 }
 
+@font-face {
+  font-family: 'Lato';
+  src: url(./assets/fonts/Lato-Regular.ttf);
+}
+/* You can add global styles to this file, and also import other style files */
+@import './assets/css/root-style.scss';
+
+
+
 body {
-  font-family: 'Josefin Sans';
+  font-family: "Josefin Sans";
   font-size: 16px;
-  color: #42464e;
+  color: #0D0E43;
   line-height: 19px;
 }
 

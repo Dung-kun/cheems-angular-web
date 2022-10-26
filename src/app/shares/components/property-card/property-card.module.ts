@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HeaderComponent } from './header.component';
+import { PropertyCardComponent } from './property-card.component';
 import { RouterModule } from '@angular/router';
 
 
 
 @NgModule({
-  declarations: [HeaderComponent],
+  declarations: [PropertyCardComponent],
   imports: [
     CommonModule,
     RouterModule
   ],
-  exports: [HeaderComponent]
+  exports: [PropertyCardComponent]
 })
-export class HeaderModule { }
+export class PropertyCardModule { }

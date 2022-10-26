@@ -93,3 +93,30 @@ html {
 body {
   margin: 0;
 }
+
+
+.title-container {
+  background-color: #F6F5FF;
+  padding: 50px 0;
+  .container {
+    .title-text {
+      font-size: 36px;
+      font-weight: bold;
+      line-height: 42px;
+      color: #101750;
+      margin-bottom: 8px;
+    }
+
+    .title-route {
+      font-family: 'Lato';
+      font-style: normal;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 19px;
+
+      span {
+        color: #FB2E86;
+      }
+    }
+  }
+}

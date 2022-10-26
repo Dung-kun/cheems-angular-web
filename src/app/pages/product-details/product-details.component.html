@@ -1,0 +1,122 @@
+<div class="product-details">
+  <div class="title-container">
+    <div class="container">
+      <div class="title-text">
+        Product Details
+      </div>
+      <div class="title-route">
+        Route. Page. <span>Product Details</span>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="container border-shadow">
+    <div class="d-flex">
+      <div class="w-50">
+        <div class="carousel-image">
+          <div class="image-selected">
+            <img src="./../../../../assets/images/ganyu-1.png" class="rounded" alt="...">
+          </div>
+
+          <div class="image-list">
+            <img src="./../../../../assets/images/ganyu-1.png" class="rounded" alt="...">
+            <img src="./../../../../assets/images/ganyu-1.png" class="rounded" alt="...">
+            <img src="./../../../../assets/images/ganyu-1.png" class="rounded" alt="...">
+            <img src="./../../../../assets/images/ganyu-1.png" class="rounded" alt="...">
+            <!-- <button class="slideLeft" type="button">Slide left</button>
+            <button class="slideRight" type="button">Slide right</button> -->
+          </div>
+        </div>
+      </div>
+      <div class="w-50 details-text">
+        <div class="title">
+          Hutao
+        </div>
+        <div class="rate">
+          <i class="fa fa-star" style="color: yellow;"></i>
+          <i class="fa fa-star" style="color: yellow;"></i>
+          <i class="fa fa-star" style="color: yellow;"></i>
+          <i class="fa fa-star" style="color: yellow;"></i>
+          <i class="fa fa-star" style="color: yellow;"></i>
+          <span>(22)</span>
+        </div>
+        <div class="product-price">
+          $32.00 <span>$32.00</span>
+        </div>
+        <div class="description-short">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo neque odit quod quos odio, dignissimos
+          voluptatum labore, fugit aliquam facere earum doloribus cupiditate voluptatem laborum. Quas assumenda quos
+          earum veniam?
+        </div>
+
+        <div class="add-to-cart">
+          <button class="cart-button">
+            Add to Cart
+          </button>
+          <i class="fa fa-heart-o"></i>
+        </div>
+        <div class="item-style">
+          Category: <span>ssss</span>
+        </div>
+
+        <div class="item-style">
+          Tag: <span>ssss</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="description">
+    <div class="container">
+      <div class="title">
+        Description
+      </div>
+      <div class="content">
+        <div class="content-title">
+          Xinh đẹp toẹt vời
+        </div>
+        <p class="content-details">
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tenetur eaque quae nihil facilis iusto officia vitae
+          dolores, maxime animi alias fugiat ullam labore ratione totam possimus neque sequi libero esse.
+        </p>
+      </div>
+
+      <div class="content">
+        <div class="content-title">
+          Xinh đẹp toẹt vời
+        </div>
+        <p class="content-details">
+          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Tenetur eaque quae nihil facilis iusto officia vitae
+          dolores, maxime animi alias fugiat ullam labore ratione totam possimus neque sequi libero esse.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="related-product">
+    <div class="container">
+      <div class="title">
+        Related Products
+      </div>
+      <div class="row">
+        <app-property-card class="col-lg-3"></app-property-card>
+        <app-property-card class="col-lg-3"></app-property-card>
+        <app-property-card class="col-lg-3"></app-property-card>
+        <app-property-card class="col-lg-3"></app-property-card>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const buttonRight = document.getElementById('slideRight');
+  const buttonLeft = document.getElementById('slideLeft');
+
+  buttonRight.onclick = function () {
+    document.getElementById('image-list').scrollLeft += 20;
+  };
+  buttonLeft.onclick = function () {
+    document.getElementById('image-list').scrollLeft -= 20;
+  };
+</script>

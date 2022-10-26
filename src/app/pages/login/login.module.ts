@@ -1,23 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HomeComponent } from './home.component';
+import { LoginComponent } from './login.component';
 import { RouterModule } from '@angular/router';
-import { PropertyCardModule } from '../../shares/components/property-card/property-card.module';
 
 
 
 @NgModule({
-  declarations: [HomeComponent],
+  declarations: [LoginComponent],
   imports: [
     CommonModule,
     RouterModule.forChild([
       {
         path: '',
-        component: HomeComponent,
+        component: LoginComponent,
       },
     ]),
-    PropertyCardModule
   ],
   exports: []
 })
-export class HomeModule { }
+export class LoginModule { }
