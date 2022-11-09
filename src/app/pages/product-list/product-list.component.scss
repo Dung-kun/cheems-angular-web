@@ -1,0 +1,48 @@
+.main-menu {
+  display: flex;
+  justify-content: space-between;
+  margin: 0 -10px 0;
+  padding-top: 10px;
+  padding-left: 0px;
+  padding-bottom: 5px;
+  border-bottom: 2px solid #f3f3f3;
+  font-size: 20px;
+  color: #151875;
+}
+
+
+.filter-list {
+  padding: 20px 0px;
+  display: flex;
+  align-items: center;
+}
+
+
+.price {
+  padding: 10px;
+}
+
+.sort-by {
+  text-align: right;
+}
+
+.list-card {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -5px;
+  margin-right: -5px;
+  .item-style {
+    flex: 0 0 25%;
+    width: 25%;
+    padding: 0 10px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .list-card {
+    .item-style {
+      flex: 0 0 50%;
+      width: 50%;
+    }
+  }
+}

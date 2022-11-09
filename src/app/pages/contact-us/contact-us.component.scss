@@ -1,0 +1,114 @@
+
+.title {
+  margin-bottom: 20px;
+  font-size: 34px;
+  line-height: 38px;
+  font-weight: bold;
+  color: #151875;
+}
+
+.content {
+  font-family: "Lato";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 26px;
+  color: #8a8fb9;
+}
+
+.flex-width {
+  flex: 0 0 50%;
+}
+
+.about-us {
+  margin-bottom: 50px;
+  display: flex;
+  flex-wrap: wrap;
+  .information-us {
+    padding-right: 30px;
+    .content {
+      text-align: justify;
+    }
+  }
+
+  .contact-way {
+
+    .content {
+      display: flex;
+      align-items: center;
+      .circle {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+      }
+
+      .text {
+        width: 35%;
+        margin-bottom: 0;
+        margin-left: 10px;
+      }
+    }
+  }
+}
+
+.d-flex {
+  display: flex;
+}
+
+.get-in-touch {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  form {
+    padding-right: 10px;
+
+    button {
+      background-color: #FB2E86;
+      color: #fff;
+    }
+  }
+  form input, textarea {
+    font-family: "Lato";
+    color: #151875;
+    margin-bottom: 25px;
+  }
+
+}
+
+::placeholder {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  letter-spacing: 0.01em;
+  color: #8A8FB9;
+}
+
+:-ms-input-placeholder {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  letter-spacing: 0.01em;
+  color: #8A8FB9;
+}
+
+::-ms-input-placeholder {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  letter-spacing: 0.01em;
+  color: #8A8FB9;
+}
+
+
+
+@media screen and (max-width: 768px) {
+  .flex-width {
+    flex: 0 0 100%;
+  }
+  .information-us {
+    padding-right: 0;
+  }
+  .contact-way {
+    padding-left: 0;
+  }
+}

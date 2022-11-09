@@ -1,0 +1,94 @@
+.d-flex {
+  display: flex;
+}
+
+.flex-width-60 {
+  flex: 0 0 60%;
+  width: 60%;
+}
+
+.flex-width-40 {
+  flex: 0 0 40%;
+  width: 40%;
+}
+
+.list-card {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -5px;
+  margin-right: -5px;
+  .item-style {
+    flex: 0 0 25%;
+    width: 25%;
+    padding: 0 10px;
+  }
+}
+
+.carousel-item {
+  .content {
+    background-color: #f2f0ff;
+    display: flex;
+    padding: 50px 30px;
+    border-radius: 20px;
+    .description-text {
+      padding: 80px 20px;
+      .title {
+        font-size: 53px;
+        line-height: 82px;
+        color: #000000;
+        z-index: 20;
+      }
+
+      .text {
+        padding-right: 40px;
+        font-family: "Lato";
+        font-style: normal;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 28px;
+        text-align: justify;
+        color: #8a8fb9;
+      }
+    }
+
+    .description-image {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .circle {
+        position: absolute;
+        display: flex;
+        border-radius: 50%;
+        z-index: 10;
+        right: 10%;
+        top: 15%;
+        background-color: rgba(236, 210, 250, 0.35);
+        text-align: center;
+        padding: 20px;
+      }
+    }
+  }
+}
+
+.body-container {
+  margin-top: 50px;
+  .content {
+    .title {
+      margin-bottom: 20px;
+      text-align: center;
+      font-size: 38px;
+      line-height: 42px;
+      font-weight: bold;
+      color: #1a0b5b;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .list-card {
+    .item-style {
+      flex: 0 0 50%;
+      width: 50%;
+    }
+  }
+}

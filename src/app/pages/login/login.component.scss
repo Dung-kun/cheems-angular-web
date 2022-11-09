@@ -2,7 +2,7 @@
 .login-content {
   max-width:50%;
   overflow: hidden;
-  margin: 50px auto;
+  margin: 0 auto;
   text-align: center;
   background: #FFFFFF;
   box-shadow: 0px 0px 25px 10px #F8F8FB;
@@ -60,7 +60,13 @@
       color: #9096B2;
     }
   }
+
+  a:hover {
+    color: #FB2E86;
+    text-decoration: underline;
+  }
 }
+
 
 
 @media screen and (max-width: 768px) {

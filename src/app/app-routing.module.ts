@@ -7,6 +7,10 @@ const routes: Routes = [
     path: '',
     component: LayoutComponent,
   },
+  {
+    path: '',
+    component: LayoutComponent,
+  },
 ];
 
 @NgModule({

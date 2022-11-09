@@ -16,8 +16,23 @@ const routes: Routes = [{
     },
 
     {
+      path: 'product-list',
+      loadChildren: () => import('./../../pages/product-list/product-list.module').then(m=>m.ProductListModule)
+    },
+
+    {
       path: 'product-details',
       loadChildren: () => import('./../../pages/product-details/product-details.module').then(m=>m.ProductDetailsModule)
+    },
+
+    {
+      path: 'shopping-cart',
+      loadChildren: () => import('./../../pages/shopping-cart/shopping-cart.module').then(m=>m.ShoppingCartModule)
+    },
+
+    {
+      path: 'contact-us',
+      loadChildren: () => import('./../../pages/contact-us/contact-us.module').then(m=>m.ContactUsModule)
     },
     { path: '',   redirectTo: '/home', pathMatch: 'full' }
   ]
