@@ -12,4 +12,7 @@ export class LayoutComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  check(event : any) {
+    console.log('v',event);
+  }
 }
