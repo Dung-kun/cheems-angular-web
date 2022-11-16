@@ -34,7 +34,17 @@ const routes: Routes = [{
       path: 'contact-us',
       loadChildren: () => import('./../../pages/contact-us/contact-us.module').then(m=>m.ContactUsModule)
     },
-    { path: '',   redirectTo: '/home', pathMatch: 'full' }
+    {
+      path: 'introduction',
+      loadChildren: () => import('./../../pages/introduction/introduction.module').then(m=>m.IntroductionModule)
+    },
+    {
+      path: 'sales',
+      loadChildren: () => import('./../../pages/sales/sales.module').then(m=>m.SalesModule)
+    },
+    { path: '',   redirectTo: '/home', pathMatch: 'full' },
+    { path: '**',   redirectTo: '/home', pathMatch: 'full' }
+
   ]
 }];
 

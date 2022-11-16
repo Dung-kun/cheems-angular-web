@@ -3,7 +3,7 @@
   --color-1st-h: 334;
   --color-1st-s: 96%;
   --color-1st-l: 58%;
-  --color-2nd: 	hsl(266, 74%, 54%);
+  --color-2nd: hsl(266, 74%, 54%);
   --color-2nd-h: 266;
   --color-2nd-s: 74%;
   --color-2nd-l: 54%;
@@ -94,9 +94,8 @@ body {
   margin: 0;
 }
 
-
 .title-container {
-  background-color: #F6F5FF;
+  background-color: #f6f5ff;
   padding: 50px 0;
   .container {
     .title-text {
@@ -108,17 +107,33 @@ body {
     }
 
     .title-route {
-      font-family: 'Lato';
+      font-family: "Lato";
       font-style: normal;
       font-weight: 500;
       font-size: 16px;
       line-height: 19px;
 
       span {
-        color: #FB2E86;
+        color: #fb2e86;
       }
     }
   }
+}
+
+.color-1 {
+  color: #101750;
+}
+
+.color-2 {
+  color: #fb2e86;
+}
+
+.color-3 {
+  color: #f6f5ff;
+}
+
+.color-text-gray {
+  color: #707070;
 }
 
 .m-common {
@@ -130,6 +145,57 @@ body {
   position: relative;
 }
 
+.d-flex {
+  display: flex;
+}
+
 .width-33 {
   width: 33%;
+}
+
+.pt-15 {
+  padding-top: 15px;
+}
+.pb-15 {
+  padding-bottom: 15px;
+}
+
+.px-15 {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.px-24 {
+  padding-right: 24px;
+  padding-left: 24px;
+}
+
+.pr-24 {
+  padding-right: 24px;
+}
+.pl-24 {
+  padding-left: 24px;
+}
+
+.mb-15 {
+  margin-bottom: 15px;
+}
+
+.mt-15 {
+  margin-top: 15px;
+}
+
+.button-style {
+  background-color: #fb2e86;
+  color: #fff;
+  min-height: 48px;
+  border: none;
+  display: block;
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  appearance: none;
+  border-radius: 0.375rem;
 }

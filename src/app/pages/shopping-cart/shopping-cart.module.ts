@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ShoppingCartComponent } from './shopping-cart.component';
 import { CheckoutComponent } from '../checkout/checkout.component';
+import { CheckoutModule } from '../checkout/checkout.module';
 
 
 
@@ -18,8 +19,13 @@ import { CheckoutComponent } from '../checkout/checkout.component';
 
       {
         path: 'checkout',
-        component: CheckoutComponent,
+        loadChildren: () => import('./../checkout/checkout.module').then(m=>m.CheckoutModule)
       },
+      {
+        path: '**',
+        component: ShoppingCartComponent,
+      },
+
     ]),
   ]
 })

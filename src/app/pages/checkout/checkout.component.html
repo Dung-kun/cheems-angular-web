@@ -9,182 +9,310 @@
       </div>
     </div>
   </div>
-</div>
-
-<div class="container">
-  <main class="main-content" aria-live="polite" aria-busy="false">
-    <div class="fade-in-out">
-      <div class="overview-sections">
-        <section role="button" tabindex="0" class="section-container" aria-disabled="false">
-          <h2 class="heading-style">
-            <span>My Information</span>
-          </h2>
-          <div class="w-100">
-            <div aria-hidden="false" class="collapse-animation" role="region"
-              style="display: block; height: auto; opacity: 1; overflow: hidden;">
-              <div class="fade-in-out">
-                <form class="" novalidate>
-                  <div class="mb-15">
-                    <p class="body-text"><span>Email</span></p>
-                    <p class="body-text" style="margin: 0px;">uchihadungkitty@gmail.com</p>
-                  </div>
-                  <div class="form-input">
+  <div class="container m-common">
+    <main class="main-content">
+      <div class="fade-in-out">
+        <div class="overview-sections">
+          <section role="button" tabindex="0" class="section-container" aria-disabled="false">
+            <h2 class="heading-style">
+              <span class="font-style-20" style="font-weight: 600;">Thông tin của tôi</span>
+            </h2>
+            <div class="w-100">
+              <div class="collapse-animation" role="region"
+                style="display: block; height: auto; opacity: 1; overflow: hidden;">
+                <div class="fade-in-out">
+                  <form class="" novalidate>
                     <div class="mb-15">
-                      <div class="label-wrapper">
-                        <label class="label-style" for="firstName">
-                          First name</label>
-                      </div>
-                      <div class="p-relative">
-                        <div class="input-wrapper">
-                          <input class="input-style" required type="text" id="firstName" name="firstName"
-                            value="COn">
+                      <p class="body-text"><span>Email</span></p>
+                      <p class="body-text" style="margin: 0px;">uchihadungkitty@gmail.com</p>
+                    </div>
+                    <div class="form-input">
+                      <div class="mb-15">
+                        <div class="label-wrapper">
+                          <label class="label-style" for="firstName">
+                            Tên của bạn</label>
+                        </div>
+                        <div class="p-relative">
+                          <div class="input-wrapper">
+                            <input class="input-style" required type="text" id="firstName" name="firstName">
                             <span class="validation-icon icon icon-valid" title="Field is valid"
-                            style="height: 48px;"></span>
+                              style="height: 48px;"></span>
                           </div>
-                          <svg class="icon-style"
-                          viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
-                          xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false">
-                          <path
-                            d="M5.938 12.979L5.92 13l-.002-.001V13l-.02-.018L2 9.762 2.653 9l3.19 2.635L13.263 4l.737.684-8.062 8.295z">
-                          </path>
-                        </svg>
-                      </div>
+                          <svg class="icon-style" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false">
+                            <path
+                              d="M5.938 12.979L5.92 13l-.002-.001V13l-.02-.018L2 9.762 2.653 9l3.19 2.635L13.263 4l.737.684-8.062 8.295z">
+                            </path>
+                          </svg>
+                        </div>
 
-                    </div>
-                    <div class="mb-15">
-                      <div class="label-wrapper">
-                        <label class="label-style" for="firstName">
-                          Last name</label>
                       </div>
-                      <div class="p-relative">
-                        <div class="input-wrapper">
-                          <input class="input-style" required type="text" id="firstName" name="firstName"
-                            value="COn">
+                      <div class="mb-15">
+                        <div class="label-wrapper">
+                          <label class="label-style" for="dateOfBirth">
+                            Ngày sinh</label>
+                        </div>
+
+                        <div class="p-relative">
+                          <div class="input-wrapper date-input-wrapper">
+                            <input aria-label="MM" required name="month" type="number" pattern="\d*"
+                              class="input-style date-input-style" placeholder="DD" id="dateOfBirth" maxlength="2">
+                            <span>/</span>
+                            <input aria-label="DD" required name="day" type="number" pattern="\d*"
+                              class="input-style date-input-style" placeholder="MM" maxlength="2">
+                            <span>/</span>
+                            <input aria-label="YYYY" required name="year" type="number" pattern="\d*"
+                              class="input-style date-input-style" placeholder="YYYY" maxlength="4">
+                          </div>
+                          <svg class="icon-style" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false">
+                            <path
+                              d="M5.938 12.979L5.92 13l-.002-.001V13l-.02-.018L2 9.762 2.653 9l3.19 2.635L13.263 4l.737.684-8.062 8.295z">
+                            </path>
+                          </svg>
+                        </div>
+                      </div>
+                      <button class="button-cancel-style" style="justify-content: start; margin-bottom: 10px;" type="button" (click)="addPhoneNumber()">
+                        <ng-container *ngIf="!checkAddPhoneNumberDropDown">
+                          <svg class="icon-cancel-style" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false">
+                            <path d="M12 14.9l4.95-4.95.707.707-4.95 4.95-.707.707-5.657-5.657.707-.707L12 14.9z"></path>
+                          </svg>
+                        </ng-container>
+                        <ng-container *ngIf="checkAddPhoneNumberDropDown">
+                          <svg *ngIf="checkAddPhoneNumberDropDown" class="icon-cancel-style" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+                          xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false">
+                          <path d="M12 9.757l4.95 4.95.707-.707-4.95-4.95L12 8.343 6.343 14l.707.707L12 9.757z"></path>
+                        </svg>
+                      </ng-container>
+                      {{ checkAddPhoneNumberDropDown == false ? "Thêm số điện thoại" : "Ẩn số điện thoại" }}
+                    </button>
+                      <div class="mb-15 collapse-animation" [ngClass]="{'d-none': !checkAddPhoneNumberDropDown, 'd-block' : checkAddPhoneNumberDropDown}">
+                        <div class="label-wrapper">
+                          <label class="label-style" for="firstName">
+                            Số điện thoại</label>
+                        </div>
+                        <div class="p-relative"  [ngClass]="{'d-none': !checkAddPhoneNumberDropDown, 'd-block' : checkAddPhoneNumberDropDown}">
+                          <div class="input-wrapper">
+                            <input class="input-style" style="margin: 0px;padding-left: 76px;width: 100%;" required type="text" id="firstName" name="firstName">
                             <span class="validation-icon icon icon-valid" title="Field is valid"
-                            style="height: 48px;"></span>
+                              style="height: 48px;"></span>
                           </div>
-                          <svg class="icon-style"
-                          viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
-                          xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false">
-                          <path
-                            d="M5.938 12.979L5.92 13l-.002-.001V13l-.02-.018L2 9.762 2.653 9l3.19 2.635L13.263 4l.737.684-8.062 8.295z">
-                          </path>
-                        </svg>
+                          <svg class="icon-style" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false">
+                            <path
+                              d="M5.938 12.979L5.92 13l-.002-.001V13l-.02-.018L2 9.762 2.653 9l3.19 2.635L13.263 4l.737.684-8.062 8.295z">
+                            </path>
+                          </svg>
+                          <div class="country-code">
+                            +84
+                          </div>
+                        </div>
                       </div>
 
-                    </div>
-                    <div class="mb-15">
-                      <div class="label-wrapper">
-                        <label class="label-style" for="firstName">
-                          Day Of Birth</label>
-                      </div>
 
-                      <div class="p-relative">
-                        <div class="input-wrapper date-input-wrapper">
-                          <input aria-label="MM"
-                            required name="month" type="number" pattern="\d*"
-                            class="input-style date-input-style" placeholder="DD" id="dateOfBirth" maxlength="2"
-                            value="11">
-                            <span>/</span>
-                            <input aria-label="DD" required name="day"
-                            type="number" pattern="\d*" class="input-style date-input-style" placeholder="MM"
-                            maxlength="2" value="11">
-                            <span>/</span>
-                            <input aria-label="YYYY"
-                            required name="year" type="number" pattern="\d*" class="input-style date-input-style"
-                            placeholder="YYYY" maxlength="4" value="2001">
-                        </div>
-                        <svg
-                          class="icon-style"
-                          viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
+                    </div>
+                    <div class="button-container">
+                      <button class="button-style" type="submit"><span>Lưu</span></button>
+                      <button class="button-cancel-style" type="button">
+                        <svg class="icon-cancel-style" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
                           xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false">
                           <path
-                            d="M5.938 12.979L5.92 13l-.002-.001V13l-.02-.018L2 9.762 2.653 9l3.19 2.635L13.263 4l.737.684-8.062 8.295z">
+                            d="M12 11.29L21.29 2l.71.71L12.71 12 22 21.29l-.71.71L12 12.71 2.71 22 2 21.29 11.29 12 2 2.71 2.71 2 12 11.29z">
                           </path>
-                        </svg>
-                      </div>
-                    </div><button
-                      class="CTA-module--action__3u4Lb CTA-module--medium__3OtCb CTA-module--reset__3Jrq5 ToggleFieldsLink-module--toggleFieldContainer__1_-RC"
-                      type="button"><svg class="IconWrapper-module--icon__3Axc5 IconWrapper-module--normal__61od4"
-                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
-                        xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false">
-                        <path d="M12 14.9l4.95-4.95.707.707-4.95 4.95-.707.707-5.657-5.657.707-.707L12 14.9z"></path>
-                      </svg>Add phone number (optional)</button>
-                    <div class="FadeInOut-module--container__1hPKG FadeInOut-module--entered__3Jpc2"><button
-                        type="button" class="CollapseContent-module--toggle__2XNXK FieldList--toggleHide__JBKgU"
-                        aria-expanded="false" aria-disabled="false">Toggle Content</button></div>
-                    <div aria-hidden="true" hidden=""
-                      class="CollapseContent-module--collapse__VQ8OU CollapseContent-module--collapseAnim__2u2lG"
-                      role="region" style="display: none; height: 0px; opacity: 0;">
-                      <div class=""><label class="FormLabel-module--label__1Lol5" for="cellPhone">Phone number</label>
-                        <div class="PhoneNumber--countrySelect__2raFO FieldList--collapsedInput__1uCtn">
-                          <div class="Field-module--childWrapper__Rpmaa Field-module--valid__1tIMF">
-                            <div><svg
-                                class="IconWrapper-module--icon__2Xg1f Select-module--chevronDown__3oqU1 IconWrapper-module--normal__2pGtD"
-                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
-                                xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false">
-                                <path d="M12 14.9l4.95-4.95.707.707-4.95 4.95-.707.707-5.657-5.657.707-.707L12 14.9z">
-                                </path>
-                              </svg></div><svg
-                              class="IconWrapper-module--icon__2Xg1f ValidationIcon-module--validationIcon__84v1S ValidationIcon-module--selectMode__M388C ValidationIcon-module--checkmark__2ZDRw IconWrapper-module--small__2rAlV"
-                              viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
-                              xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false" data-testid="checkmarkIcon">
-                              <path
-                                d="M5.938 12.979L5.92 13l-.002-.001V13l-.02-.018L2 9.762 2.653 9l3.19 2.635L13.263 4l.737.684-8.062 8.295z">
-                              </path>
-                            </svg>
-                          </div><span class="BodyText-module--general__2yKZb Field-module--underFieldText__3ql74"
-                            aria-live="polite"></span>
-                        </div>
-                      </div>
+
+                        </svg><span>Hủy</span></button>
                     </div>
-                    <div class="FadeInOut-module--container__1hPKG FadeInOut-module--entered__3Jpc2"><button
-                        type="button" class="CollapseContent-module--toggle__2XNXK FieldList--toggleHide__JBKgU"
-                        aria-expanded="false" aria-disabled="false">Toggle Content</button></div>
-                    <div aria-hidden="true" hidden=""
-                      class="CollapseContent-module--collapse__VQ8OU CollapseContent-module--collapseAnim__2u2lG"
-                      role="region" style="display: none; height: 0px; opacity: 0;">
-                      <div class="">
-                        <div class="PhoneNumber--phoneNumberInputWrap__2zsFX FieldList--collapsedInput__1uCtn">
-                          <div class="PhoneNumber--FieldWrap__3-BM9">
-                            <div class="Field-module--childWrapper__Rpmaa">
-                              <div class="Input-module--input__3CRWW"><input class="BaseInput-module--input__DA8R_"
-                                  autocomplete="tel-national" aria-required="false" type="tel" id="cellPhone"
-                                  name="cellPhone" value="" style="margin: 0px; padding-left: 76px; width: 100%;">
-                              </div>
-                            </div>
-                          </div>
-                          <div
-                            class="BodyText-module--general__tc7rJ PhoneNumber--countryCodeDisplay__X6V0i BodyText-module--preamble__3V4jP">
-                            +1</div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="CountrySelectorFields--container__HaH-u">
-                      <div class="CountrySelectorFields--countrySelector__2wi1J">
-                        <p class="BodyText-module--general__tc7rJ"><span>MARKET</span></p><button
-                          class="CTA-module--action__3u4Lb CTA-module--medium__3OtCb CTA-module--reset__3Jrq5 CTA-module--inline__XtnFI CountrySelectorFields--countryLink__2X_AY"
-                          type="button">USA</button>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="CheckoutForm--buttonContainer__k6rcy"><button
-                      class="CTA-module--action__3hGPH CTA-module--medium__dV8ar CTA-module--primary__3hPd- CTA-module--fullWidth__1GZ-5"
-                      data-testid="submitButton" type="submit"><span>Save</span></button><button
-                      class="CTA-module--action__3u4Lb CTA-module--medium__3OtCb CTA-module--primary__2vO6- CTA-module--reset__3Jrq5 CTA-module--fullWidth__vCv66 CTA-module--iconPosition-start__1GYjG CancelButton--cancelButton__2z7kI"
-                      type="button"><svg class="IconWrapper-module--icon__3Axc5 IconWrapper-module--small__2SCWO"
-                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
-                        xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false">
-                        <path
-                          d="M12 11.29L21.29 2l.71.71L12.71 12 22 21.29l-.71.71L12 12.71 2.71 22 2 21.29 11.29 12 2 2.71 2.71 2 12 11.29z">
-                        </path>
-                      </svg><span>Cancel</span></button></div>
-                </form>
+                  </form>
+                </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
+          <section role="button" tabindex="0" class="section-container" aria-disabled="false">
+            <h2 class="heading-style">
+              <span class="font-style-20" style="font-weight: 600;">Thông tin của tôi</span>
+            </h2>
+            <div class="w-100">
+              <div class="collapse-animation" role="region"
+                style="display: block; height: auto; opacity: 1; overflow: hidden;">
+                <div class="fade-in-out">
+                  <form class="" novalidate>
+                    <div class="mb-15">
+                      <p class="body-text"><span>Email</span></p>
+                      <p class="body-text" style="margin: 0px;">uchihadungkitty@gmail.com</p>
+                    </div>
+                    <div class="form-input">
+                      <div class="mb-15">
+                        <div class="label-wrapper">
+                          <label class="label-style" for="firstName">
+                            Tên của bạn</label>
+                        </div>
+                        <div class="p-relative">
+                          <div class="input-wrapper">
+                            <input class="input-style" required type="text" id="firstName" name="firstName">
+                            <span class="validation-icon icon icon-valid" title="Field is valid"
+                              style="height: 48px;"></span>
+                          </div>
+                          <svg class="icon-style" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false">
+                            <path
+                              d="M5.938 12.979L5.92 13l-.002-.001V13l-.02-.018L2 9.762 2.653 9l3.19 2.635L13.263 4l.737.684-8.062 8.295z">
+                            </path>
+                          </svg>
+                        </div>
+
+                      </div>
+                      <div class="mb-15">
+                        <div class="label-wrapper">
+                          <label class="label-style" for="dateOfBirth">
+                            Ngày sinh</label>
+                        </div>
+
+                        <div class="p-relative">
+                          <div class="input-wrapper date-input-wrapper">
+                            <input aria-label="MM" required name="month" type="number" pattern="\d*"
+                              class="input-style date-input-style" placeholder="DD" id="dateOfBirth" maxlength="2">
+                            <span>/</span>
+                            <input aria-label="DD" required name="day" type="number" pattern="\d*"
+                              class="input-style date-input-style" placeholder="MM" maxlength="2">
+                            <span>/</span>
+                            <input aria-label="YYYY" required name="year" type="number" pattern="\d*"
+                              class="input-style date-input-style" placeholder="YYYY" maxlength="4">
+                          </div>
+                          <svg class="icon-style" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false">
+                            <path
+                              d="M5.938 12.979L5.92 13l-.002-.001V13l-.02-.018L2 9.762 2.653 9l3.19 2.635L13.263 4l.737.684-8.062 8.295z">
+                            </path>
+                          </svg>
+                        </div>
+                      </div>
+                      <button class="button-cancel-style" style="justify-content: start; margin-bottom: 10px;" type="button" (click)="addPhoneNumber()">
+                        <ng-container *ngIf="!checkAddPhoneNumberDropDown">
+                          <svg class="icon-cancel-style" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false">
+                            <path d="M12 14.9l4.95-4.95.707.707-4.95 4.95-.707.707-5.657-5.657.707-.707L12 14.9z"></path>
+                          </svg>
+                        </ng-container>
+                        <ng-container *ngIf="checkAddPhoneNumberDropDown">
+                          <svg *ngIf="checkAddPhoneNumberDropDown" class="icon-cancel-style" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+                          xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false">
+                          <path d="M12 9.757l4.95 4.95.707-.707-4.95-4.95L12 8.343 6.343 14l.707.707L12 9.757z"></path>
+                        </svg>
+                      </ng-container>
+                      {{ checkAddPhoneNumberDropDown == false ? "Thêm số điện thoại" : "Ẩn số điện thoại" }}
+                    </button>
+                      <div class="mb-15 collapse-animation" [ngClass]="{'d-none': !checkAddPhoneNumberDropDown, 'd-block' : checkAddPhoneNumberDropDown}">
+                        <div class="label-wrapper">
+                          <label class="label-style" for="firstName">
+                            Số điện thoại</label>
+                        </div>
+                        <div class="p-relative"  [ngClass]="{'d-none': !checkAddPhoneNumberDropDown, 'd-block' : checkAddPhoneNumberDropDown}">
+                          <div class="input-wrapper">
+                            <input class="input-style" style="margin: 0px;padding-left: 76px;width: 100%;" required type="text" id="firstName" name="firstName">
+                            <span class="validation-icon icon icon-valid" title="Field is valid"
+                              style="height: 48px;"></span>
+                          </div>
+                          <svg class="icon-style" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
+                            xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false">
+                            <path
+                              d="M5.938 12.979L5.92 13l-.002-.001V13l-.02-.018L2 9.762 2.653 9l3.19 2.635L13.263 4l.737.684-8.062 8.295z">
+                            </path>
+                          </svg>
+                          <div class="country-code">
+                            +84
+                          </div>
+                        </div>
+                      </div>
+
+
+                    </div>
+                    <div class="button-container">
+                      <button class="button-style" type="submit"><span>Lưu</span></button>
+                      <button class="button-cancel-style" type="button">
+                        <svg class="icon-cancel-style" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
+                          xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false">
+                          <path
+                            d="M12 11.29L21.29 2l.71.71L12.71 12 22 21.29l-.71.71L12 12.71 2.71 22 2 21.29 11.29 12 2 2.71 2.71 2 12 11.29z">
+                          </path>
+
+                        </svg><span>Hủy</span></button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
       </div>
-    </div>
-  </main>
+    </main>
+
+    <aside class="sidebar-container">
+      <div class="pt-15 pb-15 px-24">
+        <div class="d-flex mb-15" style="border-bottom: 1px solid #d0d0d0;">
+          <p class="font-style-16" style="flex: 1; font-weight: 600;">
+            <span>Giảm giá</span>
+          </p>
+          <a class="font-style-16 color-1" type="button" style="flex: 1; text-align: right;">
+            <span>Thêm mã giảm giá</span>
+          </a>
+        </div>
+        <div class="fade-in-out">
+          <table>
+            <tbody class="font-style-14">
+              <tr>
+                <th class="py-1 color-text-gray text-start">
+                  Order value
+                </th>
+                <td class="py-1 text-end">
+                  (VNĐ)99.00
+                </td>
+              </tr>
+              <tr>
+                <th class="py-1  color-text-gray text-start">
+                  Order value
+                </th>
+                <td class="py-1 text-end">
+                  (VNĐ)99.00
+                </td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr class="mt-1 pt-1 pb-3">
+                <th class="py-2 text-start" style="border-top: 1px solid #222;">
+                  Tổng</th>
+                <td class="py-2 text-end" style="border-top: 1px solid #222;">
+                  (VNĐ)79.20 </td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+        <div class="fade-in-out">
+          <p class="">Chúng tôi sẽ xử lý dữ liệu cá nhân của bạn theo CheemsStore's
+            <a class="font-style-16 color-1" tabindex="0" type="button">Privacy Notice</a>.
+          </p>
+          <p class="BodyText-module--general__2yKZb">Để tiếp tục, bạn phải đồng ý với
+            <a class="font-style-16 color-1" tabindex="0" type="button">các điều khoản chung
+            </a>
+            của chúng tôi.
+          </p>
+          <p class="BodyText-module--general__tc7rJ"><span>Xin lưu ý rằng số thuế chỉ là ước tính và số tiền cuối cùng có
+              thể thay đổi. Nếu thuế ước tính được trình bày dưới dạng TBD, giá trị đơn đặt hàng không bao gồm bất kỳ
+              khoản thuế nào và sẽ được cộng thêm khi các mặt hàng được vận chuyển.</span>
+          </p>
+
+          <button class="button-style my-4">Thanh toán</button>
+          <div class="FadeInOut-module--container__1hPKG FadeInOut-module--entered__3Jpc2">
+            <div class="CustomerServiceInfo--container__2J2io">
+              <h3 class="sub-sub-heading light">Dịch vụ chăm sóc khách hàng</h3>
+              <p class="text">Nếu bạn cần giúp đỡ? Làm ơn liên hệ với chúng tôi <a class="font-style-16 color-1"
+                  routerLink="/contact-us">Dịch vụ chăm sóc khách hàng</a>.<br>
+                Nếu có câu hỏi nào, hãy nhắn tin với chúng tôi!.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+  </div>
 </div>

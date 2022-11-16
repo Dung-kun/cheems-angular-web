@@ -1,9 +1,48 @@
-.fade-in-out {
-  opacity: 1;
-  transition: opacity 300ms linear, -webkit-transform 300ms linear;
-  transition: opacity 300ms linear, transform 300ms linear;
-  transition: opacity 300ms linear, transform 300ms linear,
-    -webkit-transform 300ms linear;
+@keyframes animation-icon-checkout {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.sidebar-container {
+  position: sticky;
+  position: -webkit-sticky;
+  z-index: 10;
+  top: 16px;
+  color: #151875;
+  box-shadow: 0px 0px 25px 10px #f5f5fc;
+  border-radius: 10px;
+  float: left;
+  width: 100%;
+}
+
+.main-content {
+  color: #151875;
+  box-shadow: 0px 0px 25px 10px #f5f5fc;
+  border-radius: 10px;
+  float: left;
+  width: 100%;
+}
+
+@media screen and (min-width: 768px) {
+  .main-content {
+    margin-right: 24px;
+    width: calc(66.6666666667% - 24px);
+  }
+
+  .sidebar-container {
+    padding: 10px 0;
+    margin-bottom: 100px;
+    width: 33.3333333333%;
+  }
+
+  .button-container {
+    min-width: 160px;
+    max-width: 340px;
+  }
 }
 
 .overview-sections > section:not(last-child) {
@@ -16,6 +55,7 @@
 
 .overview-sections {
   .section-container {
+    border-radius: 10px;
     min-height: 1px;
     position: relative;
     display: flex;
@@ -33,12 +73,12 @@
       max-height: 56px;
     }
 
-    .collapse-animation {
-      transition: height 300ms ease,opacity 300ms ease-in-out;
-    }
   }
 }
 
+.collapse-animation {
+  transition: height 300ms ease, opacity 300ms ease-in-out;
+}
 .body-text {
   margin-bottom: 0;
   color: #151875;
@@ -48,13 +88,12 @@
   line-height: 30px;
 }
 
-
 form {
   .form-input {
     .label-wrapper {
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
       label {
         display: block;
         margin: 0 0 4px;
@@ -75,7 +114,7 @@ form {
         font-weight: 400;
         text-transform: none;
         border: 1px solid;
-        border-radius: 0;
+        border-radius: 10px;
         border-color: #d0d0d0;
         box-sizing: border-box;
         height: 48px;
@@ -87,6 +126,7 @@ form {
     .date-input-wrapper {
       align-items: center;
       background: #fff;
+      border-radius: 10px;
       border: 1px solid #d0d0d0;
       overflow: hidden;
       display: flex;
@@ -97,35 +137,96 @@ form {
         border: 0;
         width: 33%;
       }
+
+      .date-input-style:focus {
+        outline: none;
+      }
     }
-
   }
-
 }
 
-
+.country-code {
+  height: 32px;
+  width: 44px;
+  border-right: 1px solid #d0d0d0;
+  display: flex;
+  align-items: center;
+  padding-right: 16px;
+  justify-content: center;
+  position: absolute;
+  top: 8px;
+  left: 16px;
+}
 
 .icon-style {
   height: 16px;
   line-height: 1.45;
-  font-size: .688rem;
+  font-size: 0.688rem;
   font-weight: 400;
   text-transform: none;
-  -webkit-animation: validation-icon--scale-up 300ms linear 1;
-  animation: validation-icon--scale-up 300ms linear 1;
+  -webkit-animation: animation-icon-checkout 300ms linear 1;
+  animation: animation-icon-checkout 300ms linear 1;
   color: #d6001c;
   position: absolute;
   right: 10px;
   top: 16px;
 }
-@media screen and (min-width: 768px) {
-  .main-content {
-    margin-right: 24px;
-    width: calc(66.6666666667% - 24px);
+
+.button-container {
+  margin: 32px auto;
+  width: 100%;
+}
+
+.button-cancel-style {
+  display: flex;
+  margin: 24px auto 0 auto;
+  background: transparent;
+  border: 0;
+  min-height: auto;
+  height: auto;
+  min-width: auto;
+  letter-spacing: normal;
+  overflow: visible;
+  justify-content: center;
+  position: relative;
+  width: 100%;
+  color: #151875;
+  .icon-cancel-style {
+    color: #151875;
+    height: 16px;
+    margin-inline-end: 8px;
   }
 }
 
-.main-content {
-  float: left;
+table {
+  margin: 0 0 24px;
   width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+
+.d-none {
+  display: none;
+  opacity: 0;
+  height: 0;
+}
+
+.d-block {
+  display: block;
+  height: auto;
+  opacity: 1;
+}
+
+a:hover {
+  color: #fb2e86;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
 }
