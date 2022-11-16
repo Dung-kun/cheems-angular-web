@@ -2,10 +2,10 @@
   <div class="title-container">
     <div class="container">
       <div class="title-text">
-        Checkout
+        Thủ tục thanh toán
       </div>
       <div class="title-route">
-        Route. Shopping Cart. <span>Checkout</span>
+        Route. Shopping Cart. <span>Thủ tục thanh toán</span>
       </div>
     </div>
   </div>
@@ -13,121 +13,6 @@
     <main class="main-content">
       <div class="fade-in-out">
         <div class="overview-sections">
-          <section role="button" tabindex="0" class="section-container" aria-disabled="false">
-            <h2 class="heading-style">
-              <span class="font-style-20" style="font-weight: 600;">Thông tin của tôi</span>
-            </h2>
-            <div class="w-100">
-              <div class="collapse-animation" role="region"
-                style="display: block; height: auto; opacity: 1; overflow: hidden;">
-                <div class="fade-in-out">
-                  <form class="" novalidate>
-                    <div class="mb-15">
-                      <p class="body-text"><span>Email</span></p>
-                      <p class="body-text" style="margin: 0px;">uchihadungkitty@gmail.com</p>
-                    </div>
-                    <div class="form-input">
-                      <div class="mb-15">
-                        <div class="label-wrapper">
-                          <label class="label-style" for="firstName">
-                            Tên của bạn</label>
-                        </div>
-                        <div class="p-relative">
-                          <div class="input-wrapper">
-                            <input class="input-style" required type="text" id="firstName" name="firstName">
-                            <span class="validation-icon icon icon-valid" title="Field is valid"
-                              style="height: 48px;"></span>
-                          </div>
-                          <svg class="icon-style" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
-                            xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false">
-                            <path
-                              d="M5.938 12.979L5.92 13l-.002-.001V13l-.02-.018L2 9.762 2.653 9l3.19 2.635L13.263 4l.737.684-8.062 8.295z">
-                            </path>
-                          </svg>
-                        </div>
-
-                      </div>
-                      <div class="mb-15">
-                        <div class="label-wrapper">
-                          <label class="label-style" for="dateOfBirth">
-                            Ngày sinh</label>
-                        </div>
-
-                        <div class="p-relative">
-                          <div class="input-wrapper date-input-wrapper">
-                            <input aria-label="MM" required name="month" type="number" pattern="\d*"
-                              class="input-style date-input-style" placeholder="DD" id="dateOfBirth" maxlength="2">
-                            <span>/</span>
-                            <input aria-label="DD" required name="day" type="number" pattern="\d*"
-                              class="input-style date-input-style" placeholder="MM" maxlength="2">
-                            <span>/</span>
-                            <input aria-label="YYYY" required name="year" type="number" pattern="\d*"
-                              class="input-style date-input-style" placeholder="YYYY" maxlength="4">
-                          </div>
-                          <svg class="icon-style" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
-                            xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false">
-                            <path
-                              d="M5.938 12.979L5.92 13l-.002-.001V13l-.02-.018L2 9.762 2.653 9l3.19 2.635L13.263 4l.737.684-8.062 8.295z">
-                            </path>
-                          </svg>
-                        </div>
-                      </div>
-                      <button class="button-cancel-style" style="justify-content: start; margin-bottom: 10px;" type="button" (click)="addPhoneNumber()">
-                        <ng-container *ngIf="!checkAddPhoneNumberDropDown">
-                          <svg class="icon-cancel-style" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
-                            xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false">
-                            <path d="M12 14.9l4.95-4.95.707.707-4.95 4.95-.707.707-5.657-5.657.707-.707L12 14.9z"></path>
-                          </svg>
-                        </ng-container>
-                        <ng-container *ngIf="checkAddPhoneNumberDropDown">
-                          <svg *ngIf="checkAddPhoneNumberDropDown" class="icon-cancel-style" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
-                          xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false">
-                          <path d="M12 9.757l4.95 4.95.707-.707-4.95-4.95L12 8.343 6.343 14l.707.707L12 9.757z"></path>
-                        </svg>
-                      </ng-container>
-                      {{ checkAddPhoneNumberDropDown == false ? "Thêm số điện thoại" : "Ẩn số điện thoại" }}
-                    </button>
-                      <div class="mb-15 collapse-animation" [ngClass]="{'d-none': !checkAddPhoneNumberDropDown, 'd-block' : checkAddPhoneNumberDropDown}">
-                        <div class="label-wrapper">
-                          <label class="label-style" for="firstName">
-                            Số điện thoại</label>
-                        </div>
-                        <div class="p-relative"  [ngClass]="{'d-none': !checkAddPhoneNumberDropDown, 'd-block' : checkAddPhoneNumberDropDown}">
-                          <div class="input-wrapper">
-                            <input class="input-style" style="margin: 0px;padding-left: 76px;width: 100%;" required type="text" id="firstName" name="firstName">
-                            <span class="validation-icon icon icon-valid" title="Field is valid"
-                              style="height: 48px;"></span>
-                          </div>
-                          <svg class="icon-style" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
-                            xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false">
-                            <path
-                              d="M5.938 12.979L5.92 13l-.002-.001V13l-.02-.018L2 9.762 2.653 9l3.19 2.635L13.263 4l.737.684-8.062 8.295z">
-                            </path>
-                          </svg>
-                          <div class="country-code">
-                            +84
-                          </div>
-                        </div>
-                      </div>
-
-
-                    </div>
-                    <div class="button-container">
-                      <button class="button-style" type="submit"><span>Lưu</span></button>
-                      <button class="button-cancel-style" type="button">
-                        <svg class="icon-cancel-style" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
-                          xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false">
-                          <path
-                            d="M12 11.29L21.29 2l.71.71L12.71 12 22 21.29l-.71.71L12 12.71 2.71 22 2 21.29 11.29 12 2 2.71 2.71 2 12 11.29z">
-                          </path>
-
-                        </svg><span>Hủy</span></button>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </section>
           <section role="button" tabindex="0" class="section-container" aria-disabled="false">
             <h2 class="heading-style">
               <span class="font-style-20" style="font-weight: 600;">Thông tin của tôi</span>
@@ -262,7 +147,7 @@
             <tbody class="font-style-14">
               <tr>
                 <th class="py-1 color-text-gray text-start">
-                  Order value
+                  Vật phẩm
                 </th>
                 <td class="py-1 text-end">
                   (VNĐ)99.00
@@ -270,7 +155,7 @@
               </tr>
               <tr>
                 <th class="py-1  color-text-gray text-start">
-                  Order value
+                  Vật phẩm
                 </th>
                 <td class="py-1 text-end">
                   (VNĐ)99.00
