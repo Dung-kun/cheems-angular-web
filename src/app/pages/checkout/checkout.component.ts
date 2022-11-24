@@ -7,10 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CheckoutComponent implements OnInit {
   public checkAddPhoneNumberDropDown: boolean;
+  public checkShippingChoose: number;
 
   constructor() {
 
     this.checkAddPhoneNumberDropDown = false;
+    this.checkShippingChoose = 1;
    }
 
   ngOnInit(): void {
@@ -19,6 +21,10 @@ export class CheckoutComponent implements OnInit {
 
   addPhoneNumber() {
     this.checkAddPhoneNumberDropDown = !this.checkAddPhoneNumberDropDown;
+  }
+
+  chooseShipping(a: number) {
+    this.checkShippingChoose = a;
   }
 
 }
