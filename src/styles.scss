@@ -1,3 +1,12 @@
+@import './assets/css/root-style.scss';
+
+@import './assets/css/animation-style.scss';
+
+@import './assets/css/font-style.scss';
+
+@import './../node_modules/ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
+@import './../node_modules/ngx-owl-carousel-o/lib/styles/scss/owl.theme.default';
+
 @font-face {
   font-family: 'Josefin Sans';
   src: url(./assets/fonts/JosefinSans-VariableFont_wght.ttf);
@@ -8,11 +17,6 @@
   src: url(./assets/fonts/Lato-Regular.ttf);
 }
 /* You can add global styles to this file, and also import other style files */
-@import './assets/css/root-style.scss';
-
-@import './assets/css/animation-style.scss';
-
-@import './assets/css/font-style.scss';
 
 body {
   font-family: "Josefin Sans";

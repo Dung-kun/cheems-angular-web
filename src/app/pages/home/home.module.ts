@@ -5,7 +5,6 @@ import { RouterModule } from '@angular/router';
 import { PropertyCardModule } from '../../shares/components/property-card/property-card.module';
 
 
-
 @NgModule({
   declarations: [HomeComponent],
   imports: [

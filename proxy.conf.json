@@ -1,0 +1,11 @@
+{
+  "/api/*": {
+    "target": "https://cheems-store.onrender.com/graphql/",
+    "secure": false,
+    "logLevel": "debug",
+    "pathRewrite": {
+      "^/api": ""
+    },
+    "changeOrigin": true
+  }
+}

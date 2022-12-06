@@ -1,15 +1,13 @@
-class Product {
+import { Manufacturer } from "./manufacturer.model";
+import { ProductType } from './product-type.model';
+
+export class Product {
     constructor(
       public id: string = "",
       public name: string = "",
-      public description: string = "",
-      public price: string = "",
-      public categoryId: string = "",
-      public warrantyDate: string = "",
-      public metadata: string = "",
+      public productTypes: ProductType[] = [],
       public deletedAt: string = "",
-      public manufacture: Manufacture[] = []
+      public manufacturers: Manufacturer[] = []
     ){
-
     }
 }

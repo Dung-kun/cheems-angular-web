@@ -40,7 +40,7 @@
   <!-- <img class="card-img-top" src="./../../../../assets/images/ganyu-1.png" alt=""> -->
   <div class="card-body">
     <a routerLink="/product-details" style="text-decoration: none; color: #FB2E86;">
-      <h5 class="card-title text-center">Ganyu</h5>
+      <h5 class="card-title text-center">{{ product?.name || "Ganyu" }}</h5>
     </a>
     <div class="card-text text-center">
       <div class="card-bar-icon">
@@ -49,10 +49,10 @@
         <div class="bar-icon" style="background: #FFEAC1;"></div>
       </div>
       <p class="text-cost">
-        4.000 VNĐ
+        {{product?.price + " VNĐ"}}
       </p>
-      <p class="text-cost-km">
-        6.000 VNĐ
+      <p *ngIf="product?.metaData != null" class="text-cost-km">
+        {{product?.price + " VNĐ"}}
       </p>
     </div>
   </div>

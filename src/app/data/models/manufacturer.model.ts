@@ -1,4 +1,4 @@
-class Manufacture {
+export class Manufacturer {
   constructor(
     public id: string = "",
     public name: string = "",
