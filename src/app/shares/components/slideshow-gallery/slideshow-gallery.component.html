@@ -1,0 +1,101 @@
+<div class="container-1">
+  <ng-container *ngIf="medias.length == 0; else forMediasContent">
+    <button class="mySlides" type="button" data-bs-toggle="modal" data-bs-target="#modalImage">
+      <div class="numbertext">1 / 6</div>
+      <img src="./../../../../assets/images/ganyu-1.png" style="width:100%">
+    </button>
+
+    <button class="mySlides"  type="button" data-bs-toggle="modal" data-bs-target="#modalImage">
+      <div class="numbertext">2 / 6</div>
+      <img src="./../../../../assets/images/beidou.jpg" style="width:100%">
+    </button>
+
+    <button class="mySlides"  type="button" data-bs-toggle="modal" data-bs-target="#modalImage">
+      <div class="numbertext">3 / 6</div>
+      <img src="./../../../../assets/images/ganyu-1.png" style="width:100%">
+    </button>
+
+    <button class="mySlides"  type="button" data-bs-toggle="modal" data-bs-target="#modalImage">
+      <div class="numbertext">4 / 6</div>
+      <img src="./../../../../assets/images/ganyu-1.png" style="width:100%">
+    </button>
+    <button class="mySlides"  type="button" data-bs-toggle="modal" data-bs-target="#modalImage">
+      <div class="numbertext">5 / 6</div>
+      <img src="./../../../../assets/images/ganyu-1.png" style="width:100%">
+    </button>
+    <button class="mySlides"  type="button" data-bs-toggle="modal" data-bs-target="#modalImage">
+      <div class="numbertext">6 / 6</div>
+      <img src="./../../../../assets/images/ganyu-1.png" style="width:100%">
+    </button>
+    <button class="mySlides"  type="button" data-bs-toggle="modal" data-bs-target="#modalImage">
+      <div class="numbertext">7 / 6</div>
+      <img src="./../../../../assets/images/ganyu-1.png" style="width:100%">
+    </button>
+  </ng-container>
+
+
+  <a class="prev" (click)="plusSlides(-1)">❮</a>
+  <a class="next" (click)="plusSlides(1)">❯</a>
+
+  <div class="row-img" (scroll)="onScroll($event)">
+    <ng-container *ngIf="medias.length == 0; else forMediasBottom">
+      <div class="column-img">
+        <img class="demo cursor" src="./../../../../assets/images/ganyu-1.png" style="width:100%" (click)="currentSlide(1)" alt="The Woods">
+      </div>
+      <div class="column-img">
+        <img class="demo cursor" src="./../../../../assets/images/beidou.jpg" style="width:100%" (click)="currentSlide(2)" alt="Cinque Terre">
+      </div>
+      <div class="column-img">
+        <img class="demo cursor" src="./../../../../assets/images/ganyu-1.png" style="width:100%" (click)="currentSlide(3)" alt="Mountains and fjords">
+      </div>
+      <div class="column-img">
+        <img class="demo cursor" src="./../../../../assets/images/ganyu-1.png" style="width:100%" (click)="currentSlide(4)" alt="Northern Lights">
+      </div>
+      <div class="column-img">
+        <img class="demo cursor" src="./../../../../assets/images/ganyu-1.png" style="width:100%" (click)="currentSlide(5)" alt="Northern Lights">
+      </div>
+      <div class="column-img">
+        <img class="demo cursor" src="./../../../../assets/images/ganyu-1.png" style="width:100%" (click)="currentSlide(6)" alt="Northern Lights">
+      </div>
+      <div class="column-img">
+        <img class="demo cursor" src="./../../../../assets/images/ganyu-1.png" style="width:100%" (click)="currentSlide(7)" alt="Northern Lights">
+      </div>
+    </ng-container>
+  </div>
+</div>
+
+
+<ng-template #forMediasContent>
+    <ng-container *ngFor="let media of medias; let i = index, let length = count">
+      <button class="mySlides" type="button" data-bs-toggle="modal" data-bs-target="#modalImage" (click)="changeImgShowPath(media.filePath)">
+        <div class="numbertext">{{ i + "/" + length }}</div>
+        <img [src]="media.filePath" style="width:100%">
+      </button>
+    </ng-container>
+</ng-template>
+
+<ng-template #forMediasBottom>
+    <ng-container *ngFor="let media of medias; let i = index, let length = count">
+      <div class="column-img">
+        <img class="demo cursor" [src]="media.filePath" style="width:100%" (click)="currentSlide(i+1)" [alt]="media.id">
+      </div>
+    </ng-container>
+</ng-template>
+
+<div class="modal fade modal-lg" id="modalImage" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <!-- <h5 class="modal-title" id="modalLabel">Modal title</h5> -->
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <img [src]="this.imageShowPath" style="width:100%">
+      </div>
+      <!-- <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div> -->
+    </div>
+  </div>
+</div>

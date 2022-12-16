@@ -1,0 +1,95 @@
+.range-slider {
+  border-style: none;
+  border-width: 1px;
+  border-color: unset;
+  opacity: 1;
+  padding: 0.5rem 0px;
+}
+
+.slider-full {
+  position: relative;
+  height: 3px;
+  width: 100%;
+}
+
+.slider-track {
+  position: relative;
+  width: 100%;
+  background-color: rgb(246, 246, 246);
+  height: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.slider-full > .slider-track .slider-track-fill {
+  background-color: rgb(20, 53, 195);
+}
+
+.slider-track-fill {
+  position: absolute;
+  top: 0px;
+  height: 100%;
+}
+
+.slider-full > .slider-thumb {
+  box-shadow: rgb(20 53 195) 0px 0px 0px 1.5px inset;
+  width: 9px;
+  height: 9px;
+}
+
+.slider-thumb {
+  position: absolute;
+  border-radius: 1000px;
+  transform: translate(-25%, -50%);
+  background-color: rgb(255, 255, 255);
+  text-align: center;
+  cursor: pointer;
+  top: 50%;
+}
+
+.tooltip {
+  visibility: hidden;
+  background-color: rgb(0, 0, 0);
+  color: rgb(255, 255, 255);
+  text-align: center;
+  padding: 2px 3px;
+  position: absolute;
+  z-index: 1;
+  font-size: 0.625rem;
+  border-radius: 3px;
+  transform: translate(-50%, -150%);
+  min-width: 1.25rem;
+  user-select: none;
+}
+
+.title {
+  border-style: none;
+  border-width: 1px;
+  border-color: unset;
+  opacity: 1;
+  margin-bottom: 0.25rem;
+  display: flex;
+  flex-flow: row nowrap;
+  gap: 0rem;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: baseline;
+  align-items: baseline;
+  position: relative;
+}
+
+.value-text {
+    opacity: 1;
+    display: inline-block;
+    color: inherit;
+    font-weight: inherit;
+    width: 75px;
+    padding: 0.25rem;
+    border: 1px solid rgb(228, 229, 240);
+    font-size: 0.7rem;
+    border-radius: 0.25rem;
+    background-color: rgb(255, 255, 255);
+    z-index: 0;
+    text-align: center;
+}

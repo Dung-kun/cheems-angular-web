@@ -39,6 +39,15 @@ footer {
   font-weight: 400;
   font-size: 16px;
   line-height: 19px;
+    .style-header-text {
+      font-family: 'Lato';
+      color: #8A8FB9;
+      text-decoration: none;
+    }
+    .style-header-text:hover {
+      color:hsl(334, 96%, 58%);
+      text-decoration: underline;
+    }
 }
 
 .footer-bottom {

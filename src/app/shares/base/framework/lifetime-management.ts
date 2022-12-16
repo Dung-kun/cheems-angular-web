@@ -7,8 +7,6 @@ export interface ILifetimeManagement {
 
 @Component({template:''})
 export abstract class LifetimeManagement implements ILifetimeManagement, OnDestroy {
-  ngOnInit(): void {
-  }
 
   ngOnDestroy(): void {
     this.subscriptions$.map(elem => {

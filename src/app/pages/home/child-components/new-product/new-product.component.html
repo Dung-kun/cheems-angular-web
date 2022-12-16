@@ -1,0 +1,25 @@
+<div class="container m-common">
+  <div class="hot-top">
+    <div id="carousels" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carousels" data-bs-slide-to="0" class="active" aria-current="true"></button>
+        <button type="button" data-bs-target="#carousels" data-bs-slide-to="1" ></button>
+        <button type="button" data-bs-target="#carousels" data-bs-slide-to="2"></button>
+      </div>
+      <div class="carousel-inner" *ngIf="pageViewModel$ | async as pageViewModel">
+        <ng-container *ngFor="let item of pageViewModel.newProductTypes">
+          <div class="carousel-item">
+
+          </div>
+        </ng-container>
+        <div class="carousel-item active">
+
+        </div>
+        <div class="carousel-item">
+        </div>
+        <div class="carousel-item">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

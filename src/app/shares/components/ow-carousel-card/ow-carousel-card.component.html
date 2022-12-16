@@ -1,0 +1,25 @@
+<div class="container m-common">
+  <div class="hot-top">
+    <div id="carousels" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <ng-container *ngFor="let items of this.productListShow; let idx = index">
+          <button type="button" data-bs-target="#carousels" data-bs-slide-to="0" [class.active]="idx == 0" aria-current="true"></button>
+        </ng-container>
+      </div>
+      <div class="carousel-inner" *ngIf="this.productListShow">
+        <ng-container *ngFor="let items of this.productListShow; let idx = index">
+          <div class="carousel-item" [class.active]="idx == 0">
+            <div class="list-card">
+              <ng-container *ngFor="let it of items">
+                <div class="item-card">
+                  <app-property-card [product]="it">
+                  </app-property-card>
+                </div>
+              </ng-container>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>

@@ -12,7 +12,7 @@ export class ProductListQuery extends Query {
 
 export const PRODUCT_LIST_QUERY =  gql`
   query($input: ProductTypesFilterInput) {
-    productTypes(input: $input) {
+    productTypes(input: $input, first: 12) {
       nodes {
         name
         description

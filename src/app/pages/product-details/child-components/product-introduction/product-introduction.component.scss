@@ -1,0 +1,118 @@
+.border-shadow {
+  padding: 25px;
+  background-color: #f9fafc;
+  box-shadow: 0px 0px 25px 10px #ebe9f3;
+  border-radius: 5px;
+  margin-bottom: 30px;
+}
+
+.carousel-image {
+  width: 100%;
+  .image-list {
+    width: 100%;
+    overflow-y: hidden;
+    overflow-x: scroll;
+    white-space: nowrap;
+
+    img {
+      margin-right: 10px;
+      display: inline-block;
+      width: 33%;
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-color: #f9fafc;
+    }
+    .slideLeft {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      z-index: 10;
+    }
+
+    .slideRight {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      z-index: 10;
+    }
+  }
+
+  .image-selected {
+    margin-bottom: 20px;
+    img {
+      width: 100%;
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-color: #f9fafc;
+    }
+  }
+}
+
+.image-list::-webkit-scrollbar {
+  display: none;
+}
+
+.d-flex {
+  display: flex;
+  flex-direction: row;
+}
+
+.details-text {
+  margin-left: 50px;
+  color: #151875;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .title {
+    margin-bottom: 5px;
+    font-size: 34px;
+    line-height: 38px;
+    font-weight: bold;
+    color: #0d134e;
+  }
+
+  .rate {
+    margin-bottom: 30px;
+  }
+
+  .product-price {
+    margin-bottom: 12px;
+    text-transform: capitalize;
+    span {
+      text-decoration-line: line-through;
+      color: #fb2e86;
+    }
+  }
+
+  .description-short {
+    color: #a9acc6;
+  }
+
+  .add-to-cart {
+    margin-bottom: 20px;
+    margin-top: 20px;
+    .cart-button {
+      padding: 5px;
+      border: 2px solid #0d134e;
+      border-radius: 5px;
+      color: #0d134e;
+      background-color: white;
+      margin-right: 20px;
+    }
+
+    i {
+      font-weight: bold;
+      color: #0d134e;
+    }
+  }
+
+  .item-style {
+    margin-bottom: 15px;
+    span {
+      color: #a9acc6;
+    }
+  }
+}

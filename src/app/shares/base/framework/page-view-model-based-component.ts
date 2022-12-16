@@ -14,16 +14,13 @@ export interface IPageViewModelBasedComponent<TPageViewModel extends PageViewMod
 @Component({template:''})
 export abstract class PageViewModelBasedComponent<TPageViewModel extends PageViewModel> extends ChildViewManagement implements IPageViewModelBasedComponent<TPageViewModel> {
 
-  public COMPONENT_MODE: ComponentMode;
-
   public pageViewModel$: BehaviorSubject<TPageViewModel> = null;
-
   constructor(
-    public _formBuilder: FormBuilder,
     ) {
     super();
 
     this.pageViewModel$ = new BehaviorSubject<TPageViewModel>(null);
   }
 
+  appQueryMain(){}
 }

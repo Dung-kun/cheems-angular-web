@@ -87,3 +87,22 @@
   visibility: visible;
   opacity: 1;
 }
+
+@media screen and (max-width: 768px) {
+  .style-header-text{
+    display: none;
+  }
+  .navbar__spacer {
+    display: none;
+  }
+
+  .navbar__nav {
+    justify-content: space-between;
+  }
+
+  .nav__search {
+    input {
+      display: none;
+    }
+  }
+}

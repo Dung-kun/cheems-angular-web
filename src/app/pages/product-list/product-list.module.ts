@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { ProductListComponent } from './product-list.component';
 import { RouterModule } from '@angular/router';
 import { PropertyCardModule } from '../../shares/components/property-card/property-card.module';
+import { NgxSliderModule } from '@angular-slider/ngx-slider';
+
 
 
 
@@ -15,8 +17,13 @@ import { PropertyCardModule } from '../../shares/components/property-card/proper
         path: '',
         component: ProductListComponent,
       },
+      {
+        path: ':id',
+        loadChildren: ()=> import('./../product-details/product-details.module').then(m=>m.ProductDetailsModule)
+      }
     ]),
-    PropertyCardModule
+    PropertyCardModule,
+    NgxSliderModule
   ]
 })
 export class ProductListModule { }

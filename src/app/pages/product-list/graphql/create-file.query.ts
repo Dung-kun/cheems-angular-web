@@ -13,10 +13,14 @@ export class CreateFileMutation extends Mutation {
 
 export const CREATE_FILE = gql`
 mutation($input: CreateProductTypeInput, $files: [Upload!]) {
-  createProductType(input: $input,files: $files) {
+  createProductType(input: $input, files: $files) {
     productTypes {
       name
       description
+      medias {
+        id
+        fileSize
+      }
     }
   }
 }

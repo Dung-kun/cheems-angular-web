@@ -12,7 +12,12 @@ const routes: Routes = [{
 
     {
       path: 'login',
-      loadChildren: () => import('./../../pages/login/login.module').then(m=>m.LoginModule)
+      loadChildren: () => import('../../pages/authentication/login/login.module').then(m=>m.LoginModule)
+    },
+
+    {
+      path: 'register',
+      loadChildren: () => import('../../pages/authentication/register/register.module').then(m=>m.RegisterModule)
     },
 
     {
@@ -33,10 +38,6 @@ const routes: Routes = [{
     {
       path: 'contact-us',
       loadChildren: () => import('./../../pages/contact-us/contact-us.module').then(m=>m.ContactUsModule)
-    },
-    {
-      path: 'introduction',
-      loadChildren: () => import('./../../pages/introduction/introduction.module').then(m=>m.IntroductionModule)
     },
     {
       path: 'sales',

@@ -32,14 +32,14 @@
       <div class="circle">
         <i class="ai-cart"></i>
       </div>
-      <div class="circle">
+      <!-- <div class="circle">
         <i class="ai-heart"></i>
-      </div>
+      </div> -->
     </div>
   </div>
   <!-- <img class="card-img-top" src="./../../../../assets/images/ganyu-1.png" alt=""> -->
   <div class="card-body">
-    <a routerLink="/product-details" style="text-decoration: none; color: #FB2E86;">
+    <a [routerLink]="['/product-list', 'dung-kun']" style="text-decoration: none; color: #FB2E86;">
       <h5 class="card-title text-center">{{ product?.name || "Ganyu" }}</h5>
     </a>
     <div class="card-text text-center">

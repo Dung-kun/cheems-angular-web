@@ -1,5 +1,6 @@
 import { Category } from "./category.model";
 import { Media } from './media.model';
+import { Metadata } from "./metadata.model";
 
 export class ProductType {
   constructor(
@@ -10,8 +11,9 @@ export class ProductType {
     public description: string = "",
     public medias: Media[] = [],
     public warrantyDate: Date = null,
-    public metaData: string = "",
+    public metaData: Metadata = null,
   ){
 
   }
 }
+

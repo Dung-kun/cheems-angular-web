@@ -14,158 +14,159 @@
   <div class="container m-common">
     <div class="sidebar-plus-content">
       <aside class="page-sidebar">
-        <nav class="secondary-nav">
-          <ul id="menu-links" role="menubar">
-            <li class="list-group">
-              <strong class="list-group-title is-opened" data-tracking-label="new-arrivals">Laptop</strong>
-              <ul class="menu" role="menu">
-                <li class="item">
-                  <a class="link " href="/en_us/women/new-arrivals/view-all.html" role="menuitem"
-                    data-tracking-label="view-all">
-                    Mac</a>
-                </li>
-                <li class="list-group">
-                  <a class="link current" href="/en_us/women/new-arrivals/clothes.html" role="menuitem"
-                    data-tracking-label="clothes">
-                    HP</a>
-                  <ul class="menu" role="menu" style="display: none">
-                  </ul>
-                </li>
-                <li class="item">
-                  <a class="link " href="/en_us/women/new-arrivals/shoes-accessories.html" role="menuitem"
-                    data-tracking-label="shoes-accessories">
-                    Dell</a>
-                </li>
-                <li class="item">
-                  <a class="link " href="/en_us/women/new-arrivals/beauty.html" role="menuitem"
-                    data-tracking-label="beauty">
-                    Asus</a>
-                </li>
-                <li class="item">
-                  <a class="link " href="/en_us/women/new-arrivals/underwear-nightwear.html" role="menuitem"
-                    data-tracking-label="underwear-nightwear">
-                     Lenovo</a>
-                </li>
-              </ul>
-            </li>
-            <li class="list-group">
-              <strong class="list-group-title " data-tracking-label="seasonal-trending">Điện thoại</strong>
-              <ul class="menu" role="menu">
-                <li class="item">
-                  <a class="link " href="/en_us/women/seasonal-trending/holiday.html" role="menuitem"
-                    data-tracking-label="holiday">
-                    Iphone</a>
-                </li>
-                <li class="item">
-                  <a class="link " href="/en_us/women/seasonal-trending/winter.html" role="menuitem"
-                    data-tracking-label="winter">
-                    Realme</a>
-                </li>
-                <li class="item">
-                  <a class="link " href="/en_us/women/seasonal-trending/trend-edit.html" role="menuitem"
-                    data-tracking-label="trend-concept">
-                    Oppo</a>
-                </li>
-                <li class="item">
-                  <a class="link " href="/en_us/women/seasonal-trending/neutrals.html" role="menuitem"
-                    data-tracking-label="neutral">
-                    XSMax</a>
-                </li>
-                <li class="item">
-                  <a class="link " href="/en_us/women/seasonal-trending/y2k-fashion.html" role="menuitem"
-                    data-tracking-label="y2k">
-                    Samsung</a>
-                </li>
-                <li class="item">
-                  <a class="link " href="/en_us/women/seasonal-trending/autumn1.html" role="menuitem"
-                    data-tracking-label="autumn1">
-                    Nokia</a>
-                </li>
-              </ul>
-            </li>
-            <li class="list-group">
-              <strong class="list-group-title " data-tracking-label="deals">Đồ điện</strong>
-              <ul class="menu" role="menu">
-                <li class="item">
-                  <a class="link " href="/en_us/women/deals/student-discount-get-15-off.html" role="menuitem"
-                    data-tracking-label="student-discount-get-15-off">
-                    Nồi cơm điện</a>
-                </li>
-                <li class="item">
-                  <a class="link " href="/en_us/women/deals/sale-view-all.html" role="menuitem"
-                    data-tracking-label="sale-view-all">
-                    Lò vi sóng</a>
-                </li>
-              </ul>
-            </li>
-            <li class="list-group">
-              <strong class="list-group-title " data-tracking-label="gift-cards">Quà tặng</strong>
-              <ul class="menu" role="menu">
-                <li class="item">
-                  <a class="link " href="/en_us/women/gift-cards/gift-card.html" role="menuitem"
-                    data-tracking-label="gift-card">
-                    Thẻ quà tặng</a>
-                </li>
-                <li class="item">
-                  <a class="link " href="/en_us/women/gift-cards/gift-guide.html" role="menuitem"
-                    data-tracking-label="gift-guide">
-                    Hướng dẫn</a>
-                </li>
-              </ul>
-            </li>
-            <li class="list-group">
-              <strong class="list-group-title " data-tracking-label="sustainability">Mở rộng</strong>
-              <ul class="menu" role="menu">
-                <li class="item">
-                  <a class="link " href="/en_us/women/sustainability/take-care.html" role="menuitem"
-                    data-tracking-label="take-care">
-                    Chăm sóc khách hàng</a>
-                </li>
-                <li class="item">
-                  <a class="link " href="/en_us/women/sustainability/learn-more.html" role="menuitem"
-                    data-tracking-label="learn-more">
-                    Tìm hiểu thêm</a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </nav>
+        <div class="item-filter" style="border: none;">
+          <strong class="list-group-title is-opened" data-tracking-label="new-arrivals">Giá cả</strong>
+          <ngx-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ngx-slider>
+        </div>
+        <div class="item-filter">
+          <a class="dropdown-button" id="trademark" data-bs-toggle="collapse" href="#trademarks" role="button" aria-expanded="false" aria-controls="trademarks" (click)="addStyle($event, 'trademark')">
+            <strong class="list-group-title is-opened" data-tracking-label="new-arrivals">Thương hiệu</strong>
+            <ng-container *ngTemplateOutlet="dropdownIcon"></ng-container>
+          </a>
+          <div class="collapse multi-collapse" id="trademarks">
+            <ng-container *ngFor="let item of listTrademark">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                  {{ item }}
+                </label>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+        <div class="item-filter">
+          <a class="dropdown-button" id="series-laptop" type="button"  data-bs-toggle="collapse" href="#seriesLaptop" role="button" aria-expanded="false" aria-controls="seriesLaptop" (click)="addStyle($event, 'series-laptop')">
+            <strong class="list-group-title is-opened" data-tracking-label="new-arrivals">Series Laptop</strong>
+            <ng-container *ngTemplateOutlet="dropdownIcon"></ng-container>
+          </a>
+          <div class="collapse multi-collapse" id="seriesLaptop">
+            <ng-container *ngFor="let item of listTrademark">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                  {{ item }}
+                </label>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+        <div class="item-filter">
+          <a class="dropdown-button" id="color" type="button"  data-bs-toggle="collapse" href="#colors" role="button" aria-expanded="false" aria-controls="colors" (click)="addStyle($event, 'color')">
+            <strong class="list-group-title is-opened" data-tracking-label="new-arrivals">Màu sắc</strong>
+            <ng-container *ngTemplateOutlet="dropdownIcon"></ng-container>
+          </a>
+          <div class="collapse multi-collapse" id="colors">
+            <ng-container *ngFor="let item of listTrademark">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                  {{ item }}
+                </label>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+        <div class="item-filter">
+          <a class="dropdown-button" id="series-cpu" type="button"  data-bs-toggle="collapse" href="#seriesCPU" role="button" aria-expanded="false" aria-controls="seriesCPU" (click)="addStyle($event, 'series-cpu')">
+            <strong class="list-group-title is-opened" data-tracking-label="new-arrivals">Series CPU</strong>
+            <ng-container *ngTemplateOutlet="dropdownIcon"></ng-container>
+          </a>
+          <div class="collapse multi-collapse" id="seriesCPU">
+            <ng-container *ngFor="let item of listTrademark">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                  {{ item }}
+                </label>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+        <div class="item-filter">
+          <a class="dropdown-button" id="series-gpu" type="button"  data-bs-toggle="collapse" href="#seriesGPU" role="button" aria-expanded="false" aria-controls="seriesGPU" (click)="addStyle($event, 'series-gpu')">
+            <strong class="list-group-title is-opened" data-tracking-label="new-arrivals">Series GPU</strong>
+            <ng-container *ngTemplateOutlet="dropdownIcon"></ng-container>
+          </a>
+          <div class="collapse multi-collapse" id="seriesGPU">
+            <ng-container *ngFor="let item of listTrademark">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                  {{ item }}
+                </label>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+        <div class="item-filter">
+          <a class="dropdown-button" id="ram-capacity" type="button"  data-bs-toggle="collapse" href="#RAMCapacity" role="button" aria-expanded="false" aria-controls="RAMCapacity" (click)="addStyle($event, 'ram-capacity')">
+            <strong class="list-group-title is-opened" data-tracking-label="new-arrivals">Dung lượng RAM</strong>
+            <ng-container *ngTemplateOutlet="dropdownIcon"></ng-container>
+          </a>
+          <div class="collapse multi-collapse" id="RAMCapacity">
+            <ng-container *ngFor="let item of listTrademark">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                  {{ item }}
+                </label>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+        <div class="item-filter">
+          <a class="dropdown-button" id="resolution" type="button"  data-bs-toggle="collapse" href="#resolutions" role="button" aria-expanded="false" aria-controls="resolutions" (click)="addStyle($event, 'resolution')">
+            <strong class="list-group-title is-opened" data-tracking-label="new-arrivals">Độ phân giải</strong>
+            <ng-container *ngTemplateOutlet="dropdownIcon"></ng-container>
+          </a>
+          <div class="collapse multi-collapse" id="resolutions">
+            <ng-container *ngFor="let item of listTrademark">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                  {{ item }}
+                </label>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+        <div class="item-filter">
+          <a class="dropdown-button" id="screen-size" type="button"  data-bs-toggle="collapse" href="#screenSize" role="button" aria-expanded="false" aria-controls="screenSize" (click)="addStyle($event, 'screen-size')">
+            <strong class="list-group-title is-opened" data-tracking-label="new-arrivals">Kích thước màn hình</strong>
+            <ng-container *ngTemplateOutlet="dropdownIcon"></ng-container>
+          </a>
+          <div class="collapse multi-collapse" id="screenSize">
+            <ng-container *ngFor="let item of listTrademark">
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                  {{ item }}
+                </label>
+              </div>
+            </ng-container>
+          </div>
+        </div>
       </aside>
       <div class="page-content">
-        <h1 class="title-category">
-          Điện thoại - Realme
-        </h1>
-        <div class="product-filter-container">
-          <div class="filter-list">
-            <!-- <i class="ai-settings-horizontal"></i> -->
-            <div class="btn-group">
-              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                data-bs-toggle="dropdown" aria-expanded="false">
-                Giá bán
-              </button>
-              <ul class="dropdown-menu">
-                <div class="price">
-                  <label for="price-from" class="form-label">Từ (VNĐ)</label>
-                  <input type="number" class="form-control" id="price-from">
-                </div>
-                <div class="price">
-                  <label for="price-to" class="form-label">Đến (VNĐ)</label>
-                  <input type="number" class="form-control" id="price-to">
-                </div>
-                <div class="price">
-                  <button class="form-control" style="background-color: #FB2E86; color: white;">Ok</button>
-                </div>
-              </ul>
-            </div>
-            <div class="sort-by">
-              <select class="form-select">
-                <option selected hidden>Lọc</option>
-                <option value="1">Giá giảm</option>
-                <option value="2">Giá tăng</option>
-                <option value="3">Three</option>
-              </select>
-            </div>
+        <div class="sort-list">
+          <div class="title">
+            Sắp xếp theo
           </div>
+          <button type="button" class="style-sort-button">
+            Khuyến mãi tốt nhất
+          </button>
+          <button type="button" class="style-sort-button">
+            Bán chạy
+          </button>
+          <button type="button" class="style-sort-button">
+            Mới về
+          </button>
+          <button type="button" class="style-sort-button">
+            Giá giảm dần
+          </button>
+          <button type="button" class="style-sort-button">
+            Giá tăng dần
+          </button>
         </div>
         <div class="list-card">
           <div class="item-style">
@@ -219,3 +220,17 @@
     </div>
   </div>
 </div>
+
+<!-- <input type="file" multiple class="form-control" (change)="saveFile($event)">
+<button class="btn btn-primary" (click)="addFile()">Add</button>
+ -->
+
+<ng-template #dropdownIcon>
+  <div class="animation-svg">
+    <svg fill="none" viewBox="0 0 24 24"  color="textPrimary" height="1em" width="1em"
+      xmlns="http://www.w3.org/2000/svg">
+      <path d="M5 8.5L12 15.5L19 8.5" stroke="#82869E" stroke-width="1.5" stroke-linecap="round"
+        stroke-linejoin="round"></path>
+    </svg>
+  </div>
+</ng-template>
