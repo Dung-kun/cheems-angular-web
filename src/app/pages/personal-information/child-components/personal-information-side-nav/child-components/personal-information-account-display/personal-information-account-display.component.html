@@ -1,0 +1,18 @@
+<div class="container" *ngIf="pageViewModel$ | async as pageViewModel">
+  <div class="avatar">
+
+    <div class="avatar__placeholder">
+      <img class="avatar__image" src="/assets/images/hutao.jpg">
+    </div>
+
+  </div>
+  <div class="avatar_information">
+    <label class="user-name">Tên tài khoản</label>
+    <div style="display: block;">
+      <a class="edit-profile">
+        <img class="icon" src="/assets/images/ic_edit.svg" alt="">
+        Sửa hồ sơ
+      </a>
+    </div>
+  </div>
+</div>

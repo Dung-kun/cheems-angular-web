@@ -1,0 +1,146 @@
+.container {
+  display: flex;
+  flex-shrink: 0;
+  flex-direction: column;
+  padding-right: 1rem;
+  padding-left: 1rem;
+  height: 100%;
+  overflow-x: hidden; /* Disable horizontal scroll */
+  transition: left 0.5s ease-out;
+
+  &.hidden {
+    width: 0;
+    padding: 0;
+  }
+
+  .closebtn {
+    display: none;
+    text-align: right;
+    margin-right: 8px;
+    font-size: 36px;
+    color: rgba(0,0,0,.87);
+  }
+}
+
+.overlay {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  background-color: rgba(0,0,0, 0.9);
+  overflow-y: auto;
+  overflow-x: hidden;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 1s;
+}
+
+.router-link-panel {
+  list-style: none;
+  padding: 0;
+  margin: 27px 8px 0;
+  cursor: pointer;
+
+  .link-container {
+    margin-bottom: 15px;
+
+    .link {
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      flex-direction: row;
+      margin-bottom: .9375rem;
+      color: rgba(0,0,0,.87);
+
+      &__icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 1.5rem;
+        height: 1.5rem;
+        line-height: 1.5rem;
+        text-align: center;
+        border-radius: 50%;
+        color: #fff;
+        flex-shrink: 0;
+        margin-right: .625rem;
+
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      &__text {
+        display: flex;
+        line-height: 1.25rem;
+        align-items: center;
+        justify-content: center;
+        align-self: flex-end;
+
+        span {
+          font-size: 1.25rem;
+          font-weight: 500;
+          margin-right: .3125rem;
+        }
+      }
+
+      &:hover {
+        color: #fb2d86;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .container {
+    height: 100%; /* 100% Full-height */
+    position: fixed; /* Stay in place */
+    z-index: 4; /* Stay on top */
+    top: 0; /* Stay at the top */
+    left: 0;
+    width: 0;
+    padding: 0;
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+    background-color: #f5f5f5;
+
+    &.hidden {
+      width: 200px;
+    }
+
+    .closebtn {
+      display: block;
+      height: 20px;
+      width: 20px;
+      color: rgba(0,0,0,.87);
+      margin-top: 8px;
+      position: static;
+      align-self: flex-end;
+
+    }
+  }
+
+  .overlay {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 3;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0, 0.9);
+    overflow-y: auto;
+    overflow-x: hidden;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 1s;
+
+    &.hidden {
+      width: 100%;
+      opacity: 0.8;
+    }
+  }
+}

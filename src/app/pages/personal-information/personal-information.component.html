@@ -1,1 +1,20 @@
-<p>personal-information works!</p>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<div class="container personal-information">
+  <app-personal-information-side-nav (closeNav)="this.toggleMenu()" [isOpen]="this.showMenu" [items]="this.personalInformationSideNavViewData$ | async"></app-personal-information-side-nav>
+
+  <div class="content">
+    <div class="header">
+      <button class="menu_button" (click)="this.toggleMenu()">
+        <img src="/assets/images/ic_menu.svg">
+      </button>
+      <div class="vertical-line"></div>
+      <div class="title">
+        <div class="title__main">Hồ Sơ</div>
+        <div class="title__sub">Quản lí hồ sơ cá nhân</div>
+      </div>
+    </div>
+    <div class="item">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
