@@ -1,0 +1,53 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+
+  .address-information {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+}
+
+.input-wrapper {
+  position: relative;
+
+  .input-style {
+    line-height: 24px;
+    font-size: 16px;
+    font-weight: 400;
+    text-transform: none;
+    border: 1px solid;
+    border-radius: 10px;
+    border-color: #d0d0d0;
+    box-sizing: border-box;
+    height: 48px;
+    padding: 8px;
+    width: 100%;
+  }
+}
+
+.input_title {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  text-align: right;
+
+  .form-label {
+    margin-bottom: 0;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .input_title {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: left;
+
+    .form-label {
+      margin-bottom: 0;
+    }
+  }
+}

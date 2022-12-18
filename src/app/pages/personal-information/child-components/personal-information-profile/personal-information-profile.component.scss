@@ -160,3 +160,16 @@
     }
   }
 }
+
+@media screen and (max-width: 1000px) {
+  .input_title {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: left;
+
+    .form-label {
+      margin-bottom: 0;
+    }
+  }
+}
