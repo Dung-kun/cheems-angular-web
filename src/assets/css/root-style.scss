@@ -210,3 +210,47 @@ body {
   appearance: none;
   border-radius: 0.375rem;
 }
+
+
+.ps-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  gap: 4px;
+  list-style-type: none;
+}
+
+.ps-pagination li a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  font-weight: 500;
+  border-radius: var(--border-radius-medium);
+}
+
+.ps-pagination li a:hover {
+  cursor: pointer;
+  color: #ffffff;
+  background-color: var(--color-1st);
+  i {
+    color: #ffffff;
+  }
+}
+
+.ps-pagination li:hover:not(active) {
+  color: #f6f5ff;
+}
+
+
+.ps-pagination li.active a {
+  color: #ffffff;
+  background-color: var(--color-1st);
+}
+
+.ps-pagination li:last-child {
+  margin-right: 0;
+}

@@ -7,11 +7,11 @@ export class ProductType {
     public id: string = "",
     public categories: Category[] = [],
     public name: string = "",
-    public price: string = "",
+    public price: number = null,
     public description: string = "",
     public medias: Media[] = [],
-    public warrantyDate: Date = null,
-    public metaData: Metadata = null,
+    public warrentyDate: Date = null,
+    public metaDatas: Metadata = null,
   ){
 
   }

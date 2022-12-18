@@ -1,0 +1,59 @@
+<aside class="page-sidebar" *ngIf="pageViewModel$ |async as pageViewModel">
+  <div class="item-filter" style="border: none;">
+    <strong class="list-group-title is-opened" data-tracking-label="new-arrivals">Giá cả</strong>
+    <div class="d-flex">
+      <input type="text" class="form-control" style="flex:0 0 50%;text-align: center;" [(ngModel)]="minValue" readonly>
+      <input type="text" class="form-control" style="flex:0 0 50%;text-align: center;" [(ngModel)]="maxValue" readonly>
+    </div>
+    <ngx-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ngx-slider>
+  </div>
+  <form [formGroup]="ngForm">
+    <ng-container formArrayName="formBody" *ngIf="this.formBody.controls?.length > 0">
+      <ng-container *ngFor="let item of this.formBody.controls; let i = index" [formGroupName]="i">
+        <div class="item-filter">
+          <a class="dropdown-button" data-bs-toggle="collapse" [href]="'#' + item.get('name').value" role="button"
+            aria-expanded="false" (click)="addStyle($event, i)">
+            <strong class="list-group-title is-opened">{{ item.get('title').value }}</strong>
+            <ng-container *ngTemplateOutlet="dropdownIcon"></ng-container>
+          </a>
+
+          <ng-container formArrayName="arraySelected">
+            <ng-container *ngFor="let it2 of this.getFormArraySelected(i).controls; let idx2 = index"
+              [formGroupName]="idx2">
+              <div class="form-check">
+                <input class="form-check-input" style="margin-top: 0;" type="checkbox" formControlName="value"
+                  id="flexCheckIndeterminate" (change)="sortArr(i, idx2, false)">
+                <label class="form-check-label" style="color: #151875;" for="flexCheckIndeterminate">
+                  {{ it2.get('name').value }}
+                </label>
+              </div>
+            </ng-container>
+          </ng-container>
+
+          <div class="collapse multi-collapse" [id]="item.get('name').value" formArrayName="arrayNotSelect">
+            <ng-container *ngFor="let it of this.getFormArrayNotSelect(i).controls; let idx = index"
+              [formGroupName]="idx">
+              <div class="form-check">
+                <input class="form-check-input" style="margin-top: 0;" type="checkbox" formControlName="value"
+                  id="flexCheckIndeterminate" (change)="sortArr(i, idx, true)">
+                <label class="form-check-label" style="color: #151875;" for="flexCheckIndeterminate">
+                  {{ it.get('name').value }}
+                </label>
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+  </form>
+</aside>
+
+<ng-template #dropdownIcon>
+  <div class="animation-svg">
+    <svg fill="none" viewBox="0 0 24 24" color="textPrimary" height="1em" width="1em"
+      xmlns="http://www.w3.org/2000/svg">
+      <path d="M5 8.5L12 15.5L19 8.5" stroke="#82869E" stroke-width="1.5" stroke-linecap="round"
+        stroke-linejoin="round"></path>
+    </svg>
+  </div>
+</ng-template>

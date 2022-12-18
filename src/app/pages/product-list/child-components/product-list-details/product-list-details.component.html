@@ -1,0 +1,54 @@
+<div class="product-list-details" *ngIf="pageViewModel$ | async as pageViewModel">
+  <div class="list-card">
+    <ng-container *ngFor="let product of pageViewModel.productList | paginate
+    : {
+         id: pageViewModel.paginationIdx,
+         itemsPerPage: PAGE_SIZE,
+         currentPage: CURRENT_PAGE,
+         totalItems: COUNT
+    }; ">
+      <div class="item-style">
+        <app-property-card [product]="product">
+        </app-property-card>
+      </div>
+    </ng-container>
+    <div class="item-style">
+      <app-property-card>
+      </app-property-card>
+    </div>
+
+    <div class="item-style">
+      <app-property-card>
+      </app-property-card>
+    </div>
+
+    <div class="item-style">
+      <app-property-card>
+      </app-property-card>
+    </div>
+    <div class="item-style">
+      <app-property-card>
+      </app-property-card>
+    </div>
+    <div class="item-style">
+      <app-property-card>
+      </app-property-card>
+    </div>
+
+    <div class="item-style">
+      <app-property-card>
+      </app-property-card>
+    </div>
+    <div class="item-style">
+      <app-property-card>
+      </app-property-card>
+    </div>
+
+    <div class="item-style">
+      <app-property-card>
+      </app-property-card>
+    </div>
+  </div>
+  <app-pagination [paginationIdx]="pageViewModel.paginationIdx"
+    (appOnPageChange)="ngxOnPageChange($event)"></app-pagination>
+</div>

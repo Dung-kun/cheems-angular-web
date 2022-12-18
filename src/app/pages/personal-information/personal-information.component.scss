@@ -1,0 +1,142 @@
+.price {
+  padding: 10px;
+}
+
+.sort-by {
+  text-align: right;
+}
+
+.list-card {
+  display: flex;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  .item-style {
+    flex: 0 0 25%;
+    width: 25%;
+    padding: 0 10px;
+  }
+}
+
+.sidebar-plus-content {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+
+  .page-sidebar {
+    box-sizing: border-box;
+    text-align: left;
+    vertical-align: top;
+
+    .secondary-nav {
+      .list-group-title {
+        font-size: 20px;
+        line-height: 30px;
+        color: #151875;
+      }
+    }
+
+    .secondary-nav > ul > li {
+      margin-bottom: 24px;
+    }
+
+    .secondary-nav > ul > li a {
+      color: #151875;
+      display: block;
+      font-size: 16px;
+      line-height: 30px;
+      text-decoration: none;
+    }
+
+    .secondary-nav > ul > li a:hover {
+      color: #fb2e86;
+      text-decoration: underline;
+    }
+  }
+
+  .page-content {
+    box-sizing: border-box;
+    text-align: left;
+
+    h1 {
+      color: #151875;
+      text-transform: uppercase;
+      font-size: 40px;
+      line-height: 48px;
+    }
+    .product-filter-container {
+      .filter-list {
+        padding-bottom: 20px;
+        display: flex;
+        justify-content: space-between;
+
+        .btn-group .btn {
+          color: #151875;
+          float: right;
+          border: none;
+          background-color: transparent;
+        }
+
+        .btn-group .btn:hover {
+          border: 1px solid #fb2e86;
+          color: #fb2e86;
+        }
+
+        .sort-by select{
+          color: #151875;
+          float: right;
+          border: none;
+          background-color: transparent;
+        }
+
+        .sort-by select:hover {
+          border: 1px solid #fb2e86;
+          color: #fb2e86;
+        }
+      }
+    }
+  }
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+@media screen and (min-width: 768px) {
+  .sidebar-plus-content .page-sidebar {
+    display: inline-block;
+    width: 232px;
+  }
+
+  .sidebar-plus-content .page-content {
+    display: inline-block;
+    text-align: left;
+    margin-left: 32px;
+    padding-right: 32px;
+    width: calc(100% - 264px - 0.01px);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .list-card {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    padding: 0 24px;
+    width: 100%;
+    .item-style {
+      flex: 0 0 50%;
+      width: 50%;
+    }
+  }
+}
+
+.item-promotion {
+  a::after {
+    content: " ***";
+    height: 16px;
+    color: #d6001c;
+  }
+}

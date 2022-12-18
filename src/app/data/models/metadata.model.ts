@@ -13,7 +13,7 @@ export class Metadata {
     public dimensions: string = "",
     public gPUSeries: string = "",
     public hardDrive: string = "",
-    public manufacturer: Manufacturer = null,
+    public manufacturers: Manufacturer[] = null,
     public operatingSystem: string = "",
     public ports: string = "",
     public ram: string = "",

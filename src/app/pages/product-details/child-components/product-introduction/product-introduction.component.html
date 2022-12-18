@@ -1,44 +1,65 @@
 <div class="container border-shadow">
-    <div class="d-flex">
-      <div class="w-50">
-        <app-slideshow-gallery [medias]="[]"></app-slideshow-gallery>
+  <div class="d-flex" *ngIf="this.pdTypeItem$ | async as pdTypeItem">
+    <div style="flex: 2 1 0%; font-weight: bold;">
+      <app-slideshow-gallery [medias]="pdTypeItem.medias"></app-slideshow-gallery>
+    </div>
+    <div class="details-text" style="flex: 3 1 0%;">
+      <div class="title">
+        {{ pdTypeItem | productNameShowPipe: true}}
       </div>
-      <div class="w-50 details-text">
-        <div class="title">
-          Hutao
+      <hr/>
+      <!-- <div class="rate">
+        <i class="fa fa-star" style="color: yellow;"></i>
+        <i class="fa fa-star" style="color: yellow;"></i>
+        <i class="fa fa-star" style="color: yellow;"></i>
+        <i class="fa fa-star" style="color: yellow;"></i>
+        <i class="fa fa-star" style="color: yellow;"></i>
+      </div> -->
+      <div class="product-price">
+        Giá: {{ pdTypeItem.price }} VNĐ
+      </div>
+      <div class="product-price" *ngIf="!pdTypeItem">
+         <span>$32.00</span>
+      </div>
+      <hr style="width: 60%"/>
+      <div class="description-short">
+        <div class="child-info">
+          <div type="body" class="info-text" style="flex: 2 1 0%;font-weight: bold;">CPU:</div>
+          <div type="body" class="info-text" style="flex: 3 1 0%;">{{ pdTypeItem.metaDatas.cPUSeries }}</div>
         </div>
-        <div class="rate">
-          <i class="fa fa-star" style="color: yellow;"></i>
-          <i class="fa fa-star" style="color: yellow;"></i>
-          <i class="fa fa-star" style="color: yellow;"></i>
-          <i class="fa fa-star" style="color: yellow;"></i>
-          <i class="fa fa-star" style="color: yellow;"></i>
-          <span>(22)</span>
+        <div class="child-info">
+          <div type="body" class="info-text" style="flex: 2 1 0%; font-weight: bold;">RAM:</div>
+          <div type="body" class="info-text" style="flex: 3 1 0%;">{{ pdTypeItem.metaDatas.ram }}</div>
         </div>
-        <div class="product-price">
-          $32.00 <span>$32.00</span>
+        <div class="child-info">
+          <div type="body" class="info-text" style="flex: 2 1 0%; font-weight: bold;">Lưu trữ:</div>
+          <div type="body" class="info-text" style="flex: 3 1 0%;">{{ pdTypeItem.metaDatas.hardDrive }}</div>
         </div>
-        <div class="description-short">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo neque odit quod quos odio, dignissimos
-          voluptatum labore, fugit aliquam facere earum doloribus cupiditate voluptatem laborum. Quas assumenda quos
-          earum veniam?
+        <div class="child-info">
+          <div type="body" class="info-text" style="flex: 2 1 0%; font-weight: bold;">Màn hình:</div>
+          <div type="body" class="info-text" style="flex: 3 1 0%;">{{ pdTypeItem.metaDatas.screenResolution }}</div>
         </div>
-
-        <div class="add-to-cart">
-          <button class="cart-button">
-            Thêm vào giỏ
-          </button>
-          <button class="cart-button">
-            Mua ngay
-          </button>
-        </div>
-        <div class="item-style">
-          Loại: <span>ssss</span>
-        </div>
-
-        <div class="item-style">
-          Tag: <span>ssss</span>
+        <div class="child-info">
+          <div type="body" class="info-text" style="flex: 2 1 0%; font-weight: bold;">Khối lượng:</div>
+          <div type="body" class="info-text" style="flex: 3 1 0%;">{{ pdTypeItem.metaDatas.weight }}</div>
         </div>
       </div>
+      <hr style="width: 60%"/>
+      <div class="add-to-cart">
+        <button class="cart-button">
+          Thêm vào giỏ
+        </button>
+        <button class="cart-button buy-now">
+          Mua ngay
+        </button>
+      </div>
+      <!-- <div class="item-style">
+        Loại: <span>ssss</span>
+      </div>
+
+      <div class="item-style">
+        Tag: <span>ssss</span>
+      </div> -->
     </div>
   </div>
+</div>

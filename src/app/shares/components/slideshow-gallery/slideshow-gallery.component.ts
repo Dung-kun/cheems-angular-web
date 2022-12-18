@@ -14,6 +14,7 @@ export class SlideshowGalleryComponent implements OnInit, AfterViewInit {
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
   ngAfterViewInit(): void {
@@ -42,6 +43,7 @@ export class SlideshowGalleryComponent implements OnInit, AfterViewInit {
     for (i = 0; i < dots.length; i++) {
       dots[i].className = dots[i].className.replace(" active", "");
     }
+
     (slides[this.slideIndex-1]as HTMLElement).style.display = "block";
     dots[this.slideIndex-1].className += " active";
     let dot = dots[this.slideIndex-1] as HTMLElement;

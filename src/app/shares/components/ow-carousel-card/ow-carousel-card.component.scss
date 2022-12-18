@@ -1,20 +1,29 @@
 .list-card {
-    display: flex;
-    flex-wrap: wrap;
-    margin-left: -5px;
-    margin-right: -5px;
-    .item-style {
-      flex: 0 0 25%;
-      width: 25%;
-      padding: 0 10px;
-    }
+  display: flex;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  justify-items: center;
+  .item-style {
+    flex: 0 0 25%;
+    width: 25%;
+    padding: 10px;
+  }
+}
+
+.button-bottom {
+  background-color: #FB2E86;
 }
 
 @media screen and (max-width: 768px) {
-    .list-card {
-      .item-style {
-        flex: 0 0 50%;
-        width: 50%;
-      }
+  .list-card {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    padding: 0 24px;
+    width: 100%;
+    .item-style {
+      flex: 0 0 50%;
+      width: 50%;
     }
   }
+}

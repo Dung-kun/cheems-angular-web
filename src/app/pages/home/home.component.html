@@ -1,75 +1,76 @@
 <div class="home">
   <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" style="margin-bottom: 30px;">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    </div>
     <div class="carousel-inner">
       <div class="carousel-item active">
         <!-- <img src="..." class="d-block w-100" alt="..."> -->
-        <div class="content">
-          <div class="description-text flex-width-60">
-              <div class="title">
-                Bộ sưu tập "đồ" mới
-                 Xu hướng năm 2022
+        <div class="container" style="position: relative;padding: 0;">
+
+          <div class="content animated fadeIn"  [style.background-image]="'url(' + './../../../assets/images/ss-galaxy.webp' + ')'">
+            <div class="description-text flex-width-60 animated fadeInUp animation-delay-1">
+                <div class="title">
+                  Galaxy Z Fold4
+                </div>
+                <div class="text">
+                  Mở ra một khởi đầu mới
+                </div>
+                <div class="text">
+                  Vẻ đẹp tinh tế nhưng không kém phần thời thượng
+                </div>
+                <div class="text">
+                  Thiết kế sang trọng, gọn nhẹ khi gập vào và to lớn khi mở ra
+                </div>
               </div>
-              <div class="text">
-                Lorem ipsum dolor sit, officiis ea vel veritatis enim aspernatur? Soluta tempore id atque placeat aspernatur? Exercitationem tempore impedit, corrupti nobis officia cumque minus nisi!
+              <div class="black-opacity"></div>
+            <div class="description-image flex-width-40">
+              <button></button>
+              <div class="circle p-absolute">
               </div>
-          </div>
-          <div class="description-image flex-width-40">
-            <div class="circle p-absolute">
-            </div>
-            <div class="circle p-absolute">
-              <img src="./../../../assets/images/beidou-emoji.png" alt="">
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <!-- <img src="..." class="d-block w-100" alt="..."> -->
-        <div class="content">
-          <div class="description-text flex-width-60">
-              <div class="title">
-                Bộ sưu tập "đồ" mới
-                 Xu hướng năm 2023
+              <div class="circle p-absolute">
               </div>
-              <div class="text">
-                Lorem ipsum dolor sit, officiis ea vel veritatis enim aspernatur? Soluta tempore id atque placeat aspernatur? Exercitationem tempore impedit, corrupti nobis officia cumque minus nisi!
-              </div>
-          </div>
-          <div class="description-image flex-width-40">
-            <div class="circle p-absolute">
-            </div>
-            <div class="circle p-absolute">
-              <img src="./../../../assets/images/beidou-emoji.png" alt="">
             </div>
           </div>
         </div>
       </div>
-      <div class="carousel-item">
-        <!-- <img src="..." class="d-block w-100" alt="..."> -->
-        <div class="content">
-          <div class="description-text flex-width-60">
-              <div class="title">
-                Bộ sưu tập "đồ" mới
-                 Xu hướng năm 2021
+        <div class="carousel-item">
+          <div class="container" style="position: relative;padding: 0;">
+
+            <div class="content animated fadeIn"  [style.background-image]="'url(' + './../../../assets/images/lenovo-thinkpad-xp.webp' + ')'">
+              <div class="description-text flex-width-60 animated fadeInUp animation-delay-1">
+                  <div class="title">
+                    Lenovo ThinkPad X1 Carbon Gen 9
+                  </div>
+                  <div class="text">
+                    Xếp hạng đầu bảng của Lenovo.
+                  </div>
+                  <div class="text">
+                    Nhiều tính năng nổi bật so với những phiên bản trước.
+                  </div>
+                  <div class="text">
+                    "Trâu" và đúng vậy, hoạt động với hiệu suất tối đa trong thời gian rất dài.
+                  </div>
+                </div>
+                <div class="black-opacity" style="background-color: rgba(26, 17, 29, 0.35);"></div>
+
+              <div class="description-image flex-width-40">
+                <button></button>
+                <div class="circle p-absolute">
+                </div>
+                <div class="circle p-absolute">
+                </div>
               </div>
-              <div class="text">
-                Lorem ipsum dolor sit, officiis ea vel veritatis enim aspernatur? Soluta tempore id atque placeat aspernatur? Exercitationem tempore impedit, corrupti nobis officia cumque minus nisi!
-              </div>
-          </div>
-          <div class="description-image flex-width-40">
-            <div class="circle p-absolute">
-            </div>
-            <div class="circle p-absolute">
-              <img src="./../../../images/beidou-emoji.png" alt="">
             </div>
           </div>
         </div>
-      </div>
     </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+    <button class="carousel-control-prev" style="padding-left: 20px;" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Previous</span>
     </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+    <button class="carousel-control-next" style="padding-right: 20px;" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
       <span class="carousel-control-next-icon" aria-hidden="true"></span>
       <span class="visually-hidden">Next</span>
     </button>
@@ -82,6 +83,9 @@
       <div class="title">
         Các ứng dụng nổi bật
       </div>
+      <app-ow-carousel-card [items]="this.productType$ | async">
+
+      </app-ow-carousel-card>
       <!-- <div class="list-card">
         <div class="item-style">
           <app-property-card>

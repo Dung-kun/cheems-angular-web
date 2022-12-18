@@ -4,6 +4,8 @@ import { ProductListComponent } from './product-list.component';
 import { RouterModule } from '@angular/router';
 import { PropertyCardModule } from '../../shares/components/property-card/property-card.module';
 import { NgxSliderModule } from '@angular-slider/ngx-slider';
+import { ProductListFilterModule } from './child-components/product-list-filter/product-list-filter.module';
+import { ProductListDetailsModule } from './child-components/product-list-details/product-list-details.module';
 
 
 
@@ -22,6 +24,8 @@ import { NgxSliderModule } from '@angular-slider/ngx-slider';
         loadChildren: ()=> import('./../product-details/product-details.module').then(m=>m.ProductDetailsModule)
       }
     ]),
+    ProductListFilterModule,
+    ProductListDetailsModule,
     PropertyCardModule,
     NgxSliderModule
   ]

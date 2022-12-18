@@ -58,6 +58,11 @@
   color: #fff;
 }
 
+.details-button:hover {
+  background-color: rgb(25, 24, 33);
+  transform: scale(1.05);
+}
+
 img {
   height: auto;
   width: 100%;

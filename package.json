@@ -25,6 +25,7 @@
     "apollo-angular": "^3.0.1",
     "extract-files": "9.0.0",
     "graphql": "^16",
+    "ngx-pagination": "^6.0.3",
     "rxjs": "~7.5.0",
     "tslib": "^2.4.1",
     "zone.js": "~0.11.4"
