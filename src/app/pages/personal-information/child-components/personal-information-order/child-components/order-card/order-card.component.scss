@@ -11,8 +11,7 @@
   cursor: pointer;
 
   .status-icon {
-    width: 60px;
-    height: 60px;
+    width: 10%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -30,11 +29,6 @@
       flex-direction: column;
       flex: 1;
       border-right: 2px solid rgba(0,0,0,.09);
-
-      label {
-        margin-top: 5px;
-        cursor: pointer;
-      }
     }
 
     .sub {
@@ -42,11 +36,44 @@
       display: flex;
       flex-direction: column;
       flex: 1;
+    }
+  }
+}
 
-      label {
-        margin-top: 5px;
-        cursor: pointer;
-      }
+.info {
+  display: flex;
+  flex-direction: row;
+  font-size: 1rem;
+
+  label {
+    margin-top: 5px;
+    cursor: pointer;
+  }
+
+  .text {
+    color: #212529;
+    margin-top: 5px;
+    cursor: pointer;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .info {
+    display: flex;
+    flex-direction: row;
+    font-size: 0.9rem;
+
+    label {
+      width: 0;
+      height: 0;
+      overflow: hidden;
+      margin-top: 5px;
+      cursor: pointer;
+    }
+
+    .text {
+      margin-top: 5px;
+      cursor: pointer;
     }
   }
 }

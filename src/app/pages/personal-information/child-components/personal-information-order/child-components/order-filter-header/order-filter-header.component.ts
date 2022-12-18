@@ -47,6 +47,8 @@ export class OrderFilterHeaderComponent implements OnInit {
       default:
         break;
     }
+
+    this.isOpen = false;
   }
 
   toggleFilterDropdown() {
