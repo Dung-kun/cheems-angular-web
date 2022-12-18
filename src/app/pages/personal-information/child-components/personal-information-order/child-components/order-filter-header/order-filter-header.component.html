@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="filter-dropdown">
+    <div class="filter-select" (click)="this.toggleFilterDropdown()">
+      <span>{{ this.selected_title }}</span>
+      <img src="/assets/images/ic_filter.svg">
+    </div>
+    <div [class.has-open]="this.isOpen" class="status-filters">
+      <div [class.selected]="this.selected == 0" class="status-filters__item" (click)="changeSelected(0)">
+        <label class="status-filters__item__text">Tất cả</label>
+      </div>
+      <div [class.selected]="this.selected == 1" class="status-filters__item" (click)="changeSelected(1)">
+        <label class="status-filters__item__text">Vận chuyển</label>
+      </div>
+      <div [class.selected]="this.selected == 2" class="status-filters__item" (click)="changeSelected(2)">
+        <label class="status-filters__item__text">Đang giao</label>
+      </div>
+      <div [class.selected]="this.selected == 3" class="status-filters__item" (click)="changeSelected(3)">
+        <label class="status-filters__item__text">Hoàn Thành</label>
+      </div>
+      <div [class.selected]="this.selected == 4" class="status-filters__item" (click)="changeSelected(4)">
+        <label class="status-filters__item__text">Đã huỷ</label>
+      </div>
+      <div [class.selected]="this.selected == 5" class="status-filters__item" (click)="changeSelected(5)">
+        <label class="status-filters__item__text">Trả hàng</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="search-bar">
+    <img src="/assets/images/ic_search.svg">
+    <input type="text" placeholder="Bạn có thể tìm kiếm sản phẩm ở dây">
+  </div>
+</div>

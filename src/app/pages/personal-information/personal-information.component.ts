@@ -14,6 +14,9 @@ import { PersonalInformationSideNavViewData } from './child-components/personal-
 export class PersonalInformationComponent extends PageViewModelBasedComponent<PersonalInformationPageViewModel> implements OnInit {
   personalInformationSideNavViewData$: BehaviorSubject<PersonalInformationSideNavViewData>;
 
+  public title: string = '';
+  public subtitle: string = '';
+
   showMenu = false;
 
   constructor(private route: ActivatedRoute,) {
@@ -37,6 +40,28 @@ export class PersonalInformationComponent extends PageViewModelBasedComponent<Pe
         personalIdentifier: this.pageViewModel$.getValue().personalIdentifier
       })
     })
+
+    const routeUrl$ = this.appRouteUrl().subscribe((val) => {
+      switch (val[0].path) {
+        case 'profile':
+          this.title = "hồ Sơ";
+          this.subtitle = "Quản lí hồ sơ của bạn"
+        break;
+
+        case 'address':
+          this.title = "Địa chỉ";
+          this.subtitle = "Quản lí địa chỉ của bạn"
+        break;
+
+        case 'order':
+          this.title = "Đơn hàng";
+          this.subtitle = "Quản lí đơn hàng của bạn"
+        break;
+      }
+    })
+
+    this.subscriptions$.push(routeUrl$);
+    this.subscriptions$.push(onInit$);
   }
 
 
@@ -46,7 +71,12 @@ export class PersonalInformationComponent extends PageViewModelBasedComponent<Pe
   }
 
   appRouteParams() {
+    console.log(this.route)
     return this.route.params;
+  }
+
+  appRouteUrl() {
+    return this.route.children[0]?.url;
   }
 
   toggleMenu() {

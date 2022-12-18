@@ -98,7 +98,7 @@
   .container {
     height: 100%; /* 100% Full-height */
     position: fixed; /* Stay in place */
-    z-index: 4; /* Stay on top */
+    z-index: 999; /* Stay on top */
     top: 0; /* Stay at the top */
     left: 0;
     width: 0;
@@ -128,7 +128,7 @@
     height: 100%;
     width: 0;
     position: fixed;
-    z-index: 3;
+    z-index: 998;
     top: 0;
     left: 0;
     background-color: rgba(0,0,0, 0.9);
