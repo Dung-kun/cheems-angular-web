@@ -1,35 +1,8 @@
 <div class="container-1">
   <ng-container *ngIf="medias.length == 0; else forMediasContent">
     <button class="mySlides" type="button" data-bs-toggle="modal" data-bs-target="#modalImage">
-      <div class="numbertext">1 / 6</div>
-      <img src="./../../../../assets/images/ganyu-1.png" style="width:100%">
-    </button>
-
-    <button class="mySlides"  type="button" data-bs-toggle="modal" data-bs-target="#modalImage">
-      <div class="numbertext">2 / 6</div>
-      <img src="./../../../../assets/images/beidou.jpg" style="width:100%">
-    </button>
-
-    <button class="mySlides"  type="button" data-bs-toggle="modal" data-bs-target="#modalImage">
-      <div class="numbertext">3 / 6</div>
-      <img src="./../../../../assets/images/ganyu-1.png" style="width:100%">
-    </button>
-
-    <button class="mySlides"  type="button" data-bs-toggle="modal" data-bs-target="#modalImage">
-      <div class="numbertext">4 / 6</div>
-      <img src="./../../../../assets/images/ganyu-1.png" style="width:100%">
-    </button>
-    <button class="mySlides"  type="button" data-bs-toggle="modal" data-bs-target="#modalImage">
-      <div class="numbertext">5 / 6</div>
-      <img src="./../../../../assets/images/ganyu-1.png" style="width:100%">
-    </button>
-    <button class="mySlides"  type="button" data-bs-toggle="modal" data-bs-target="#modalImage">
-      <div class="numbertext">6 / 6</div>
-      <img src="./../../../../assets/images/ganyu-1.png" style="width:100%">
-    </button>
-    <button class="mySlides"  type="button" data-bs-toggle="modal" data-bs-target="#modalImage">
-      <div class="numbertext">7 / 6</div>
-      <img src="./../../../../assets/images/ganyu-1.png" style="width:100%">
+      <div class="numbertext">Hiện tại sản phẩm chưa có ảnh</div>
+      <img class="img-show" src="./../../../../assets/images/no-image-beidou.png" style="width:100%">
     </button>
   </ng-container>
 
@@ -37,49 +10,37 @@
   <a class="prev" (click)="plusSlides(-1)">❮</a>
   <a class="next" (click)="plusSlides(1)">❯</a>
 
-  <div class="row-img" (scroll)="onScroll($event)">
-    <ng-container *ngIf="medias.length == 0; else forMediasBottom">
+  <ng-container *ngIf="medias.length == 0; else forMediasBottom">
+  <div class="row-img">
       <div class="column-img">
-        <img class="demo cursor" src="./../../../../assets/images/ganyu-1.png" style="width:100%" (click)="currentSlide(1)" alt="The Woods">
+        <img class="demo cursor" src="./../../../../assets/images/no-image-beidou.png" style="width:100%" (click)="currentSlide(1)" alt="The Woods">
       </div>
-      <div class="column-img">
-        <img class="demo cursor" src="./../../../../assets/images/beidou.jpg" style="width:100%" (click)="currentSlide(2)" alt="Cinque Terre">
-      </div>
-      <div class="column-img">
-        <img class="demo cursor" src="./../../../../assets/images/ganyu-1.png" style="width:100%" (click)="currentSlide(3)" alt="Mountains and fjords">
-      </div>
-      <div class="column-img">
-        <img class="demo cursor" src="./../../../../assets/images/ganyu-1.png" style="width:100%" (click)="currentSlide(4)" alt="Northern Lights">
-      </div>
-      <div class="column-img">
-        <img class="demo cursor" src="./../../../../assets/images/ganyu-1.png" style="width:100%" (click)="currentSlide(5)" alt="Northern Lights">
-      </div>
-      <div class="column-img">
-        <img class="demo cursor" src="./../../../../assets/images/ganyu-1.png" style="width:100%" (click)="currentSlide(6)" alt="Northern Lights">
-      </div>
-      <div class="column-img">
-        <img class="demo cursor" src="./../../../../assets/images/ganyu-1.png" style="width:100%" (click)="currentSlide(7)" alt="Northern Lights">
-      </div>
-    </ng-container>
-  </div>
+    </div>
+  </ng-container>
 </div>
 
 
 <ng-template #forMediasContent>
     <ng-container *ngFor="let media of medias; let i = index, let length = count">
       <button class="mySlides" type="button" data-bs-toggle="modal" data-bs-target="#modalImage" (click)="changeImgShowPath(media.filePath)">
-        <div class="numbertext">{{ i + "/" + length }}</div>
-        <img [src]="media.filePath" style="width:100%">
+        <div class="numbertext">{{ i+1 + "/" + length }}</div>
+        <img class="img-show" [src]="media.filePath" onerror="this.src='./../../../../assets/images/no-image-beidou.png'" style="width:100%">
       </button>
+    </ng-container>
+    <ng-container *ngIf="medias.length > 1">
+      <a class="prev" (click)="plusSlides(-1)">❮</a>
+      <a class="next" (click)="plusSlides(1)">❯</a>
     </ng-container>
 </ng-template>
 
 <ng-template #forMediasBottom>
+  <div class="row-img" *ngIf="medias.length > 1" [ngClass]="medias.length > 4 ? 'active-style-scroll' : ''">
     <ng-container *ngFor="let media of medias; let i = index, let length = count">
-      <div class="column-img">
-        <img class="demo cursor" [src]="media.filePath" style="width:100%" (click)="currentSlide(i+1)" [alt]="media.id">
+      <div class="column-img" [ngClass]="length == 2 ? 'flex-50': length == 3? 'flex-33': 'flex-25'">
+        <img class="demo cursor" [src]="media.filePath" onerror="this.src='./../../../../assets/images/no-image-beidou.png'" style="width:100%" (click)="currentSlide(i+1)" [alt]="media.id">
       </div>
     </ng-container>
+  </div>
 </ng-template>
 
 <div class="modal fade modal-lg" id="modalImage" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">

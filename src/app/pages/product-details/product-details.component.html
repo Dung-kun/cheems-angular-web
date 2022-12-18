@@ -11,8 +11,8 @@
   </div>
 
   <div class="m-common">
-    <app-product-introduction></app-product-introduction>
-    <app-product-description></app-product-description>
+    <app-product-introduction [items]="this.pdIntroductionViewData$ | async"></app-product-introduction>
+    <app-product-description [items]="this.pdDescriptionViewData$ | async"></app-product-description>
     <div class="related-product">
       <div class="container">
         <div class="title">

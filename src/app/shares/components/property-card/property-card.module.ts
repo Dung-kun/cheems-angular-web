@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PropertyCardComponent } from './property-card.component';
 import { RouterModule } from '@angular/router';
+import { ProductNameShowModule } from '../../base/pipes/product-name-show/product-name-show.module';
 
 
 
@@ -9,7 +10,8 @@ import { RouterModule } from '@angular/router';
   declarations: [PropertyCardComponent],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    ProductNameShowModule
   ],
   exports: [PropertyCardComponent]
 })

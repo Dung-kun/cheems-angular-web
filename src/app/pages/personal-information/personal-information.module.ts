@@ -7,8 +7,6 @@ import { PersonalInformationProfileModule } from './child-components/personal-in
 import { PersonalInformationAddressModule } from './child-components/personal-information-address/personal-information-address.module';
 import { PersonalInformationOrderModule } from './child-components/personal-information-order/personal-information-order.module';
 
-
-
 @NgModule({
   declarations: [PersonalInformationComponent],
   imports: [

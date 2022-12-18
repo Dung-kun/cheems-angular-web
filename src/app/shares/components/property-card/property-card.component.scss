@@ -4,17 +4,51 @@
     border-radius: 2px;
 }
 
+
 .card {
-  box-shadow: 5px 5px 10px 12px rgba(125, 118, 118, 0.1);
+  box-shadow: 0px 3px 10px 0px rgba(31, 31, 34, 0.1);
   border: none !important;
   margin-bottom: 20px;
+  width: 100%;
+  height: 100%;
+  position: relative;
 
   .card-img-top {
+    position: relative;
     .icon-top {
       display: none;
     }
   }
+
+  .card-body {
+    .card-title {
+      text-align: justify;
+    }
+
+    .trademark-text {
+      color:  #2f2f59;
+      font-weight: bold;
+    }
+
+    .card-text {
+      .text-cost {
+        color: #101750;
+        line-height: 24px;
+        font-weight: bold;
+      }
+
+      .text-cost-km {
+        font-size: 14px;
+        line-height: 20px;
+        opacity: 0.8;
+        text-decoration:line-through;
+        color: #424a86;
+      }
+    }
+  }
 }
+
+
 
 .card-bar-icon {
   display: flex;
@@ -24,7 +58,21 @@
 }
 
 
+.carousel-item {
+  display: inline-block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+
+.carousel-inner {
+  position: relative;
+  padding-bottom: 70%;
+}
+
 .carousel-inner > .carousel-item > img {
+  object-fit: contain;
   width: 100%;
   height: 100%;
   background-size: contain;
@@ -40,6 +88,7 @@
   color: #f9fafc;
 
   .card-img-top {
+    position: relative;
     .icon-top {
       display: flex;
       color:#f9fafc;
@@ -47,7 +96,7 @@
       position:absolute;
       top: 0;
       left: 0;
-      z-index: 1000;
+      z-index: 100;
       .circle {
         padding: 5px 5px 3px 5px;
         border-radius: 50%;
@@ -59,10 +108,32 @@
 
   background-color: #2F1AC4;
   .card-body {
-
+    padding-bottom: 10px;
     .card-title {
       color: #f9fafc;
     }
+
+    .card-title:hover {
+      color: #FFEAC1;
+      transform: scale(1.05);
+      text-decoration: underline;
+    }
+
+    .trademark-text:hover {
+      text-decoration: none;
+    }
+
+    .card-text {
+      .text-cost {
+        color: #f9fafc;
+      }
+
+      .text-cost-km {
+        color: #b8b8b8;
+      }
+
+    }
+
   }
 
 
@@ -71,12 +142,9 @@
 p {
   margin: 0px;
 }
-.text-cost-km {
-  text-decoration:line-through;
-  color: #FB2E86;
+
+@media screen and (max-width: 768px) {
+  .card-body {
+    padding-bottom: 0;
+  }
 }
-
-// .carousel-item, img {
-//   border-radius: 10px;
-// }
-

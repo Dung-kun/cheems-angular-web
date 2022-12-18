@@ -1,0 +1,29 @@
+<pagination-template #p="paginationApi" [id]="paginationIdx" responsive="true"
+(pageChange)="onPageChange($event)">
+
+<div>
+    <ul class="ps-pagination">
+        <li [class.disabled]="p.isFirstPage()">
+            <a (click)="p.previous()" tabindex="-1"  [attr.aria-disabled]="p.isFirstPage()">
+              <i class="ai-chevron-left"></i>
+            </a>
+        </li>
+
+        <li *ngFor="let page of p.pages" class="active" [class.active]="p.getCurrent() === page.value" [class.current]="p.getCurrent() === page.value">
+            <a (click)="p.setCurrent(page.value)" *ngIf="p.getCurrent() !== page.value">
+                {{ page.label }}
+            </a>
+
+            <a *ngIf="p.getCurrent() === page.value" aria-current="page.value">
+                {{ page.label }}
+            </a>
+        </li>
+
+        <li id="m_table_1_next" [class.disabled]="p.isLastPage()">
+            <a (click)="p.next()" [attr.aria-disabled]="p.isLastPage()">
+              <i class="ai-chevron-right"></i>
+            </a>
+        </li>
+    </ul>
+</div>
+</pagination-template>

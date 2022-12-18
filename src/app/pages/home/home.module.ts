@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { PropertyCardModule } from '../../shares/components/property-card/property-card.module';
 import { NewProductModule } from './child-components/new-product/new-product.module';
 import { HotProductModule } from './child-components/hot-product/hot-product.module';
+import { OwCarouselCardModule } from '../../shares/components/ow-carousel-card/ow-carousel-card.module';
 
 
 
@@ -20,7 +21,8 @@ import { HotProductModule } from './child-components/hot-product/hot-product.mod
         component: HomeComponent,
       },
     ]),
-    PropertyCardModule
+    PropertyCardModule,
+    OwCarouselCardModule
   ],
   exports: []
 })
