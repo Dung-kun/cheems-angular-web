@@ -43,6 +43,10 @@ const routes: Routes = [{
       path: 'sales',
       loadChildren: () => import('./../../pages/sales/sales.module').then(m=>m.SalesModule)
     },
+    {
+      path: 'personal-information',
+      loadChildren: () => import('./../../pages/personal-information/personal-information.module').then(m=>m.PersonalInformationModule)
+    },
     { path: '',   redirectTo: '/home', pathMatch: 'full' },
     { path: '**',   redirectTo: '/home', pathMatch: 'full' }
 

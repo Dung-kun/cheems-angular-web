@@ -1,0 +1,44 @@
+<div class="container" [class.hidden]="isOpen">
+  <a href="javascript:void(0)" class="closebtn" (click)="this.onClose()">
+    <img src="/assets/images/ic_close.svg">
+  </a>
+  <app-personal-information-account-display [items]="personalInformationAccountDisplayViewData$ | async"></app-personal-information-account-display>
+  <div class="router-link-panel">
+    <div class="link-container">
+      <!-- Hồ sơ -->
+      <a class="link" routerLink="/personal-information/profile" href="/personal-information/profile">
+        <div class="link__icon">
+          <img src="/assets/images/ic_profile.svg">
+        </div>
+        <div class="link__text">
+          <span>Hồ sơ</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="link-container">
+      <!-- Địa chỉ -->
+      <a class="link" routerLink="/personal-information/address" href="/personal-information/address">
+        <div class="link__icon">
+          <img src="/assets/images/ic_location.svg">
+        </div>
+        <div class="link__text">
+          <span>Địa chỉ</span>
+        </div>
+      </a>
+    </div>
+
+    <div class="link-container">
+      <!-- Đơn mua -->
+      <a class="link" routerLink="/personal-information/order" href="/personal-information/order">
+        <div class="link__icon">
+          <img src="/assets/images/ic_bill.svg">
+        </div>
+        <div class="link__text">
+          <span>Đơn mua</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>
+<div class="overlay" [class.hidden]="isOpen" (click)="this.onClose()"></div>

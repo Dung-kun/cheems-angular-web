@@ -1,58 +1,20 @@
-<div class="product-list">
-  <div class="title-container">
-    <div class="container">
-      <div class="title-text">
-        Khuyến mãi
-      </div>
-      <div class="title-route">
-        Trang chủ.<span>Khuyến mãi</span>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<div class="container personal-information">
+  <app-personal-information-side-nav (closeNav)="this.toggleMenu()" [isOpen]="this.showMenu" [items]="this.personalInformationSideNavViewData$ | async"></app-personal-information-side-nav>
+
+  <div class="content">
+    <div class="header">
+      <button class="menu_button" (click)="this.toggleMenu()">
+        <img src="/assets/images/ic_menu.svg">
+      </button>
+      <div class="vertical-line"></div>
+      <div class="title">
+        <div class="title__main">{{ this.title }}</div>
+        <div class="title__sub">{{ this.subtitle }}</div>
       </div>
     </div>
-  </div>
-
-
-  <div class="container m-common">
-    <div class="sidebar-plus-content">
-      <aside class="page-sidebar">
-        <nav class="secondary-nav">
-          <ul id="menu-links" role="menubar">
-            <li class="list-group">
-              <strong class="list-group-title is-opened" data-tracking-label="new-arrivals">Laptop</strong>
-              <ul class="menu" role="menu">
-                <li class="item item-promotion">
-                  <a class="link " href="/en_us/women/new-arrivals/view-all.html" role="menuitem"
-                    data-tracking-label="view-all">
-                    Mac</a>
-                </li>
-                <li class="list-group item-promotion">
-                  <a class="link current" href="/en_us/women/new-arrivals/clothes.html" role="menuitem"
-                    data-tracking-label="clothes">
-                    HP</a>
-                  <ul class="menu" role="menu" style="display: none">
-                  </ul>
-                </li>
-                <li class="item item-promotion">
-                  <a class="link " href="/en_us/women/new-arrivals/shoes-accessories.html" role="menuitem"
-                    data-tracking-label="shoes-accessories">
-                    Dell</a>
-                </li>
-                <li class="item">
-                  <a class="link " href="/en_us/women/new-arrivals/beauty.html" role="menuitem"
-                    data-tracking-label="beauty">
-                    Asus</a>
-                </li>
-                <li class="item">
-                  <a class="link " href="/en_us/women/new-arrivals/underwear-nightwear.html" role="menuitem"
-                    data-tracking-label="underwear-nightwear">
-                    Lenovo</a>
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </nav>
-      </aside>
-      <div class="page-content">
-      </div>
+    <div class="item">
+      <router-outlet></router-outlet>
     </div>
   </div>
 </div>
