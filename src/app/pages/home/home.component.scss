@@ -84,6 +84,8 @@
 .body-container {
   margin-top: 50px;
   .content {
+    padding-bottom: 20px;
+    margin-bottom: 40px;
     .title {
       margin-bottom: 20px;
       text-align: center;
@@ -110,6 +112,15 @@
     .item-style {
       flex: 0 0 50%;
       width: 50%;
+    }
+  }
+
+  .description-text {
+    .title {
+      display: none;
+    }
+    .text {
+      display: none;
     }
   }
 }

@@ -3,16 +3,15 @@ import { Component, OnInit } from '@angular/core';
 @Component({
   selector: 'app-layout',
   templateUrl: './layout.component.html',
-  styleUrls: ['./layout.component.scss']
+  styleUrls: ['./layout.component.scss'],
 })
 export class LayoutComponent implements OnInit {
-
-  constructor() { }
+  constructor() {}
 
   ngOnInit(): void {
   }
 
-  check(event : any) {
-    console.log('v',event);
+  check(event: any) {
+    console.log('v', event);
   }
 }

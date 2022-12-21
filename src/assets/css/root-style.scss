@@ -254,3 +254,10 @@ body {
 .ps-pagination li:last-child {
   margin-right: 0;
 }
+
+a, .link {
+  color: inherit;
+  cursor: pointer;
+  text-decoration: none;
+  text-transform: none;
+}

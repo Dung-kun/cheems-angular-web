@@ -14,7 +14,7 @@ export class ProductTypeQuery extends Query {
 export const PRODUCT_TYPE_QUERY = gql`
 query($input: ProductTypesFilterInput) {
   productTypes(input: $input) {
-    nodes {
+    items {
       id
       name
       medias {

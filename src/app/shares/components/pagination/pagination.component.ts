@@ -13,7 +13,7 @@ export class PaginationComponent implements OnInit {
   @Input()
   paginationIdx: string;
 
-  @Output() appOnPageChange = new EventEmitter<number>();
+  @Output() appOnPageChange = new EventEmitter<string>();
 
 
   constructor() { }
@@ -22,7 +22,6 @@ export class PaginationComponent implements OnInit {
   }
 
   onPageChange($event: any) {
-
     this.appOnPageChange.emit($event);
   }
 }

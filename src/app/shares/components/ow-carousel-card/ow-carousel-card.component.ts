@@ -1,82 +1,111 @@
-import { Component, OnInit } from '@angular/core';
-import { combineLatest } from 'rxjs';
+import { Component, HostListener, OnInit } from '@angular/core';
+import { BehaviorSubject, combineLatest } from 'rxjs';
 import { ChildViewManagement } from '../../base/framework/child-view.management';
 import { OwCarouselCardViewData } from './models/ow-carousel-card-view-data.model';
 import { ProductType } from '../../../data/models/product-type.model';
+import { PageViewModelBasedComponent } from '../../base/framework/page-view-model-based-component';
+import { OwCarouselCardPageViewModel } from './models/ow-carousel-card-page-view.model';
+import { PropertyCardViewData } from '../property-card/models/property-card-view-data.model';
 
 @Component({
   selector: 'app-ow-carousel-card',
   templateUrl: './ow-carousel-card.component.html',
   styleUrls: ['./ow-carousel-card.component.scss']
 })
-export class OwCarouselCardComponent extends ChildViewManagement implements OnInit {
+export class OwCarouselCardComponent extends PageViewModelBasedComponent<OwCarouselCardPageViewModel> implements OnInit {
   importedItems: ProductType[] = [];
   showItems: any = [];
-
+  length: number = 4;
 
   constructor() {
     super();
+    this.pageViewModel$ = new BehaviorSubject<OwCarouselCardPageViewModel>(new OwCarouselCardPageViewModel());
   }
 
-  get width() {
-    return window.innerWidth;
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    const width = event.target.innerWidth;
+    let length = this.productAmountShow(width);
+
+    this.pageViewModel$.next({
+      ...this.pageViewModel$.getValue(),
+      ... {
+        lengthFollowWith: length,
+        itemShows: this.productListShow(length)
+      }
+    })
   }
 
-  get productAmountShow() {
-    if (this.width < 576) {
+
+  productAmountShow(width: number) {
+    if (width < 576) {
       return 1;
-    } else if (this.width >= 576 && this.width < 768) {
+    } else if (width >= 576 && width < 768) {
       return 2;
-    } else if (this.width >= 768 && this.width < 992) {
+    } else if (width >= 768 && width < 992) {
       return 3;
-    } else if (this.width >= 992 && this.width < 1200) {
+    } else if (width >= 992 && width < 1200) {
       return 4;
-    } else if (this.width >= 1200 && this.width < 1600) {
+    } else if (width >= 1200 && width < 1600) {
       return 4;
     } else {
-      return 6;
+      return 5;
     }
   }
 
-  get productListShow() {
+  productListShow(length: number) {
+    let swItem = [];
+    let productTypes = this.pageViewModel$.getValue().productTypes || [];
 
-    console.log('length',this.productAmountShow);
-    let length = this.productAmountShow;
-    let showItems = [];
-    if(!this.importedItems) {
-      return [];
-    }
-    for(let i = 0; i < this.importedItems.length; i += length) {
+    for(let i = 0; i < productTypes.length; i += length) {
       let temp = [];
-      for(let j = i; j < length + i && j < this.importedItems.length; j++) {
-        temp.push(this.importedItems[j])
+      for(let j = i; j < length + i && j < productTypes.length; j++) {
+        temp.push(productTypes[j])
       }
 
-      showItems.push(temp);
-      console.log('cc', i, showItems);
+      swItem.push(temp);
     }
 
-    return showItems;
+    return swItem;
   }
 
   ngOnInit(): void {
-    const onInit$ = combineLatest([this.items$]).subscribe(([value]) => {
-      console.log('value', value);
+    const onInit$ = combineLatest([this.items$]);
+
+
+    const onInit = onInit$.subscribe(([value]) => {
       const _value = value as OwCarouselCardViewData;
-      this.importedItems =  _value.productTypes;
+
+      const width = window.innerWidth;
+      let productTypes =  _value.productTypes;
+      let itemShows = [];
+      let length = this.pageViewModel$.getValue().lengthFollowWith;
+
+
+      for(let i = 0; i < productTypes.length; i += length) {
+        let temp = [];
+        for(let j = i; j < length + i && j < productTypes.length; j++) {
+          temp.push(productTypes[j])
+        }
+        itemShows.push(temp);
+      }
+
+
+      this.pageViewModel$.next({
+        ...this.pageViewModel$.getValue(),
+        itemShows,
+        productTypes,
+        lengthFollowWith: this.productAmountShow(width)
+      });
+
     });
 
-    this.subscriptions$.push(onInit$);
-
-    for(let i = 0; i < this.importedItems.length; i += this.productAmountShow) {
-      let temp = [];
-      for(let j = i; j < this.productAmountShow + i; j++) {
-        temp.push(this.importedItems[i])
-      }
-      this.showItems.push(temp);
-    }
+    this.subscriptions$.push(onInit);
   }
 
 
-
+  onPropertyCardViewData(productType: ProductType) {
+    const propertyCardViewData$ = new BehaviorSubject<PropertyCardViewData>(new PropertyCardViewData(productType));
+    return propertyCardViewData$;
+  }
 }

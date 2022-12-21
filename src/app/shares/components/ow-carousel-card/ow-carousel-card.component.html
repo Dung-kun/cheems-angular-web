@@ -1,24 +1,20 @@
-<div class="container m-common">
-  <div class="hot-top">
-    <div id="carousels" class="carousel slide" data-bs-ride="carousel">
+<div class="container">
+  <div class="hot-top" *ngIf="pageViewModel$ | async as pageViewModel">
+    <div id="carouselsIndicators" class="carousel slide" data-bs-ride="carousels">
       <div class="carousel-indicators" style="margin-bottom: -1rem;">
-        <ng-container *ngFor="let items of this.productListShow; let idx = index">
-          <button type="button" class="button-bottom" data-bs-target="#carousels" data-bs-slide-to="0" [class.active]="idx == 0" aria-current="true"></button>
-        </ng-container>
+        <button type="button" *ngFor="let items of pageViewModel.itemShows; let idx = index;" [ngClass]="{'active': idx === 0 }"  class="button-bottom"
+          data-bs-target="#carouselsIndicators" [attr.data-bs-slide-to]="idx"
+          aria-current="true"></button>
       </div>
-      <div class="carousel-inner" *ngIf="this.productListShow">
-        <ng-container *ngFor="let items of this.productListShow; let idx = index;  first as isFirst">
-          <div [ngClass]="isFirst ? 'carousel-item active' : 'carousel-item' ">
+      <div class="carousel-inner">
+          <div class="carousel-item"  *ngFor="let items of pageViewModel.itemShows; let idx = index;" [ngClass]="{'active': idx === 0 }">
             <div class="list-card">
-              <ng-container *ngFor="let it of items">
-                <div class="item-style">
-                  <app-property-card [product]="it">
+                <div class="item-style" *ngFor="let it of items">
+                  <app-property-card [items]="{ productType: it }">
                   </app-property-card>
                 </div>
-              </ng-container>
             </div>
           </div>
-        </ng-container>
       </div>
     </div>
   </div>

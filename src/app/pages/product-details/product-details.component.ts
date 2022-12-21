@@ -100,7 +100,7 @@ export class ProductDetailsComponent
       switchMap((_) => _.refetch()),
       map((result) => {
         const item = (<any>result).data;
-        const productType = item ? (<any>item).productTypes.nodes[0] : null;
+        const productType = item ? (<any>item).productTypes.items[0] : null;
         return {
           productType,
         } as ProductDetailsResult;

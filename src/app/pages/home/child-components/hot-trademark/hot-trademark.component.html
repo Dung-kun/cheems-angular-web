@@ -1,0 +1,31 @@
+<div class="hot-trademark" *ngIf="pageViewModel$ |async as pageViewModel">
+  <div class="trademark-style">
+    <ng-container *ngIf="pageViewModel.manufacturers.length > 0, else noManufacturer">
+      <button *ngFor="let item of pageViewModel.manufacturers; ;let i = index" class="trademark-card bg-img-1"
+        (click)="onClickButton(item?.id)"
+        [ngClass]="'bg-img-'+ (i+1)"
+        >
+        <div class="title">{{ item?.name }}</div>
+      </button>
+    </ng-container>
+  </div>
+</div>
+
+<ng-template #noManufacturer>
+  <button class="trademark-card bg-img-1">
+    <div class="title">ThinkPad</div>
+    <div class="img"></div>
+  </button>
+  <button class="trademark-card bg-img-2">
+    <div class="title">Legion</div>
+    <div class="img"></div>
+  </button>
+  <button class="trademark-card bg-img-3">
+    <div class="title">Sam sung</div>
+    <div class="img"></div>
+  </button>
+  <button class="trademark-card bg-img-4">
+    <div class="title">I Phone</div>
+    <div class="img"></div>
+  </button>
+</ng-template>

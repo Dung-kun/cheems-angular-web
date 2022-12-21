@@ -112,8 +112,8 @@ export class ProductListFilterComponent
       switchMap((_) => _.refetch()),
       map((result) => {
         const item = (<any>result).data;
-        const categories = item ? (<any>item).categories.nodes : null;
-        const manufacturers = item ? (<any>item).manufacturers.nodes : null;
+        const categories = item ? (<any>item).categories.items : null;
+        const manufacturers = item ? (<any>item).manufacturers.items : null;
         return {
           categories,
           manufacturers,

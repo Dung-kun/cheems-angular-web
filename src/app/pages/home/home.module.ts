@@ -6,6 +6,7 @@ import { PropertyCardModule } from '../../shares/components/property-card/proper
 import { NewProductModule } from './child-components/new-product/new-product.module';
 import { HotProductModule } from './child-components/hot-product/hot-product.module';
 import { OwCarouselCardModule } from '../../shares/components/ow-carousel-card/ow-carousel-card.module';
+import { HotTrademarkModule } from './child-components/hot-trademark/hot-trademark.module';
 
 
 
@@ -22,7 +23,8 @@ import { OwCarouselCardModule } from '../../shares/components/ow-carousel-card/o
       },
     ]),
     PropertyCardModule,
-    OwCarouselCardModule
+    OwCarouselCardModule,
+    HotTrademarkModule
   ],
   exports: []
 })

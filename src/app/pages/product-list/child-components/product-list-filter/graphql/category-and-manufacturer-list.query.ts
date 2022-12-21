@@ -13,14 +13,14 @@ export class CategoryAndManufacturerListQuery extends Query {
 export const CATEGORY_AND_MANUFACTURER_LIST_QUERY = gql`
   query ($input: CategoriesFilterInput, $input2: ManufacturersFilterInput) {
     categories(input: $input) {
-      nodes {
+      items {
         id
         name
       }
     }
 
     manufacturers(input: $input2) {
-      nodes {
+      items {
         id
         name
       }

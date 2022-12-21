@@ -12,8 +12,38 @@
 
 
   <div class="container">
-    <div class="row mx-50">
-      <div class="col-lg-8">
+    <div class="cart-style mx-50">
+      <section class="cart-item-list">
+        <div class="fadeInUp animated">
+          <ul class="item-list">
+            <li>
+              <app-cart-card></app-cart-card>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="cart-sidebar">
+        <div class="cart-total-style">
+          <div class="title">
+            Tổng giỏ hàng
+          </div>
+          <div class="container">
+            <div class="total-style">
+              Tổng phụ: <span>52.000(VND)</span>
+            </div>
+            <div class="total-style">
+              Tổng: <span>52.000(VND)</span>
+            </div>
+
+            <a type="button" class="form-control" routerLink="/shopping-cart/checkout">
+              Tiến hành thanh toán
+            </a>
+          </div>
+        </div>
+
+      </section>
+      <!-- <div class="col-lg-8">
         <table style="width:100%">
           <thead>
             <tr>
@@ -50,24 +80,7 @@
             </tr>
           </tbody>
         </table>
-      </div>
-      <div class="col-lg-4 cart-total-style">
-        <div class="title">
-          Tổng giỏ hàng
-        </div>
-        <div class="container">
-          <div class="total-style">
-            Tổng phụ: <span>52.000(VND)</span>
-          </div>
-          <div class="total-style">
-            Tổng: <span>52.000(VND)</span>
-          </div>
-
-          <a type="button" class="form-control" routerLink="/shopping-cart/checkout">
-            Tiến hành thanh toán
-          </a>
-        </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>

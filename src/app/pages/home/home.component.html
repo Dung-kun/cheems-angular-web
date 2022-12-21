@@ -76,9 +76,23 @@
     </button>
   </div>
 
-  <app-hot-product></app-hot-product>
+
   <div class="container body-container">
-    <app-new-product></app-new-product>
+    <div class="content">
+      <app-hot-product></app-hot-product>
+    </div>
+    <div class="content">
+      <div class="title">
+        Các sản phẩm mới
+      </div>
+      <app-new-product [items]=""></app-new-product>
+    </div>
+    <div class="content">
+      <div class="title">
+        Các thương hiệu nổi tiếng
+      </div>
+    <app-hot-trademark></app-hot-trademark>
+    </div>
     <div class="content">
       <div class="title">
         Các ứng dụng nổi bật
@@ -86,25 +100,6 @@
       <app-ow-carousel-card [items]="this.productType$ | async">
 
       </app-ow-carousel-card>
-      <!-- <div class="list-card">
-        <div class="item-style">
-          <app-property-card>
-          </app-property-card>
-        </div>
-        <div class="item-style">
-          <app-property-card>
-          </app-property-card>
-        </div>
-        <div class="item-style">
-          <app-property-card>
-          </app-property-card>
-        </div>
-
-        <div class="item-style">
-          <app-property-card>
-          </app-property-card>
-        </div>
-      </div> -->
     </div>
   </div>
 </div>

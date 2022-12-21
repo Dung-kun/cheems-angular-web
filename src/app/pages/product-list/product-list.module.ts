@@ -20,9 +20,13 @@ import { ProductListDetailsModule } from './child-components/product-list-detail
         component: ProductListComponent,
       },
       {
-        path: ':id',
+        path: ':productTypeFilterInput',
+        component: ProductListComponent,
+      },
+      {
+        path: 'product/:id',
         loadChildren: ()=> import('./../product-details/product-details.module').then(m=>m.ProductDetailsModule)
-      }
+      },
     ]),
     ProductListFilterModule,
     ProductListDetailsModule,

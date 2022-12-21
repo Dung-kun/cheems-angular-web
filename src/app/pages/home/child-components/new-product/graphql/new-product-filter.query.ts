@@ -5,19 +5,14 @@ import gql from 'graphql-tag';
 @Injectable({
   providedIn: 'root',
 })
-export class ProductListFilterQuery extends Query {
-  override document = PRODUCT_LIST_FILTER_QUERY;
+export class NewProductFilterQuery extends Query {
+  override document = NEW_PRODUCT_QUERY;
 }
 
 
-export const PRODUCT_LIST_FILTER_QUERY =  gql`
+export const NEW_PRODUCT_QUERY =  gql`
 query ($input: ProductTypesFilterInput, $skip: Int, $take: Int) {
   productTypes(input: $input, skip: $skip, take: $take) {
-    totalCount
-    pageInfo {
-      hasPreviousPage
-      hasNextPage
-    }
     items {
       id
       name

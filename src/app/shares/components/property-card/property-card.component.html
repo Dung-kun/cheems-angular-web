@@ -1,53 +1,28 @@
-<div class="card" style="width: 100%;">
+<div class="card" style="width: 100%;" *ngIf="pageViewModel$ | async as pageViewModel">
   <div class="card-img-top">
     <!-- deploy app-->
-    <div id="slideShowProduct" class="carousel slide carousel-fade" data-bs-ride="carousel">
-      <div class="carousel-inner">
-        <ng-container *ngIf="product?.medias?.length > 0, else noMedias;">
-          <div class="carousel-item" *ngFor="let media of product?.medias; let i = index" [class.active]="i == 0">
-            <img src="https://dung-kun.github.io/cheems-angular-web/assets/images/ganyu-1.png" class="rounded-top" alt="...">
-          </div>
-        </ng-container>
-        <!-- <div class="carousel-item">
-          <img src="https://dung-kun.github.io/cheems-angular-web/assets/images/beidou.jpg" class="rounded-top" alt="...">
-        </div>
-        <div class="carousel-item">
-          <img src="https://dung-kun.github.io/cheems-angular-web/assets/images/hutao.jpg" class="rounded-top" alt="...">
-        </div> -->
+    <div class="card-inner">
+      <div class="card-item" *ngIf="pageViewModel.productType?.medias.length > 0, else noMedias">
+        <img [src]="pageViewModel.productType?.medias[0]?.filePath"
+          onerror="this.src='./../../../../assets/images/no-image-beidou.png'" class="rounded-top" alt="...">
       </div>
     </div>
-    <ng-template #noMedias>
-      <div class="carousel-item active">
-        <img src="./../../../../assets/images/no-image-beidou.png" class="rounded-top" alt="...">
-      </div> -->
-    </ng-template>
-    <!-- <div id="slideShowProduct" class="carousel slide carousel-fade" data-bs-ride="carousel">
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img src="./../../../../assets/images/ganyu-1.png" class="rounded-top" alt="...">
-        </div>
-        <div class="carousel-item">
-          <img src="./../../../../assets/images/beidou.jpg" class="rounded-top" alt="...">
-        </div>
-        <div class="carousel-item">
-          <img src="./../../../../assets/images/hutao.jpg" class="rounded-top" alt="...">
-        </div>
-      </div>
-    </div> -->
     <div class="icon-top">
       <div class="circle">
         <i class="ai-cart"></i>
       </div>
-      <!-- <div class="circle">
-        <i class="ai-heart"></i>
-      </div> -->
     </div>
   </div>
+  <ng-template #noMedias>
+    <div class="card-item">
+      <img src="./../../../../assets/images/no-image-beidou.png" class="rounded-top" alt="...">
+    </div>
+  </ng-template>
   <!-- <img class="card-img-top" src="./../../../../assets/images/ganyu-1.png" alt=""> -->
   <div class="card-body">
-    <h6 class="card-title trademark-text">{{ product?.metaDatas?.manufacturers[0]?.name || ""}}</h6>
-    <a [routerLink]="['/product-list', product?.id ]" style="text-decoration: none; color: #FB2E86;">
-      <h6 class="card-title text-center">{{ product | productNameShowPipe:false }}</h6>
+    <h6 class="card-title trademark-text">{{ pageViewModel.productType?.metaDatas?.manufacturers[0]?.name || ""}}</h6>
+    <a [routerLink]="['/product-list/product', pageViewModel.productType?.id ]" style="text-decoration: none; color: #FB2E86;">
+      <h6 class="card-title text-center">{{ pageViewModel.productType | productNameShowPipe:false }}</h6>
     </a>
     <div class="card-text text-center">
       <div class="card-bar-icon">
@@ -56,10 +31,10 @@
         <div class="bar-icon" style="background: #FFEAC1;"></div>
       </div>
       <p class="text-cost">
-        {{(product?.price || "0") + " VNĐ"}}
+        {{styleMoney.format(pageViewModel.productType?.price || 0)}}
       </p>
-      <p *ngIf="product?.metaDatas != null" class="text-cost-km">
-        {{(product?.price || "0") + " VNĐ"}}
+      <p *ngIf="pageViewModel.productType?.metaDatas != null" class="text-cost-km">
+        {{styleMoney.format(pageViewModel.productType?.price)}}
       </p>
     </div>
   </div>

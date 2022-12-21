@@ -58,7 +58,7 @@
 }
 
 
-.carousel-item {
+.card-item {
   display: inline-block;
   position: absolute;
   width: 100%;
@@ -66,12 +66,12 @@
 }
 
 
-.carousel-inner {
+.card-inner {
   position: relative;
   padding-bottom: 70%;
 }
 
-.carousel-inner > .carousel-item > img {
+.card-inner > .card-item > img {
   object-fit: contain;
   width: 100%;
   height: 100%;
@@ -86,6 +86,7 @@
 .card:hover {
   transform: scale(1.05);
   color: #f9fafc;
+  position: relative;
 
   .card-img-top {
     position: relative;
@@ -93,9 +94,9 @@
       display: flex;
       color:#f9fafc;
       margin: 10px;
-      position:absolute;
       top: 0;
-      left: 0;
+      right: 0;
+      position:absolute;
       z-index: 100;
       .circle {
         padding: 5px 5px 3px 5px;

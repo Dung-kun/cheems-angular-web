@@ -17,16 +17,9 @@ export const seriesLaptopArray = [
   'IdeaPad',
   'Inspiron',
   'Legion',
-  'Lenovo V Series',
-  'Nitro 5',
-  'Notebook',
-  'Raider',
-  'Swift 3',
-  'Sift X',
   'ThinkPad',
   'ThinkBook',
   'VivoBook',
-  'Vostro',
   'XPS',
   'ZenBook',
 ];
@@ -71,31 +64,11 @@ export const gpuArray = [
 
   'GTX 1650Ti',
 
-  'GeForce MX130',
-
-  'GeForce MX330',
-
-  'GeForce MX350',
-
-  'GeForce MX450',
-
   'GeForce MX550',
 
   'GeForce MX570',
 
   'NVIDIA GeForce GTX 1650Ti',
-
-  'NVIDIA GeForce MX130',
-
-  'NVIDIA GeForce MX150',
-
-  'NVIDIA GeForce MX330',
-
-  'NVIDIA GeForce MX450',
-
-  'NVIDIA GeForce RTX 3050',
-
-  'NVIDIA GeForce RTX 3050Ti',
 
   'NVIDIA GeForce RTX 3060',
 
@@ -105,39 +78,11 @@ export const gpuArray = [
 
   'Quadro T600',
 
-  'RTX 1650',
-
-  'RTX 2050',
-
-  'RTX 3050',
-  'RTX 3050Ti',
-
   'RTX 3070',
 
   'RTX 3070 Ti',
 
   'RTX 3070Ti',
-
-  'RTX 3080',
-
-  'RTX 3080 Ti',
-
-  'RTX 3080Ti',
-
-  'RTX A3000',
-
-  'RX 6600M',
-
-  'RX 6700M',
-
-  'RX 6700S',
-
-  'RX 6800S',
-
-  'Radeon 530',
-
-  'Radeon RX 5500M',
-
   'Radeon RX 6600M',
 ];
 
