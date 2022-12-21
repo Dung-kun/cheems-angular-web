@@ -5,7 +5,7 @@ import { GC_AUTH_TOKEN, GC_USER_ID } from '../constants/constants';
 @Injectable()
 export class AuthService {
   // 2
-  private userId: string = null;
+  private accessToken: string = null;
 
   // 3
   private _isAuthenticated = new BehaviorSubject(false);
@@ -18,16 +18,18 @@ export class AuthService {
     return this._isAuthenticated.asObservable();
   }
   // 5
-  saveUserData(id: string, token: string) {
+  saveUserData(id?: string, token?: string) {
 
-    localStorage.setItem(GC_USER_ID, id);
-    localStorage.setItem(GC_AUTH_TOKEN, token);
-    this.setUserId(id);
+    if(token) {
+      localStorage.setItem(GC_AUTH_TOKEN, token);
+      this.setAccessToken(token);
+    }
+    if(id) localStorage.setItem(GC_USER_ID, id);
   }
 
   // 6
-  setUserId(id: string) {
-    this.userId = id;
+  setAccessToken(accessToken: string) {
+    this.accessToken = accessToken;
 
     this._isAuthenticated.next(true);
   }
@@ -35,17 +37,18 @@ export class AuthService {
   logout() {
     localStorage.removeItem(GC_USER_ID);
     localStorage.removeItem(GC_AUTH_TOKEN);
-    this.userId = null;
+    this.accessToken = null;
 
     this._isAuthenticated.next(false);
   }
 
   // 8
   autoLogin() {
-    const id = localStorage.getItem(GC_USER_ID);
+    // const id = localStorage.getItem(GC_USER_ID);
+    const accessToken = localStorage.getItem(GC_AUTH_TOKEN);
 
-    if (id) {
-      this.setUserId(id);
+    if (accessToken) {
+      this.setAccessToken(accessToken);
     }
   }
 }

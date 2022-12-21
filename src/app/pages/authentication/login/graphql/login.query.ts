@@ -13,6 +13,8 @@ export class LoginQuery extends Query {
 export const LOGIN_QUERY = gql`
   query($input: UserAuthenticationInput) {
     login(input: $input) {
+      status
+      accessToken
     }
   }
 `

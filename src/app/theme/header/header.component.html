@@ -1,5 +1,5 @@
 <header>
-  <nav class="navbar nav__top">
+  <nav class="navbar nav__top" *ngIf="pageViewModel$ | async as pageViewModel">
     <div class="container">
       <div class="header-first">
 
@@ -20,7 +20,7 @@
 
         <div>
           <ul class="navbar__nav">
-            <li class="nav__item">
+            <li class="nav__item" *ngIf="pageViewModel.user?.email == ''">
               <a class="nav-link" routerLink="/login">
                 <span style="margin: 0;">
                   Đăng nhập
@@ -29,12 +29,31 @@
               </a>
             </li>
 
-            <li class="nav__item" style="margin-right: 0px;">
+            <li class="nav__item">
               <a class="nav-link" aria-current="page" routerLink="/shopping-cart">
                 Giỏ hàng
                 <i class="ai-cart"></i>
               </a>
             </li>
+
+            <li class="nav__item" style="margin-right: 0px;" *ngIf="pageViewModel.user?.email != ''">
+              <a class="nav-link" routerLink="/login">
+                <div class="navbar__link-container">
+                  <div class="cheems-avatar">
+                    <div class="cheems-avatar-placeholder">
+                      <img class="svg-style" src="./../../../assets/images/user-not-img.svg" alt="">
+                    </div>
+                    <img class="cheems-avatar-img" *ngIf="pageViewModel.user?.medias.length != 0"
+                      [src]="pageViewModel.user?.medias[0]?.filePath">
+                  </div>
+                  <div class="username-text">{{ pageViewModel.user.fullname }}</div>
+                </div>
+              </a>
+            </li>
+
+
+
+
 
           </ul>
         </div>

@@ -20,8 +20,8 @@ export abstract class FormViewComponent<TPageViewModel extends FormViewPageViewM
   public appForm: FormGroup;
 
 
-  formBody() : FormArray {
-    return this.appForm.get('formBody') as FormArray;
+  formBody() : FormGroup {
+    return this.appForm.get('formBody') as FormGroup;
   }
 
   constructor(public _formBuilder: FormBuilder) {

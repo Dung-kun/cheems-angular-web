@@ -1,0 +1,37 @@
+<div class="notifications">
+  <ng-container *ngFor="let notification of notifications">
+    <ng-container *ngTemplateOutlet="
+        notificationTpl;
+        context: { notification: notification }
+      "></ng-container>
+  </ng-container>
+</div>
+
+<!-- <ng-template #notificationTpl let-notification="notification">
+  <div class="title fadeInUp animated">
+    <div class="title" fxLayout="row" fxLayoutAlign="space-between center">
+      <div>{{ notification.title }}</div>
+      <button (click)="close(notification)">
+        <i class="ai-circle-x"></i>
+      </button>
+    </div>
+
+    <div class="message">{{ notification.message }}</div>
+  </div>
+</ng-template> -->
+
+
+<ng-template #notificationTpl let-notification="notification">
+  <div class="toast" [ngClass]="'toast--' + className(notification)">
+    <div class="toast__icon">
+      <i [ngClass]="iconStyle(notification)"></i>
+    </div>
+    <div class="toast__body">
+      <h3 class="toast__title">{{ notification.title }}</h3>
+      <p class="toast__msg">{{ notification.message }}</p>
+    </div>
+    <div class="toast__close">
+      <i class="ai-circle-x"></i>
+    </div>
+  </div>
+</ng-template> -->

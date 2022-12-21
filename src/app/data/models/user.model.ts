@@ -1,4 +1,5 @@
 import { Media } from "./media.model";
+import { Role } from "./role.model";
 
 export class User {
   constructor(
@@ -9,7 +10,7 @@ export class User {
     public dob: Date = null,
     public status: boolean = false,
     public password: string = '',
-    public roles: string = '',
+    public roles: Role[] = [],
     public medias: Media[] = [],
     public address: string = ''
   ) {}
