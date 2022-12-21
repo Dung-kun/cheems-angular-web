@@ -7,9 +7,9 @@ import { FormViewPageViewModel } from "../models/form-view-page-view-model.model
 export interface IFormViewComponent<TPageViewModel extends FormViewPageViewModel> extends IPageViewModelBasedComponent<TPageViewModel> {
 
 
-  prepareFormBodyControls(results : any) : FormGroup;
+  prepareFormBodyControls(results? : any) : FormGroup;
 
-  scaffoldFormControl(anyResult : any, selectIdx: boolean) : BasicFormViewFormControls;
+  scaffoldFormControl(anyResult? : any) : BasicFormViewFormControls;
 
   ngxOnSubmit(): void;
 }
@@ -42,7 +42,7 @@ export abstract class FormViewComponent<TPageViewModel extends FormViewPageViewM
 
   abstract ngxOnSubmit(): void;
 
-  abstract prepareFormBodyControls(results : any) : FormGroup;
+  abstract prepareFormBodyControls(results? : any) : FormGroup;
 
-  abstract scaffoldFormControl(anyResult : any, selectIdx: boolean) : BasicFormViewFormControls;
+  abstract scaffoldFormControl(anyResult? : any) : BasicFormViewFormControls;
 }

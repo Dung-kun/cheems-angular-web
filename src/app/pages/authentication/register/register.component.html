@@ -2,10 +2,10 @@
     <div class="title-container">
       <div class="container">
         <div class="title-text">
-          Đăng nhập
+          Đăng Ký
         </div>
         <div class="title-route">
-          Trang chủ. <span>Đăng nhập</span>
+          Trang chủ. <span>Đăng ký</span>
         </div>
       </div>
     </div>
@@ -16,20 +16,29 @@
         <div class="login-sub-title">
           Vui lòng nhập chi tiết tài khoản bên dưới.
         </div>
-        <form>
-          <div class="input-margin">
-            <input class="form-control" type="text" placeholder="Địa chỉ Email">
-          </div>
-          <div class="input-margin">
-            <input class="form-control" type="text" placeholder="Mật khẩu">
-          </div>
-          <div class="input-margin">
-            <input class="form-control" type="text" placeholder="Xác nhận lại mật khẩu">
-          </div>
-          <button type="submit" class="button-submit form-control">Đăng ký</button>
-          <div class="no-account">
-            Bạn đã có tài khoản? <a>Đăng nhập ngay</a>
-          </div>
+        <form [formGroup]="appForm">
+          <ng-container formGroupName="formBody">
+            <div class="input-margin">
+              <input class="form-control" type="text" placeholder="Địa chỉ Email" formControlName="email">
+            </div>
+            <div class="input-margin">
+              <input class="form-control" type="text" placeholder="Tên đầy đủ" formControlName="fullname">
+            </div>
+            <div class="input-margin">
+              <input class="form-control" type="text" placeholder="Ngày sinh" formControlName="dob">
+            </div>
+            <div class="input-margin">
+              <input class="form-control" type="text" placeholder="Mật khẩu" formControlName="password">
+            </div>
+            <div class="input-margin">
+              <input class="form-control" type="text" placeholder="Xác nhận lại mật khẩu" formControlName="rePassword">
+            </div>
+
+            <button type="submit" class="button-submit form-control">Đăng ký</button>
+            <div class="no-account">
+              Bạn đã có tài khoản? <a routerLink="/login">Đăng nhập ngay</a>
+            </div>
+          </ng-container>
         </form>
       </div>
     </div>
