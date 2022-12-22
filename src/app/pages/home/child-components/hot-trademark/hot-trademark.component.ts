@@ -36,7 +36,7 @@ export class HotTrademarkComponent
     const onInit = onInit$.subscribe((value) => {
       this.pageViewModel$.next({
         ...this.pageViewModel$.getValue(),
-        manufacturers: value.manufactures
+        manufacturers: value.manufacturers
       });
     });
 
@@ -49,7 +49,7 @@ export class HotTrademarkComponent
         isDeleted: false,
       },
       skip: 0,
-      take: 4
+      take: 8
     };
     let queryGQL = this.appQuery;
     queryGQL.setVariables(vars);
@@ -60,9 +60,9 @@ export class HotTrademarkComponent
       switchMap((_) => _.refetch()),
       map((result) => {
         const item = (<any>result).data;
-        const manufactures = item ? (<any>item).manufactures.items : null;
+        const manufacturers = item ? (<any>item).manufacturers.items : null;
         return {
-          manufactures
+          manufacturers
         };
       })
     );

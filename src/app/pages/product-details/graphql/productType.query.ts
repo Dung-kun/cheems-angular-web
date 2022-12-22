@@ -24,7 +24,7 @@ query($input: ProductTypesFilterInput) {
           fileSize
       }
       description
-      warrentyDate
+      warrantyPeriod
       price
       categories {
         id
