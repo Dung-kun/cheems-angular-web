@@ -145,6 +145,12 @@
   opacity: 1;
 }
 
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+  margin: 0;
+}
+
 @media screen and (max-width: 768px) {
   .style-header-text {
     display: none;

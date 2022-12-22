@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../shares/base/services/auth.service';
 import { PageViewModelBasedComponent } from '../../shares/base/framework/page-view-model-based-component';
 import { HeaderPageViewModel } from './models/header-page-view.model';
-import { switchMap, BehaviorSubject, map, of } from 'rxjs';
+import { switchMap, BehaviorSubject, map, of, combineLatest } from 'rxjs';
 import { CurrentUserQuery } from '../../shares/base/graphql/current-user.query';
 import { QueryRef } from 'apollo-angular';
 import { User } from '@app/data/models/user.model';
@@ -27,13 +27,11 @@ export class HeaderComponent extends PageViewModelBasedComponent<HeaderPageViewM
 
   ngOnInit(): void {
     this.auth.autoLogin();
-    const onInit$ = this.auth.isAuthenticated.pipe(
-      switchMap((value) => {
-        console.log('vl', value)
+    const onInit$ = combineLatest([this.auth.isAuthenticated]).pipe(
+      switchMap(([value]) => {
         if(value) {
-
           return this.appCurrentUserQuery();
-        } else return of(null);
+        } else  return of(null);
       })
     )
 
@@ -61,8 +59,6 @@ export class HeaderComponent extends PageViewModelBasedComponent<HeaderPageViewM
       map((result) => {
         const item = (<any>result).data;
         const user = item ? (<any>item).currentUsers[0] : null;
-
-        console.log('vl', user)
         return {
           user
         }

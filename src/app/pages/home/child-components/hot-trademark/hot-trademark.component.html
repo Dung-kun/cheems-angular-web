@@ -3,7 +3,7 @@
     <ng-container *ngIf="pageViewModel.manufacturers.length > 0, else noManufacturer">
       <button *ngFor="let item of pageViewModel.manufacturers; ;let i = index" class="trademark-card bg-img-1"
         (click)="onClickButton(item?.id)"
-        [ngClass]="'bg-img-'+ (i+1)"
+        [ngClass]="'bg-img-'+ ((i%4)+1)"
         >
         <div class="title">{{ item?.name }}</div>
       </button>

@@ -17,7 +17,7 @@ query ($input: ProductTypesFilterInput, $skip: Int, $take: Int) {
       id
       name
       description
-      warrentyDate
+      warrantyPeriod
       price
       medias {
         id

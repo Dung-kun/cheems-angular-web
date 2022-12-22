@@ -36,7 +36,7 @@
               </a>
             </li>
 
-            <li class="nav__item" style="margin-right: 0px;" *ngIf="pageViewModel.user?.email != ''">
+            <li class="nav__item dropdown" style="margin-right: 0px;" *ngIf="pageViewModel.user?.email != ''">
               <a class="nav-link" routerLink="/login">
                 <div class="navbar__link-container">
                   <div class="cheems-avatar">
@@ -49,12 +49,11 @@
                   <div class="username-text">{{ pageViewModel.user.fullname }}</div>
                 </div>
               </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Trang cá nhân</a></li>
+                <li><a class="dropdown-item" href="#">Đăng xuất</a></li>
+              </ul>
             </li>
-
-
-
-
-
           </ul>
         </div>
       </div>
@@ -75,7 +74,7 @@
       <div class="navbar__spacer"></div>
       <div class="nav__search">
         <div class="input-group mt-2">
-          <input type="text" class="form-control" placeholder="Search...">
+          <input type="text" class="form-control" placeholder="Tìm kiếm...">
           <button class="btn button__search" type="button"><i class="ai-search"></i></button>
         </div>
       </div>

@@ -11,8 +11,8 @@ export class ManufacturersQuery extends Query {
 }
 
 export const MANUFACTURERS_QUERY = gql`
-  query ($input: CategoriesFilterInput) {
-    manufacturers(input: $input) {
+  query ($input: ManufacturersFilterInput, $skip: Int, $take: Int) {
+    manufacturers(input: $input, skip: $skip, take: $take) {
       items {
         id
         name
