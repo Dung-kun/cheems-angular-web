@@ -2,11 +2,11 @@
   <app-order-filter-header></app-order-filter-header>
   <div class="content">
     <div class="order-view">
-      <app-order-card [status]="1"></app-order-card>
-      <app-order-card [status]="2"></app-order-card>
-      <app-order-card [status]="3"></app-order-card>
-      <app-order-card [status]="4"></app-order-card>
-      <app-order-card [status]="5"></app-order-card>
+      <app-order-card [status]="1" (click)="onOpenStatusWindown(1)"></app-order-card>
+      <app-order-card [status]="2" (click)="onOpenStatusWindown(2)"></app-order-card>
+      <app-order-card [status]="3" (click)="onOpenStatusWindown(3)"></app-order-card>
+      <app-order-card [status]="4" (click)="onOpenStatusWindown(4)"></app-order-card>
     </div>
   </div>
 </div>
+<app-order-status-modal *ngIf="this.showStatusWindown" [items]="orderStatusModalViewData$ | async" (onCloseModal)="onCloseStatusWindown()"></app-order-status-modal>
