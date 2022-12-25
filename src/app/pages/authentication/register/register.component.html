@@ -54,7 +54,7 @@
           <div class="input-margin">
             <label class="form-label">Mật khẩu</label>
             <div class="d-flex">
-              <input class="form-control" autocomplete="new-password" type="password" placeholder="Mật khẩu"
+              <input class="form-control" autocomplete="new-password" [type]="typePassword" placeholder="Mật khẩu"
                 formControlName="password"
                 [ngClass]="validation.isPasswordValid ? 'is-valid': (validation.isPasswordInvalid? 'is-invalid' : '')">
               <button type="button" class="d-flex"
@@ -76,7 +76,7 @@
           <div class="input-margin">
             <label class="form-label">Xác nhận lại mật khẩu</label>
             <div class="d-flex">
-              <input class="form-control" autocomplete="new-password" type="text" placeholder="Xác nhận lại mật khẩu"
+              <input class="form-control" autocomplete="new-password" [type]="typeRePassword" placeholder="Xác nhận lại mật khẩu"
                 formControlName="rePassword"
                 [ngClass]="validation.isRePasswordValid ? 'is-valid': (validation.isRePasswordInvalid? 'is-invalid' : '')">
               <button type="button" class="d-flex"

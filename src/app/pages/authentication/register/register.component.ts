@@ -99,21 +99,26 @@ export class RegisterComponent
 
     const appMutationImpl$ = this.appMutation(vars);
 
-    const appMutationImpl = appMutationImpl$.subscribe(
-      (value) => {
+    const appMutationImpl = appMutationImpl$.subscribe({
+      next: (value) => {
         this.notificationService.success(
           'Thành công!',
           value.message + ' trước khi đăng nhập.',
           3500
         );
-      }
-      // (error: any) => {
-      //   this.notificationService.error('Thất bại!', 'Lỗi Server, vui lòng thử lại!', 3000);
-      // },
-    );
+        setTimeout(() => this.router.navigate(['/login']), 2000);
+      },
+      error: (error: any) => {
+        console.log(error);
+        this.notificationService.error(
+          'Thất bại!',
+          'Lỗi Server, vui lòng thử lại!',
+          3000
+        );
+      },
+    });
 
     this.subscriptions$.push(appMutationImpl);
-    setTimeout(() => this.router.navigate(['/login']), 2000);
   }
 
   appMutation(vars: any) {
@@ -168,7 +173,5 @@ export class RegisterComponent
     }
   }
 
-  checkValuePassword(){
-
-  }
+  checkValuePassword() {}
 }

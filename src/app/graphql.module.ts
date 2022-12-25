@@ -10,8 +10,8 @@ import { extractFiles } from 'extract-files';
 import { HttpHeaders } from '@angular/common/http';
 import { AuthService } from './shares/base/services/auth.service';
 import { GC_AUTH_TOKEN } from './shares/base/constants/constants';
-
-const uri = 'https://cheems-store.onrender.com/graphql'; // <-- add the URL of the GraphQL server here
+import { environment } from '../environments/environment';
+import { setContext } from '@apollo/client/link/context';
 
 
 // const authMiddleware = new ApolloLink((operation: any, forward: any) => {
@@ -21,21 +21,52 @@ const uri = 'https://cheems-store.onrender.com/graphql'; // <-- add the URL of t
 
 //   return forward(operation);
 // });
+const uri = environment.GRAPHQL_URI;
 
-export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
-  const token = localStorage.getItem(GC_AUTH_TOKEN);
+export function createApollo(httpLink: HttpLink, authService: AuthService): ApolloClientOptions<any> {
+
+  // const token = localStorage.getItem(GC_AUTH_TOKEN);
+  // console.log('token', token);
+
+  const basic = setContext((operation, context) => ({
+    headers: {
+      Accept: 'charset=utf-8'
+    }
+  }));
+
+
+  const auth = setContext((operation, context) => {
+    const token = localStorage.getItem(GC_AUTH_TOKEN);
+    console.log('vao day roi', token);
+
+    if (token === null) {
+      return {};
+    } else {
+      return {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      };
+    }
+  });
+  const link = ApolloLink.from([basic, auth, httpLink.create({ uri })]);
+  const cache = new InMemoryCache();
 
   return {
-    link: httpLink.create({
-      headers: new HttpHeaders().set(
-        'Authorization',
-        `Bearer ${token}` || null
-      ),
-      uri,
-      extractFiles,
-    }),
-    cache: new InMemoryCache(),
-  };
+    link,
+    cache
+  }
+  // return {
+  //   link: httpLink.create({
+  //     headers: new HttpHeaders().set(
+  //       'Authorization',
+  //       `Bearer ${token}` || null
+  //     ),
+  //     uri: environment.GRAPHQL_URI,
+  //     extractFiles,
+  //   }),
+  //   cache: new InMemoryCache(),
+  // };
 }
 
 @NgModule({
@@ -51,4 +82,5 @@ export function createApollo(httpLink: HttpLink): ApolloClientOptions<any> {
   ],
 })
 export class GraphQLModule {}
+
 

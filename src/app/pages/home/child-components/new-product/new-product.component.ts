@@ -16,13 +16,14 @@ import { ProductType } from '@app/data/models/product-type.model';
 export class NewProductComponent extends PageViewModelBasedComponent<NewProductViewModel>  implements OnInit {
 
   public queryNewProduct: QueryRef<{},{}>;
-
+  public carouselId: string;
   constructor(
     public newProductFilter: NewProductFilterQuery,
     public router: Router
   ) {
     super();
 
+    this.carouselId = "newProductCarouselId";
     this.pageViewModel$ = new BehaviorSubject<NewProductViewModel>(new NewProductViewModel());
     this.queryNewProduct = newProductFilter.watch({}, {fetchPolicy: "cache-and-network"});
    }

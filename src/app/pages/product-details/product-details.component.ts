@@ -53,7 +53,6 @@ export class ProductDetailsComponent
     const onInit$ = combineLatest([this.appRouteParams()]).pipe(
       tap(([value]) => {
         const viewData = value as ProductDetailsViewData;
-        console.log(viewData.id);
       }),
       switchMap(([value]) => {
         let viewData = value as ProductDetailsViewData;

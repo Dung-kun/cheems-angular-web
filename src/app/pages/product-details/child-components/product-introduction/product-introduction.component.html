@@ -16,7 +16,7 @@
         <i class="fa fa-star" style="color: yellow;"></i>
       </div> -->
       <div class="product-price">
-        Giá: {{ pdTypeItem.price }} VNĐ
+        Giá: {{ styleMoney.format(pdTypeItem.price) }}
       </div>
       <div class="product-price" *ngIf="!pdTypeItem">
          <span>$32.00</span>
@@ -46,10 +46,10 @@
       </div>
       <hr style="width: 60%"/>
       <div class="add-to-cart">
-        <button class="cart-button">
+        <button class="cart-button" (click)="onAddItemToCart()">
           Thêm vào giỏ
         </button>
-        <button class="cart-button buy-now">
+        <button class="cart-button buy-now" (click)="onBuyNow()">
           Mua ngay
         </button>
       </div>
@@ -63,3 +63,24 @@
     </div>
   </div>
 </div>
+
+
+<ng-template>
+  <div class="modal fade">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Đăng nhập</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p>Vui lòng đăng nhập trước khi mua hàng.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Đăng nhập</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

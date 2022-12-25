@@ -43,7 +43,7 @@
             </div>
             <div class="invalid-feedback" [style.display]="validation.isPasswordInvalid ? 'block': 'none'">
               <span *ngIf="validation.isPassword?.errors?.['required']">Vui lòng nhập mật khẩu</span>
-              <span *ngIf="validation.isPassword?.errors?.['minlength']">Mật khẩu có ít nhất 8 ký tự</span>
+              <span *ngIf="validation.isPassword?.errors?.['minlength']">Mật khẩu có ít nhất 3 ký tự</span>
               <span *ngIf="validation.isPassword?.errors?.['maxlength']">Mật khẩu không vượt quá 25 kí tự</span>
             </div>
           </div>

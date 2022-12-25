@@ -3,9 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-
-  GRAPHQL_URI : "",
-  production: false
+  GRAPHQL_URI : "https://cheems-store.onrender.com/graphql",
+  production: true
 };
 
 /*

@@ -2,7 +2,9 @@ import {Injectable} from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { GC_AUTH_TOKEN, GC_USER_ID } from '../constants/constants';
 // 1
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthService {
   // 2
   private accessToken: string = null;
@@ -17,9 +19,17 @@ export class AuthService {
   get isAuthenticated(): Observable<boolean> {
     return this._isAuthenticated.asObservable();
   }
+
+  get getUserId(): string {
+    return localStorage.getItem(GC_USER_ID);
+  }
+
+  get getAccessToken(): string {
+    return localStorage.getItem(GC_AUTH_TOKEN);
+  }
   // 5
   saveUserData(id?: string, token?: string) {
-
+    console.log(token);
     if(token) {
       localStorage.setItem(GC_AUTH_TOKEN, token);
       this.setAccessToken(token);
@@ -30,7 +40,6 @@ export class AuthService {
   // 6
   setAccessToken(accessToken: string) {
     this.accessToken = accessToken;
-
     this._isAuthenticated.next(true);
   }
   // 7

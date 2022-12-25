@@ -23,9 +23,13 @@ export class ProductListFilterComponent
   extends PageViewModelBasedComponent<ProductListFilterPageViewModel>
   implements OnInit, AfterViewInit
 {
+  public styleMoney = new Intl.NumberFormat('vi-VN', {
+    style: 'currency',
+    currency: 'VND'
+  });
   // set up range slider
   minValue: number = 0;
-  maxValue: number = 200;
+  maxValue: number = 1000000;
   options: Options = {
     floor: 0,
     ceil: 100,

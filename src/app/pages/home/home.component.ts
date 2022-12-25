@@ -9,6 +9,7 @@ import { OwCarouselCardViewData } from '../../shares/components/ow-carousel-card
 import { take } from 'rxjs/operators';
 import { ProductListFilterQuery } from '../product-list/child-components/product-list-details/graphql/product-list-filter.query';
 import { ChildViewManagement } from '../../shares/base/framework/child-view.management';
+import { AuthService } from '../../shares/base/services/auth.service';
 
 
 @Component({
@@ -21,7 +22,8 @@ export class HomeComponent extends ChildViewManagement implements OnInit {
   public productListQueryIns: QueryRef<{},{}>
   constructor(
     public route: ActivatedRoute,
-    public query: ProductListFilterQuery
+    public query: ProductListFilterQuery,
+    public auth: AuthService
   ) {
     super();
     this.productType$ = new BehaviorSubject<OwCarouselCardViewData>(new OwCarouselCardViewData());
@@ -36,6 +38,7 @@ export class HomeComponent extends ChildViewManagement implements OnInit {
       switchMap((value) => this.appOnInit())
     );
     const onInit = onInit$.subscribe((value) => {
+      this.auth.autoLogin();
       console.log(value);
       this.productType$.next({
         ...this.productType$.getValue(),

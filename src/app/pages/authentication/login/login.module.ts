@@ -23,7 +23,7 @@ import { NotificationModule } from '../../../shares/components/notification/noti
       },
     ]),
   ],
-  providers: [AuthService, NotificationService],
+  providers: [NotificationService],
   exports: []
 })
 export class LoginModule { }

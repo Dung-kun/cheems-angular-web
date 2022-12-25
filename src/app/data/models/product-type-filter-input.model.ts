@@ -8,8 +8,8 @@ export class ProductTypeFilterInput {
     public priceTo: number = null,
     public priceFrom: number = null,
     public descriptions: string[] = [],
-    public warrentyDateFrom: Date = null,
-    public warrentyDateTo: Date = null,
+    public warrentyPeriodFrom: number = null,
+    public warrentyPeriodTo: number = null,
     public metaDatas: MetadataFilter = new MetadataFilter(),
     public isDeleted: boolean = false
   ){}

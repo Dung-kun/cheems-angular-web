@@ -10,37 +10,36 @@ import { User } from '@app/data/models/user.model';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent extends PageViewModelBasedComponent<HeaderPageViewModel> implements OnInit {
-
+export class HeaderComponent
+  extends PageViewModelBasedComponent<HeaderPageViewModel>
+  implements OnInit
+{
   public appQuery: QueryRef<{}, {}>;
-  constructor(
-    private auth: AuthService,
-    public userQuery: CurrentUserQuery
-  ) {
-
+  constructor(private auth: AuthService, public userQuery: CurrentUserQuery) {
     super();
-    this.pageViewModel$ = new BehaviorSubject<HeaderPageViewModel>(new HeaderPageViewModel());
-    this.appQuery = userQuery.watch({}, {fetchPolicy: 'cache-and-network'});
+    this.pageViewModel$ = new BehaviorSubject<HeaderPageViewModel>(
+      new HeaderPageViewModel()
+    );
+    this.appQuery = userQuery.watch({}, { fetchPolicy: 'cache-and-network' });
   }
 
   ngOnInit(): void {
     this.auth.autoLogin();
     const onInit$ = combineLatest([this.auth.isAuthenticated]).pipe(
       switchMap(([value]) => {
-        if(value) {
+        if (value) {
           return this.appCurrentUserQuery();
-        } else  return of(null);
+        } else return of(null);
       })
-    )
-
+    );
     const onInit = onInit$.subscribe((value) => {
-      if(!!value) {
+      if (!!value) {
         const user = value?.user as User;
         this.pageViewModel$.next({
           ...this.pageViewModel$.getValue(),
-          user
+          user,
         });
 
         this.auth.saveUserData(user.id);
@@ -50,7 +49,7 @@ export class HeaderComponent extends PageViewModelBasedComponent<HeaderPageViewM
     this.subscriptions$.push(onInit);
   }
 
-    appCurrentUserQuery() {
+  appCurrentUserQuery() {
     let queryGQL = this.appQuery;
     let pipe$ = of(queryGQL);
 
@@ -60,12 +59,19 @@ export class HeaderComponent extends PageViewModelBasedComponent<HeaderPageViewM
         const item = (<any>result).data;
         const user = item ? (<any>item).currentUsers[0] : null;
         return {
-          user
-        }
+          user,
+        };
       })
     );
 
     return p$;
   }
 
+  logout() {
+    this.auth.logout();
+    this.pageViewModel$.next({
+      ...this.pageViewModel$.getValue(),
+      user: new User()
+    });
+  }
 }

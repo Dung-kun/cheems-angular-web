@@ -30,7 +30,6 @@ export class NotificationService {
   }
 
   success(title: string, message: string, timeout = 2500) {
-    console.log('vll');
     this._subject.next(
       new NotificationModel(
         this._idx++,

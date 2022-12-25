@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit, Input } from '@angular/core';
 import { BehaviorSubject, combineLatest } from 'rxjs';
 import { ChildViewManagement } from '../../base/framework/child-view.management';
 import { OwCarouselCardViewData } from './models/ow-carousel-card-view-data.model';
@@ -13,6 +13,7 @@ import { PropertyCardViewData } from '../property-card/models/property-card-view
   styleUrls: ['./ow-carousel-card.component.scss']
 })
 export class OwCarouselCardComponent extends PageViewModelBasedComponent<OwCarouselCardPageViewModel> implements OnInit {
+  @Input() carouselsId: string = "carouselsIdX";
   importedItems: ProductType[] = [];
   showItems: any = [];
   length: number = 4;
@@ -39,9 +40,9 @@ export class OwCarouselCardComponent extends PageViewModelBasedComponent<OwCarou
 
   productAmountShow(width: number) {
     if (width < 576) {
-      return 1;
-    } else if (width >= 576 && width < 768) {
       return 2;
+    } else if (width >= 576 && width < 768) {
+      return 3;
     } else if (width >= 768 && width < 992) {
       return 3;
     } else if (width >= 992 && width < 1200) {

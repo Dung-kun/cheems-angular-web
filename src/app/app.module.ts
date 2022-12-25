@@ -7,6 +7,7 @@ import { LayoutModule } from './theme/layout/layout.module';
 import { CommonModule } from '@angular/common';
 import { GraphQLModule } from './graphql.module';
 import { HttpClientModule } from '@angular/common/http';
+import { AuthService } from './shares/base/services/auth.service';
 
 
 @NgModule({
