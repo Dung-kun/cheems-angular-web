@@ -1,0 +1,128 @@
+.overlay {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 900;
+}
+
+.container {
+  z-index: 901;
+  margin: auto;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  bottom: 0px;
+  right: 0px;
+  width: 60%;
+  height: 600px;
+  box-shadow: 5px 5px 4px rgb(0, 0, 0, 0.5);
+  border-radius: 10px;
+  background-color: #fff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 10px;
+
+  .progress_view {
+    flex: 1;
+    width: 100%;
+    padding: 0px 20px;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: stretch;
+
+    .progress__item {
+      flex: 1;
+    }
+  }
+
+  .information_view {
+    padding: 20px;
+    flex: 2;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+
+    .order_information {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+
+      &__item {
+        display: flex;
+        margin: 5px 0px;
+        flex-direction: column;
+        padding-left: 20px;
+
+        .infor_label {
+          padding: 2px 10px;
+          font-size: 1rem;
+          min-width: 100%;
+        }
+
+        .infor_text {
+          border-radius: 1rem;
+          padding: 2px 10px;
+          color: rgb(38, 50, 56);
+          background-color: rgba(55, 65, 81, 0.08);
+          font-size: 1rem;
+          min-width: 100%;
+        }
+      }
+    }
+
+    .receipt_information {
+      width: 50%;
+      display: flex;
+      flex-direction: column;
+
+      &__item {
+        display: flex;
+        margin: 5px 0px;
+        flex-direction: column;
+        padding-left: 20px;
+
+        .infor_label {
+          padding: 2px 10px;
+          font-size: 1rem;
+          min-width: 100%;
+        }
+
+        .infor_text {
+          border-radius: 1rem;
+          padding: 2px 10px;
+          color: rgb(38, 50, 56);
+          background-color: rgba(55, 65, 81, 0.08);
+          font-size: 1rem;
+          min-width: 100%;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    width: 80%;
+
+    .information_view {
+      padding: 10px;
+
+      .order_information {
+
+        &__item {
+          flex-direction: column;
+        }
+      }
+
+    }
+  }
+}
