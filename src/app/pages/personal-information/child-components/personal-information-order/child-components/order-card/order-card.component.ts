@@ -30,10 +30,6 @@ export class OrderCardComponent implements OnInit {
         this.icon_link = 'ic_cancel.svg'
       break;
 
-      case 5:
-        this.icon_link = 'ic_return-product.svg'
-      break;
-
       default:
         break;
     }

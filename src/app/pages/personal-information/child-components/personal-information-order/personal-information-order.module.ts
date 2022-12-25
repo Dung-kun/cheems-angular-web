@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { PersonalInformationOrderComponent } from './personal-information-order.component';
 import { OrderFilterHeaderModule } from './child-components/order-filter-header/order-filter-header.module';
 import { OrderCardModule } from './child-components/order-card/order-card.module';
+import { OrderStatusModalModule } from './child-components/order-status-modal/order-status-modal.module';
 
 
 
@@ -13,7 +14,8 @@ import { OrderCardModule } from './child-components/order-card/order-card.module
   imports: [
     CommonModule,
     OrderFilterHeaderModule,
-    OrderCardModule
+    OrderCardModule,
+    OrderStatusModalModule
   ],
   exports: [PersonalInformationOrderComponent]
 })
