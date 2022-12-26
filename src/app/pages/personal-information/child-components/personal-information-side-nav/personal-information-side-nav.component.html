@@ -6,7 +6,7 @@
   <div class="router-link-panel">
     <div class="link-container">
       <!-- Hồ sơ -->
-      <a class="link" routerLink="/personal-information/profile" href="/personal-information/profile">
+      <a class="link" routerLink="/personal-information/profile" (click)="this.navigateTo('profile')">
         <div class="link__icon">
           <img src="/assets/images/ic_profile.svg">
         </div>
@@ -18,7 +18,7 @@
 
     <div class="link-container">
       <!-- Địa chỉ -->
-      <a class="link" routerLink="/personal-information/address" href="/personal-information/address">
+      <a class="link" routerLink="/personal-information/address" (click)="this.navigateTo('address')">
         <div class="link__icon">
           <img src="/assets/images/ic_location.svg">
         </div>
@@ -30,7 +30,7 @@
 
     <div class="link-container">
       <!-- Đơn mua -->
-      <a class="link" routerLink="/personal-information/order" href="/personal-information/order">
+      <a class="link" routerLink="/personal-information/order" (click)="this.navigateTo('order')">
         <div class="link__icon">
           <img src="/assets/images/ic_bill.svg">
         </div>

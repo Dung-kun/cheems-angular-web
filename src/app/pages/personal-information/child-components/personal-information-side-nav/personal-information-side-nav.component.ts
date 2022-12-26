@@ -5,6 +5,7 @@ import { EventEmitter } from '@angular/core';
 import { PersonalInformationAccountDisplayViewData } from './child-components/personal-information-account-display/models/personal-information-account-display-view-data.model';
 import { PersonalInformationSideNavPageViewModel } from './models/personal-information-side-nav-page-view.model';
 import { PersonalInformationSideNavViewData } from './models/personal-information-side-nav-view-data.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-personal-information-side-nav',
@@ -17,7 +18,9 @@ export class PersonalInformationSideNavComponent extends PageViewModelBasedCompo
 
   personalInformationAccountDisplayViewData$: BehaviorSubject<PersonalInformationAccountDisplayViewData>;
 
-  constructor() {
+  constructor(
+    private router: Router
+  ) {
     super();
 
     this.personalInformationAccountDisplayViewData$ = new BehaviorSubject<PersonalInformationAccountDisplayViewData>(new PersonalInformationAccountDisplayViewData(''));
@@ -42,5 +45,10 @@ export class PersonalInformationSideNavComponent extends PageViewModelBasedCompo
 
   onClose() {
     this.closeNav.emit('close');
+  }
+
+  navigateTo(url: string) {
+    let userId = this.pageViewModel$.getValue().personalIdentifier;
+    this.router.navigate(["personal-information", url, userId]);
   }
 }

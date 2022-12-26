@@ -1,76 +1,81 @@
-<div class="container">
-  <div class="profile-edit">
-    <div class="form-group">
+<form [formGroup]="this.appForm"
+  (ngSubmit)="ngxOnSubmit()">
+  <ng-container *ngIf="pageViewModel$ | async as pageViewModel">
+    <div class="container">
+      <div class="profile-edit">
+        <div class="form-group" formGroupName="formBody">
 
-      <!-- Full name -->
-      <div class="row mb-3 mt-3 input-wrapper">
-        <div class="col-lg-4 input_title">
-          <label class="form-label">Tên đầy đủ</label>
-        </div>
-        <div class="col-lg-8">
-          <input type="text" class="input-style" placeholder="Họ và tên">
-        </div>
-      </div>
-
-      <!-- Email -->
-      <div class="row mb-3 mt-3 input-wrapper">
-        <div class="col-lg-4 input_title">
-          <label class="form-label">Email</label>
-        </div>
-        <div class="col-lg-8">
-          <input type="email" class="form-control input-style" placeholder="Email">
-        </div>
-      </div>
-
-      <!-- Số điện thoại -->
-      <div class="row mb-3 mt-3 input-wrapper">
-        <div class="col-lg-4 input_title">
-          <label class="form-label">Số điện thoại</label>
-        </div>
-        <div class="col-lg-8">
-          <input type="text" class="form-control input-style" placeholder="Phone">
-        </div>
-      </div>
-
-      <!-- Date of birth -->
-      <div class="row mb-3 mt-3">
-        <div class="col-lg-4 input_title">
-          <label class="form-label">Ngày sinh</label>
-        </div>
-        <div class="col-lg-8">
-          <div class="p-relative">
-            <div class="input-wrapper date-input-wrapper">
-              <input aria-label="MM" required name="month" type="number" pattern="\d*"
-                class="input-style date-input-style" placeholder="DD" id="dateOfBirth" maxlength="2">
-              <span>/</span>
-              <input aria-label="DD" required name="day" type="number" pattern="\d*"
-                class="input-style date-input-style" placeholder="MM" maxlength="2">
-              <span>/</span>
-              <input aria-label="YYYY" required name="year" type="number" pattern="\d*"
-                class="input-style date-input-style" placeholder="YYYY" maxlength="4">
+          <!-- Full name -->
+          <div class="row mb-3 mt-3 input-wrapper">
+            <div class="col-lg-4 input_title">
+              <label class="form-label">Tên đầy đủ</label>
             </div>
-            <svg class="icon-style" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false">
-              <path
-                d="M5.938 12.979L5.92 13l-.002-.001V13l-.02-.018L2 9.762 2.653 9l3.19 2.635L13.263 4l.737.684-8.062 8.295z">
-              </path>
-            </svg>
+            <div class="col-lg-8">
+              <input type="text" class="form-control input-style" placeholder="Họ và tên" formControlName="fullname"/>
+            </div>
+          </div>
+
+          <!-- Email -->
+          <div class="row mb-3 mt-3 input-wrapper">
+            <div class="col-lg-4 input_title">
+              <label class="form-label">Email</label>
+            </div>
+            <div class="col-lg-8">
+              <input [disabled]="true" type="email" class="form-control input-style" placeholder="Email"  formControlName="email" />
+            </div>
+          </div>
+
+          <!-- Số điện thoại -->
+          <div class="row mb-3 mt-3 input-wrapper">
+            <div class="col-lg-4 input_title">
+              <label class="form-label">Số điện thoại</label>
+            </div>
+            <div class="col-lg-8">
+              <input type="text" class="form-control input-style" placeholder="Phone"/>
+            </div>
+          </div>
+
+          <!-- Date of birth -->
+          <div class="row mb-3 mt-3">
+            <div class="col-lg-4 input_title">
+              <label class="form-label">Ngày sinh</label>
+            </div>
+            <div class="col-lg-8">
+              <div class="p-relative">
+                <div class="input-wrapper date-input-wrapper">
+                  <input aria-label="MM" required name="month" type="number" pattern="\d*"
+                    class="input-style date-input-style" placeholder="DD" id="dateOfBirth" maxlength="2">
+                  <span>/</span>
+                  <input aria-label="DD" required name="day" type="number" pattern="\d*"
+                    class="input-style date-input-style" placeholder="MM" maxlength="2">
+                  <span>/</span>
+                  <input aria-label="YYYY" required name="year" type="number" pattern="\d*"
+                    class="input-style date-input-style" placeholder="YYYY" maxlength="4">
+                </div>
+                <svg class="icon-style" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
+                  xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false">
+                  <path
+                    d="M5.938 12.979L5.92 13l-.002-.001V13l-.02-.018L2 9.762 2.653 9l3.19 2.635L13.263 4l.737.684-8.062 8.295z">
+                  </path>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="avatar-edit">
+        <div class="avatar">
+          <div class="avatar__placeholder">
+            <img class="avatar__image" src="/assets/images/hutao.jpg">
+            <div class="edit"><img src="/assets/images/ic_edit.svg"></div>
           </div>
         </div>
-      </div>
-
-    </div>
-  </div>
-  <div class="avatar-edit">
-    <div class="avatar">
-      <div class="avatar__placeholder">
-        <img class="avatar__image" src="/assets/images/hutao.jpg">
-        <div class="edit"><img src="/assets/images/ic_edit.svg"></div>
+        <div class="note">
+          <div class="note__text">Dung lượng tối đa: 1mb</div>
+          <div class="note__text">Định dạng cho phép: JPEG, PNG</div>
+        </div>
       </div>
     </div>
-    <div class="note">
-      <div class="note__text">Dung lượng tối đa: 1mb</div>
-      <div class="note__text">Định dạng cho phép: JPEG, PNG</div>
-    </div>
-  </div>
-</div>
+  </ng-container>
+</form>

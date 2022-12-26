@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BehaviorSubject, combineLatest, tap } from 'rxjs';
 import { PageViewModelBasedComponent } from '@app/shares/base/framework/page-view-model-based-component';
 import { PersonalInformationPageViewModel } from './models/personal-information-page-view.model';
 import { PersonalInformationViewData } from './models/personal-information-view-data.model';
 import { PersonalInformationSideNavViewData } from './child-components/personal-information-side-nav/models/personal-information-side-nav-view-data.model';
+import { AuthService } from '@app/shares/base/services/auth.service';
 
 @Component({
   selector: 'app-personal-information',
@@ -19,7 +20,11 @@ export class PersonalInformationComponent extends PageViewModelBasedComponent<Pe
 
   showMenu = false;
 
-  constructor(private route: ActivatedRoute,) {
+  constructor(
+    private route: ActivatedRoute,
+    private authService: AuthService,
+    public router: Router
+    ) {
     super();
 
     this.personalInformationSideNavViewData$ = new BehaviorSubject<PersonalInformationSideNavViewData>(new PersonalInformationSideNavViewData(''));
@@ -28,11 +33,19 @@ export class PersonalInformationComponent extends PageViewModelBasedComponent<Pe
   ngOnInit(): void {
     const onInit$ = combineLatest([this.appRouteParams()]).pipe(
       tap((value) => {
-        let _userId = localStorage.getItem('userId');
-        this.pageViewModel$.next({
-          ...this.pageViewModel$.getValue(),
-          personalIdentifier: _userId
-        })
+        let _userId = this.authService.getUserId;
+        let _isAuthenticated = this.authService.isAuthenticated;
+        if (_isAuthenticated) {
+          this.pageViewModel$.next({
+            ...this.pageViewModel$.getValue(),
+            personalIdentifier: _userId
+          })
+          console.log(_userId);
+          this.router.navigate(["personal-information", "profile", _userId as string]);
+        }
+        else {
+          this.router.navigate(["/home"]);
+        }
       })
     ).subscribe(() => {
       this.personalInformationSideNavViewData$.next({
@@ -42,7 +55,7 @@ export class PersonalInformationComponent extends PageViewModelBasedComponent<Pe
     })
 
     const routeUrl$ = this.appRouteUrl().subscribe((val) => {
-      switch (val[0].path) {
+      switch (val[0]?.path) {
         case 'profile':
           this.title = "hồ Sơ";
           this.subtitle = "Quản lí hồ sơ của bạn"
@@ -71,7 +84,7 @@ export class PersonalInformationComponent extends PageViewModelBasedComponent<Pe
   }
 
   appRouteParams() {
-    console.log(this.route)
+    console.log(this.route);
     return this.route.params;
   }
 
@@ -82,5 +95,6 @@ export class PersonalInformationComponent extends PageViewModelBasedComponent<Pe
   toggleMenu() {
     this.showMenu = !this.showMenu;
   }
+
 }
 
