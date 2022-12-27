@@ -22,7 +22,7 @@ export const CART_QUERY = gql`
             name
             totalAmount
             price
-            discountPercentage
+            warrantyPeriod
             metaDatas {
               id
               color

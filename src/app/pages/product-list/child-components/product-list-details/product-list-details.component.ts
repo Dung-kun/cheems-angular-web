@@ -99,7 +99,7 @@ export class ProductListDetailsComponent
         this.pageViewModel$.getValue().pageInfo.hasPreviousPage)
     ) {
       this.CURRENT_PAGE = event;
-      console.log(event);
+
       this.items$.next({
         ...this.items$.getValue(),
       });

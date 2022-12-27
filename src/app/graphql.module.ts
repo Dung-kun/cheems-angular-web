@@ -25,9 +25,6 @@ const uri = environment.GRAPHQL_URI;
 
 export function createApollo(httpLink: HttpLink, authService: AuthService): ApolloClientOptions<any> {
 
-  // const token = localStorage.getItem(GC_AUTH_TOKEN);
-  // console.log('token', token);
-
   const basic = setContext((operation, context) => ({
     headers: {
       Accept: 'charset=utf-8'
@@ -37,7 +34,6 @@ export function createApollo(httpLink: HttpLink, authService: AuthService): Apol
 
   const auth = setContext((operation, context) => {
     const token = localStorage.getItem(GC_AUTH_TOKEN);
-    console.log('vao day roi', token);
 
     if (token === null) {
       return {};

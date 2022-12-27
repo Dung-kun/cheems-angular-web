@@ -64,8 +64,4 @@ export class SlideshowGalleryComponent implements OnInit, AfterViewInit {
     this.imageShowPath = path;
   }
 
-  onScroll(event: any) {
-    console.log(event);
-  }
-
 }

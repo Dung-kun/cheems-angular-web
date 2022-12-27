@@ -1,5 +1,5 @@
 <div class="container border-shadow">
-  <div class="d-flex" *ngIf="this.pdTypeItem$ | async as pdTypeItem">
+  <div class="d-flex" style="flex-wrap: wrap;" *ngIf="this.pdTypeItem$ | async as pdTypeItem">
     <div style="flex: 2 1 0%; font-weight: bold;">
       <app-slideshow-gallery [medias]="pdTypeItem.medias"></app-slideshow-gallery>
     </div>
@@ -63,6 +63,7 @@
     </div>
   </div>
 </div>
+<app-notification></app-notification>
 
 
 <ng-template>

@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { GC_AUTH_TOKEN, GC_USER_ID } from '../constants/constants';
+import { GC_AUTH_TOKEN, GC_USER_ID, GC_AUTH_REFRESH_TOKEN } from '../constants/constants';
 // 1
 @Injectable({
   providedIn: 'root'
@@ -27,25 +27,31 @@ export class AuthService {
   get getAccessToken(): string {
     return localStorage.getItem(GC_AUTH_TOKEN);
   }
+
+  get getRefreshTokenToken(): string {
+    return localStorage.getItem(GC_AUTH_REFRESH_TOKEN);
+  }
   // 5
-  saveUserData(id?: string, token?: string) {
-    console.log(token);
-    if(token) {
+  saveUserData(id?: string, token?: string, refreshToken?: string) {
+
+    if(!!token) {
       localStorage.setItem(GC_AUTH_TOKEN, token);
+      if(!!refreshToken) localStorage.setItem(GC_AUTH_REFRESH_TOKEN, refreshToken);
       this.setAccessToken(token);
     }
-    if(id) localStorage.setItem(GC_USER_ID, id);
+    if(!!id) localStorage.setItem(GC_USER_ID, id);
   }
 
   // 6
-  setAccessToken(accessToken: string) {
+  setAccessToken(accessToken: string, check?: boolean) {
     this.accessToken = accessToken;
-    this._isAuthenticated.next(true);
+    if(!this._isAuthenticated.getValue() || check) this._isAuthenticated.next(true);
   }
   // 7
   logout() {
     localStorage.removeItem(GC_USER_ID);
     localStorage.removeItem(GC_AUTH_TOKEN);
+    localStorage.removeItem(GC_AUTH_REFRESH_TOKEN);
     this.accessToken = null;
 
     this._isAuthenticated.next(false);
@@ -57,7 +63,7 @@ export class AuthService {
     const accessToken = localStorage.getItem(GC_AUTH_TOKEN);
 
     if (accessToken) {
-      this.setAccessToken(accessToken);
+      this.setAccessToken(accessToken, true);
     }
   }
 }

@@ -8,15 +8,16 @@ import gql from 'graphql-tag';
   providedIn: 'root',
 })
 export class RefreshTokenQuery extends Query {
-  override document: DocumentNode | TypedDocumentNode<{}, EmptyObject> = REFRESH_TOKEN_QUERY;
+  override document: DocumentNode | TypedDocumentNode<{}, EmptyObject> =
+    REFRESH_TOKEN_QUERY;
 }
 
 export const REFRESH_TOKEN_QUERY = gql`
-  query ($input: CartsFilterInput) {
-    carts(input: $input) {
-      items {
-        id
-      }
+  query ($refreshToken: String) {
+    refreshToken(refreshToken: $refreshToken) {
+      accessToken
+      status
+      expireAt
     }
   }
 `;

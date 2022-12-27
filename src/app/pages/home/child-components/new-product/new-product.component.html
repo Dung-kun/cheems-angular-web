@@ -1,4 +1,6 @@
 <div class="container m-common" *ngIf="pageViewModel$ |async as pageViewModel">
-  <div class="title">Hiện tại chưa có sản phẩm mới</div>
-  <!-- <app-ow-carousel-card [carouselsId]="carouselId" [items]="{ productTypes: pageViewModel.newProductTypes }"></app-ow-carousel-card> -->
+  <ng-container *ngIf="pageViewModel.newProductTypes.length > 0">
+    <app-ow-carousel-card [carouselsId]="carouselId" [items]="{ productTypes: pageViewModel.newProductTypes }"></app-ow-carousel-card>
+  </ng-container>
+  <div class="title" *ngIf="pageViewModel.newProductTypes.length == 0">Hiện tại chưa có sản phẩm mới</div>
 </div>

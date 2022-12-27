@@ -39,7 +39,7 @@ export class HomeComponent extends ChildViewManagement implements OnInit {
     );
     const onInit = onInit$.subscribe((value) => {
       this.auth.autoLogin();
-      console.log(value);
+
       this.productType$.next({
         ...this.productType$.getValue(),
         ...{

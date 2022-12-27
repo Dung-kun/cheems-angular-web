@@ -26,11 +26,45 @@
       </div>
 
       <div>
+
+      </div>
+      <button class="button-see-more"  data-bs-toggle="modal" data-bs-target="#modalDetails">
         <div type="body" color="primary500" class="see-more">Xem thêm nội dung <svg fill="none" viewBox="0 0 24 24"
             height="1em" width="1em" xmlns="http://www.w3.org/2000/svg">
             <path d="M5 8.5L12 15.5L19 8.5" stroke="#82869E" stroke-width="1.5" stroke-linecap="round"
               stroke-linejoin="round"></path>
           </svg></div>
+      </button>
+    </div>
+
+
+    <div class="modal fade" id="modalDetails" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header content" style="padding-bottom: 0;">
+            <div class="content-title">
+              Thông tin chi tiết
+            </div>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body" style="padding: 0;">
+            <div class="information active-style-scroll">
+              <div type="body" class="font-style-20 title-text">Thông tin chung</div>
+              <ng-container *ngFor="let item of pageViewModel.generalInformation">
+                <ng-container *ngTemplateOutlet="childInformation; context: {item}"></ng-container>
+              </ng-container>
+
+              <div type="body" class="font-style-20 title-text">Cấu hình chi tiết</div>
+              <ng-container *ngFor="let item of pageViewModel.detailedConfiguration">
+                <ng-container *ngTemplateOutlet="childInformation; context: {item}"></ng-container>
+              </ng-container>
+            </div>
+          </div>
+          <!-- <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div> -->
+        </div>
       </div>
     </div>
   </div>

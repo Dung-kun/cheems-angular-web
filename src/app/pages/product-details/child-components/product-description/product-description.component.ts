@@ -35,7 +35,6 @@ export class ProductDescriptionComponent
       const result = value as ProductDescriptionViewData;
       const metadata = result.productType?.metaDatas;
 
-      console.log(metadata);
 
       let generalInformation: ItemBasic[] = [];
       let detailedConfiguration: ItemBasic[] = [];
@@ -44,7 +43,6 @@ export class ProductDescriptionComponent
         let value = metadata[x as keyof typeof metadata];
         if (x == 'manufacturers') {
           value = (metadata[x as keyof typeof metadata] as Manufacturer[])[0]?.name;
-          console.log('vl',value);
         }
 
         if (x == 'publishedDate') {
@@ -75,8 +73,6 @@ export class ProductDescriptionComponent
         },
       });
 
-
-      console.log(this.pageViewModel$.getValue());
     });
 
     this.subscriptions$.push(onInit);

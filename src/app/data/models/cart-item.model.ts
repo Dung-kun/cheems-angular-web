@@ -3,7 +3,7 @@ export class CartItem {
   constructor(
     public id: string = "",
     public amount: number = null,
-    public productTypes: ProductType = null,
+    public productTypes: ProductType[] = [],
     public cardsId: string = "",
     public productTypesId: string = ""
   ){}

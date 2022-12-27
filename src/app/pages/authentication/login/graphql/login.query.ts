@@ -15,6 +15,7 @@ export const LOGIN_QUERY = gql`
     login(input: $input) {
       status
       accessToken
+      refreshToken
     }
   }
 `
