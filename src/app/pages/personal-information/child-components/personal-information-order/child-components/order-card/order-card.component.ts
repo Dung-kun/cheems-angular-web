@@ -11,6 +11,7 @@ import { OrderCardPageViewModel } from './models/order-card-page-view.model';
 export class OrderCardComponent extends PageViewModelBasedComponent<OrderCardPageViewModel> implements OnInit {
   @Input() order: any = null;
   public status: number = 0;
+  public totalAmount: number = 0;
 
   public icon_link: string = '';
 
@@ -19,7 +20,6 @@ export class OrderCardComponent extends PageViewModelBasedComponent<OrderCardPag
   }
 
   ngOnInit(): void {
-    console.log(this.order);
     switch (this.order?.status) {
       case "accept":
         this.icon_link = 'ic_accept.svg'
@@ -48,6 +48,10 @@ export class OrderCardComponent extends PageViewModelBasedComponent<OrderCardPag
       default:
         break;
     }
+
+    this.order?.receipts?.receiptDetails?.forEach((element: any) => {
+      if(element) this.totalAmount += element?.amount;
+    });
   }
 
 

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { OrderStatusModalComponent } from './order-status-modal.component';
 import { StatusProgressItemModule } from './child-component/status-progress-item/status-progress-item.module';
+import { ProductViewModule } from './child-component/product-view/product-view.module';
 
 
 
@@ -11,7 +12,8 @@ import { StatusProgressItemModule } from './child-component/status-progress-item
   ],
   imports: [
     CommonModule,
-    StatusProgressItemModule
+    StatusProgressItemModule,
+    ProductViewModule
   ],
   exports: [OrderStatusModalComponent]
 })

@@ -105,6 +105,34 @@
           min-width: 100%;
         }
       }
+
+      .product-list {
+        flex: 1;
+        display: flex;
+        margin: 5px 0px;
+        padding-left: 20px;
+        flex-direction: column;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 950px) {
+  .container {
+    width: 80%;
+
+    .information_view {
+      padding: 10px;
+      flex-direction: column;
+
+      .order_information {
+        width: 100%;
+      }
+
+      .receipt_information {
+        width: 100%;
+      }
+
     }
   }
 }

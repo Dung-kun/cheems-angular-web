@@ -43,7 +43,7 @@ export class PersonalInformationOrderComponent extends PageViewModelBasedCompone
         switchMap(([viewData]) => {
           let MUT_VARS = {
             isDeleted: false,
-            usersIds: ["6b71c56c-375d-4b52-9ee3-e6170e68256c"]
+            usersIds: [this.pageViewModel$.getValue().personalIdentifier]
           }
 
           const appQueryImpl$ = this.appInitQuery(MUT_VARS);

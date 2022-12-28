@@ -13,6 +13,17 @@ export const GET_PERSONAL_ORDERS = gql`
         totalPrice
         receiptDetails {
           id
+          amount
+          price
+          products {
+            productTypes {
+              name
+              medias {
+                id
+                filePath
+              }
+            }
+          }
         }
         payments {
           id
@@ -21,6 +32,7 @@ export const GET_PERSONAL_ORDERS = gql`
             paymentMethods {
               id
               name
+              currency
             }
           }
         }

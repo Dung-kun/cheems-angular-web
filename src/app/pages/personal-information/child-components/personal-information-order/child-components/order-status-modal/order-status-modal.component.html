@@ -69,6 +69,11 @@
         <div class="infor_text">{{ pageViewModel.order?.receipts?.totalPrice }}đ</div>
       </div>
 
+      <div class="product-list">
+        <div class="item" *ngFor="let receiptDetail of pageViewModel.order?.receipts?.receiptDetails">
+          <app-product-view [receiptDetail]="receiptDetail"></app-product-view>
+        </div>
+      </div>
     </div>
   </div>
 </div>
