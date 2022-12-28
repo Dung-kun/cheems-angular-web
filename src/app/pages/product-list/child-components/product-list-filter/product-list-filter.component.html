@@ -1,11 +1,14 @@
 <aside class="page-sidebar" *ngIf="pageViewModel$ |async as pageViewModel">
   <div class="item-filter" style="border: none;">
-    <strong class="list-group-title is-opened" data-tracking-label="new-arrivals">Giá cả</strong>
+    <strong class="list-group-title is-opened" data-tracking-label="new-arrivals">Giá cả(VND):</strong>
     <div class="d-flex">
-      <input type="text" class="form-control" style="flex:0 0 50%;text-align: center;" [(ngModel)]="minValue" readonly>
-      <input type="text" class="form-control" style="flex:0 0 50%;text-align: center;" [(ngModel)]="maxValue" readonly>
+      <input type="text" class="form-control" style="flex:0 0 50%;text-align: center;" [(ngModel)]="minValueShow" readonly>
+      <input type="text" class="form-control" style="flex:0 0 50%;text-align: center;" [(ngModel)]="maxValueShow" readonly>
     </div>
-    <ngx-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ngx-slider>
+    <ngx-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"
+    (userChange)="onUserChange($event)"
+    (userChangeEnd)="onUserChangeEnd($event)">
+></ngx-slider>
   </div>
   <form [formGroup]="ngForm">
     <ng-container formArrayName="formBody" *ngIf="this.formBody.controls?.length > 0">

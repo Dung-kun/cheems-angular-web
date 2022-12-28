@@ -96,6 +96,18 @@ export class CheckoutValidation {
     return this.isPhone.invalid;
   }
 
+  get isSubmitInvalid() {
+    // return (
+    //   this.isAddressInvalid ||
+    //   this.isDayInvalid ||
+    //   this.isYearInvalid ||
+    //   this.isMonthInvalid ||
+    //   this.isPhoneInvalid ||
+    //   this.isFullnameInvalid
+    // );
+    return this.checkoutComponent.appForm.invalid;
+  }
+
   checkNamNhuan(year: number) {
     if (
       (year % 4 === 0 && year % 100 !== 0 && year % 400 !== 0) ||

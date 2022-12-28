@@ -10,6 +10,7 @@ import { PaginationModule } from '../../shares/components/pagination/pagination.
 import { CurrencyShowModule } from '../../shares/base/pipes/currency-show/currency-show.module';
 import { NotificationModule } from '../../shares/components/notification/notification.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { PriceShowModule } from '../../shares/base/pipes/price-show/price-show.module';
 
 
 
@@ -23,6 +24,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
     NotificationModule,
     ReactiveFormsModule,
     FormsModule,
+    PriceShowModule,
     RouterModule.forChild([
       {
         path: '',

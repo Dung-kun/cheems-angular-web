@@ -16,9 +16,16 @@
       <section class="cart-item-list">
         <div class="fadeInUp animated">
           <ul class="item-list">
-            <li *ngFor="let cartItem of pageViewModel.cartItems;let index = index">
-              <input type="checkbox" [formControl]="getFormControl(index)">
-              <app-cart-card [cartItem]="cartItem" (changeAmountProduct)="onChangeProductAmount($event)"></app-cart-card>
+            <li *ngFor="let cartItem of pageViewModel.cartItems;let index = index" class="items">
+              <div class="d-flex" style="justify-content: space-between;">
+                <div class="item-checkbox">
+                  <div class="round">
+                    <input type="checkbox" checked [id]="'checkbox'+index" [formControl]="getFormControl(index)" />
+                    <label [for]="'checkbox'+index"></label>
+                  </div>
+                </div>
+                <app-cart-card [cartItem]="cartItem" (changeAmountProduct)="onChangeProductAmount($event)"></app-cart-card>
+              </div>
             </li>
           </ul>
         </div>
@@ -31,13 +38,13 @@
           </div>
           <div class="container">
             <div class="total-style">
-              Tổng: <span>{{ totalMoney(pageViewModel.cartItems, "total") | currencyFormat }}</span>
+              Tổng: <span>{{ pageViewModel.cartItems | priceShow:"total": formCheckBox | currencyFormat }}</span>
             </div>
             <div class="total-style">
-              Được giảm giá: <span>{{ totalMoney(pageViewModel.cartItems, "discount") | currencyFormat }}</span>
+              Được giảm giá: <span>{{ pageViewModel.cartItems | priceShow:"discount": formCheckBox  | currencyFormat }}</span>
             </div>
             <div class="total-style">
-              Tiền thanh toán: <span>{{ totalMoney(pageViewModel.cartItems, "discount-total") | currencyFormat }}</span>
+              Tiền thanh toán: <span>{{ pageViewModel.cartItems | priceShow:"": formCheckBox  | currencyFormat }}</span>
             </div>
 
             <a type="button" class="form-control" (click)="onClickSubmit()">

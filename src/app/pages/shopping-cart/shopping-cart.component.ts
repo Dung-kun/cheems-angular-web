@@ -51,6 +51,10 @@ export class ShoppingCartComponent
     return this.formArrayCheckBox.at(index) as FormControl;
   }
 
+  get formCheckBox(): boolean[] {
+    return this.formArrayCheckBox.getRawValue();
+  }
+
   ngOnInit(): void {
     const onInit$ = combineLatest([this.appRouteParams()]).pipe(
       switchMap(([value]) => {
@@ -71,7 +75,7 @@ export class ShoppingCartComponent
 
       let formArray = this.fb.array([]);
       for (let i = 0; i < cartItems.length; i++) {
-        formArray.push(this.fb.control(false));
+        formArray.push(this.fb.control(true));
       }
       this.formArrayCheckBox = formArray;
 
@@ -86,17 +90,21 @@ export class ShoppingCartComponent
   }
 
   totalMoney(cartItems: CartItem[], title: string) {
-    const totalDiscounted = cartItems.reduce((value, item) => {
+    const formArray = this.formArrayCheckBox.getRawValue();
+    const totalDiscounted = cartItems.reduce((value, item, index) => {
+      if(formArray[index])
       return (
         value +
         item.amount *
           item.productTypes[0].price *
           (item.productTypes[0]?.discountPercentage || 0)
       );
+      else return value;
     }, 0);
 
-    const total = cartItems.reduce((value, item) => {
-      return value + item.amount * item.productTypes[0].price;
+    const total = cartItems.reduce((value, item, index) => {
+      if(formArray[index]) return value + item.amount * item.productTypes[0].price;
+      else return value;
     }, 0);
 
     if (title == 'total') {
@@ -111,66 +119,74 @@ export class ShoppingCartComponent
 
   onChangeProductAmount(value: any) {
     let cartItems = [...this.pageViewModel$.getValue().cartItems];
-    let checkAmountChanged = [...this.pageViewModel$.getValue().checkAmountChanged];
 
     let index = cartItems.findIndex((data) => data.id == value?.cardItemId);
-
     let amount = cartItems[index]?.amount + (value?.amount || 0);
-    if (
-      !(amount <= 0 || amount > cartItems[index]?.productTypes[0].totalAmount)
-    ) {
+
+    if(value.amount == 0) {
+      let MUS_VAR = {
+        input: {
+          id: cartItems[index].id,
+          amount: 0,
+        },
+      };
+
+      cartItems.splice(index, 1);
+      this.formArrayCheckBox.removeAt(index);
+
+
+      const onMutation$ = this.appCartItemUpdate(MUS_VAR);
+
+      const onMutation = onMutation$.subscribe((value) => {
+        console.log(value);
+      });
+
+      this.subscriptions$.push(onMutation);
+
+    } else if (!(amount <= 0 || amount > cartItems[index]?.productTypes[0].totalAmount)) {
       let cartItemTemp = { ...cartItems[index], amount };
 
-      if(!checkAmountChanged[index]) checkAmountChanged.splice(index, 1, true);
+      let MUS_VAR = {
+        input: {
+          id: cartItems[index].id,
+          amount: cartItems[index].amount,
+        },
+      };
       cartItems.splice(index, 1, cartItemTemp);
+      const onMutation$ = this.appCartItemUpdate(MUS_VAR);
 
-      this.pageViewModel$.next({
-        ...this.pageViewModel$.getValue(),
-        cartItems,
-        checkAmountChanged
+      const onMutation = onMutation$.subscribe((value) => {
+        console.log(value);
       });
+
+      this.subscriptions$.push(onMutation);
     }
+
+    this.pageViewModel$.next({
+      ...this.pageViewModel$.getValue(),
+      cartItems,
+    });
   }
 
   onClickSubmit() {
     const rawValue = this.formArrayCheckBox.getRawValue();
     const cartItems = this.pageViewModel$.getValue().cartItems;
-    const checkAmountChanged = this.pageViewModel$.getValue().checkAmountChanged;
     const cartId = this.pageViewModel$.getValue().cartId;
-
-    for(let i = 0; i < checkAmountChanged.length; i ++){
-      if(checkAmountChanged[i]) {
-        let MUS_VAR = {
-          input: {
-            id: cartItems[i].id,
-            amount: cartItems[i].amount
-          }
-        }
-
-        const onMutation$ = this.appCartItemUpdate(MUS_VAR);
-
-        const onMutation = onMutation$.subscribe((value) => {
-          console.log(value);
-        });
-
-        this.subscriptions$.push(onMutation);
-      }
-    }
 
     let cartItemIdTemp: string[] = [];
     rawValue.forEach((element, index) => {
-      if(element) cartItemIdTemp.push(cartItems[index].id);
+      if (element) cartItemIdTemp.push(cartItems[index].id);
     });
 
-    console.log('ditmemay', cartItemIdTemp);
-
-    this.router.navigate(['shopping-cart/checkout'], {
-      queryParams: {
-        cartItemsIds: [...cartItemIdTemp] || [],
-        cartId: cartId || undefined
-      },
-      queryParamsHandling: "merge"
-    }).then(noop);
+    this.router
+      .navigate(['shopping-cart/checkout'], {
+        queryParams: {
+          cartItemsIds: [...cartItemIdTemp] || [],
+          cartId: cartId || undefined,
+        },
+        queryParamsHandling: 'merge',
+      })
+      .then(noop);
   }
 
   goToProductList() {
@@ -198,8 +214,6 @@ export class ShoppingCartComponent
 
     return p$;
   }
-
-
 
   appCartItemUpdate(vars: any) {
     let mutationGQL = this.appMutationCardItemsIns;
