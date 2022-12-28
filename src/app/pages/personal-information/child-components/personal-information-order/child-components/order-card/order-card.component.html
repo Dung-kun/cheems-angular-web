@@ -1,20 +1,22 @@
 <div class="container">
   <div class="status-icon">
-    <img [src]="'/assets/images/' + this.icon_link">
+    <!-- <img [src]="'/assets/images/' + this.icon_link"> -->
+
+    <img [src]="this.order.receipts.receiptDetails[0].products.productTypes.medias[0].filePath" alt="error">
   </div>
   <div class="order-preview">
     <div class="main">
       <div class="info">
         <label>Mã đơn: </label>
-        <div class="text">{{ this.order?.id }}</div>
+        <div class="text"> {{ this.order?.id }}</div>
       </div>
       <div class="info">
         <label>Trạng thái: </label>
-        <div class="text">{{ this.order?.status }}</div>
+        <div class="text"> {{ this.order?.status }}</div>
       </div>
       <div class="info">
         <label>Ngày mua: </label>
-        <div class="text">{{ this.order?.createdAt }}</div>
+        <div class="text"> {{ this.order?.createdAt }}</div>
       </div>
     </div>
     <div class="sub">
@@ -24,7 +26,7 @@
       </div>
       <div class="info">
         <label>Tổng tiền: </label>
-        <div class="text">{{ this.order?.receipts?.totalPrice }}</div>
+        <div class="text">{{ this.order?.receipts?.totalPrice | currencyFormat}}</div>
       </div>
     </div>
   </div>

@@ -1,5 +1,6 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
 import { PageViewModelBasedComponent } from '@app/shares/base/framework/page-view-model-based-component';
+import { CurrencyShowPipe } from '@app/shares/base/pipes/currency-show/currency-show.pipe';
 import { EventEmitter } from 'stream';
 import { OrderCardPageViewModel } from './models/order-card-page-view.model';
 
@@ -12,6 +13,7 @@ export class OrderCardComponent extends PageViewModelBasedComponent<OrderCardPag
   @Input() order: any = null;
   public status: number = 0;
   public totalAmount: number = 0;
+  public totalPrice: any = null;
 
   public icon_link: string = '';
 
