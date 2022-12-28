@@ -6,8 +6,6 @@ import {
   InMemoryCache,
 } from '@apollo/client/core';
 import { HttpLink } from 'apollo-angular/http';
-import { extractFiles } from 'extract-files';
-import { HttpHeaders } from '@angular/common/http';
 import { AuthService } from './shares/base/services/auth.service';
 import { GC_AUTH_TOKEN } from './shares/base/constants/constants';
 import { environment } from '../environments/environment';

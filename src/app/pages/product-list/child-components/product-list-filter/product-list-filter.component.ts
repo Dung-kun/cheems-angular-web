@@ -173,6 +173,7 @@ export class ProductListFilterComponent
         })
       )
     );
+
     let arraySelected: FormArray = this.fb.array([]);
 
     // for (let item of data) {
@@ -196,18 +197,18 @@ export class ProductListFilterComponent
     let formBodyValue = this.formBody.controls[indexP].value;
     let arrayNotSelectForm = this.getFormArrayNotSelect(indexP);
     let arraySelectedForm = this.getFormArraySelected(indexP);
-
+    console.log('formBody', formBodyValue);
     let data = {
       ...this.pageViewModel$.getValue().filter$.getValue()
         .productTypeFilterInput,
     };
 
     let key = formBodyValue.name;
-    let metaData = data.metaDatas;
+    let metaData = { ...data.metaDatas } as MetadataFilter;
 
     if (selected) {
       let arrNotSelect = arrayNotSelectForm.value;
-      if (!!formBodyValue.id) {
+      if (!!arrNotSelect[indexC]?.id) {
         (metaData[key as keyof typeof metaData] as string[])?.push(
           arrNotSelect[indexC].id
         );
@@ -242,10 +243,11 @@ export class ProductListFilterComponent
       arrayNotSelectForm.patchValue(arrNotSelect);
     }
 
-    this.pageViewModel$.getValue().filter$.next({
-      ...this.pageViewModel$.getValue().filter$.getValue(),
-      ...data,
-    });
+    const dataSearch = { ...data, metaData };
+
+    this.pageViewModel$.getValue().filter$.next(
+      new FilterProductModel(dataSearch)
+    );
   }
 
   addStyle(event: any, index: number) {
@@ -269,6 +271,9 @@ export class ProductListFilterComponent
         .productTypeFilterInput,
     };
 
+    data.priceFrom = event.value;
+    data.priceTo = event.highValue;
 
+    this.pageViewModel$.getValue().filter$.next(new FilterProductModel(data));
   }
 }
