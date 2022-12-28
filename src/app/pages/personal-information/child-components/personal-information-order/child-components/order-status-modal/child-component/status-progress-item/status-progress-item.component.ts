@@ -37,23 +37,38 @@ export class StatusProgressItemComponent implements OnInit {
   setStatus(status: Number, progress: string) {
     switch (status) {
       case 1:
+        if(progress == 'pending') this.label = "Đang chấp nhận"
+        else if(progress == 'finish') this.label = "Đã chấp nhận"
+        else this.label = "chấp nhận"
+      break;
+
+      case 2:
+        if(progress == 'pending') this.label = "Đang đóng gói"
+        else if(progress == 'finish') this.label = "Đã đã đóng gói"
+        else this.label = "đóng gói"
+      break;
+
+      case 3:
         if(progress == 'pending') this.label = "Đang chuyển"
         else if(progress == 'finish') this.label = "Đã chuyển"
         else this.label = "Vận chuyển"
       break;
 
-      case 2:
-        if(progress == 'pending') this.label = "Đang giao"
-        else if(progress == 'finish') this.label = "Đã giao"
-        else this.label = "giao hàng"
+      case 4:
+        if(progress == 'pending') this.label = "Đang Nhận"
+        else if(progress == 'finish') this.label = "Đã nhận"
+        else this.label = "Nhận hàng"
       break;
 
-      case 3:
+      case 5:
         this.label = "Hoàn Thành"
+        this.statusString = "finish";
+        this.statusIcon = "ic_tick.svg"
       break;
 
-      case 3:
+      case 6:
         this.label = "Đã huỷ"
+        this.statusString = "cancel";
       break;
 
       default:

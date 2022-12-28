@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-order-filter-header',
@@ -6,6 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./order-filter-header.component.scss']
 })
 export class OrderFilterHeaderComponent implements OnInit {
+  @Output() onFilterChange: EventEmitter<string>;
 
   public isOpen: boolean = false;
   public selected_title: string = "Tất Cả";
@@ -20,28 +21,38 @@ export class OrderFilterHeaderComponent implements OnInit {
     this.selected = selected_index;
     switch (selected_index) {
       case 0:
+        this.onFilterChange.emit(null);
         this.selected_title = "Tất Cả"
       break;
 
       case 1:
-        this.selected_title = "Vận chuyển"
+        this.onFilterChange.emit("accept");
+        this.selected_title = "Đã xác nhận"
       break;
 
       case 2:
-        this.selected_title = "Đang giao"
+        this.onFilterChange.emit("packaging");
+        this.selected_title = "Đang đóng gói"
       break;
 
       case 3:
-
-        this.selected_title = "Hoàn thành"
+        this.onFilterChange.emit("shipping");
+        this.selected_title = "Đang giao"
       break;
 
       case 4:
-        this.selected_title = "Đã huỷ"
+        this.onFilterChange.emit("receive");
+        this.selected_title = "Đã giao"
       break;
 
       case 5:
-        this.selected_title = "Trả hàng"
+        this.onFilterChange.emit("done");
+        this.selected_title = "Đã thanh toán"
+      break;
+
+      case 6:
+        this.onFilterChange.emit("cancel");
+        this.selected_title = "Đã huỷ"
       break;
 
       default:

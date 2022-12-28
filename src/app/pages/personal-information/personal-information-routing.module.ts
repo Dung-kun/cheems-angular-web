@@ -11,19 +11,18 @@ const routes: Routes = [
     component: PersonalInformationComponent,
     children: [
       {
-        path: 'profile',
+        path: 'profile/:userIdentifier',
         component: PersonalInformationProfileComponent
       },
       {
-        path: 'address',
+        path: 'address/:userIdentifier',
         component: PersonalInformationAddressComponent
       },
       {
-        path: 'order',
+        path: 'order/:userIdentifier',
         component: PersonalInformationOrderComponent
       },
-      { path: '',   redirectTo: '/personal-information/profile', pathMatch: 'full' },
-      { path: '**',   redirectTo: '/personal-information/profile', pathMatch: 'full' }
+      { path: '**',   redirectTo: '', pathMatch: 'full' }
     ]
   },
 ];
