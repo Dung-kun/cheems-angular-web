@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductViewComponent } from './product-view.component';
+import { CurrencyShowModule } from '@app/shares/base/pipes/currency-show/currency-show.module';
 
 
 
@@ -9,7 +10,8 @@ import { ProductViewComponent } from './product-view.component';
     ProductViewComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    CurrencyShowModule
   ],
   exports: [ProductViewComponent]
 })
