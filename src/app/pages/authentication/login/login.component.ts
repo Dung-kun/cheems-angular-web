@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormViewComponent } from '../../../shares/base/framework/form-view.component';
 import { LoginFormViewModel } from './models/login-form-view.model';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { BasicFormViewFormControls } from '@app/shares/base/models/basic-form-view.form-control';
 import { LoginFormControl } from './form-controls/login-form-control.form';
 import { combineLatest, map, of, switchMap, tap } from 'rxjs';
@@ -17,12 +22,14 @@ import { GC_AUTH_TOKEN } from '../../../shares/base/constants/constants';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
 })
-export class LoginComponent extends FormViewComponent<LoginFormViewModel> implements OnInit {
-
-  public appQuery: QueryRef<{},{}>;
-  public appCUserQuery:QueryRef<{},{}>;
+export class LoginComponent
+  extends FormViewComponent<LoginFormViewModel>
+  implements OnInit
+{
+  public appQuery: QueryRef<{}, {}>;
+  public appCUserQuery: QueryRef<{}, {}>;
   public validation: LoginValidation = null;
   public typePassword: string;
   constructor(
@@ -30,15 +37,18 @@ export class LoginComponent extends FormViewComponent<LoginFormViewModel> implem
     private readonly route: ActivatedRoute,
     public loginQuery: LoginQuery,
     public currentUserQuery: CurrentUserQuery,
-    public auth: AuthService,
+    private auth: AuthService,
     public notificationService: NotificationService,
     public router: Router
   ) {
     super(fb);
 
-    this.typePassword = "text";
-    this.appQuery = loginQuery.watch({}, {fetchPolicy: 'cache-and-network'});
-    this.appCUserQuery = currentUserQuery.watch({}, {fetchPolicy: 'cache-and-network'});
+    this.typePassword = 'password';
+    this.appQuery = loginQuery.watch({}, { fetchPolicy: 'cache-and-network' });
+    this.appCUserQuery = currentUserQuery.watch(
+      {},
+      { fetchPolicy: 'cache-and-network' }
+    );
     this.appForm = this.appCreateFormGroup(this.prepareFormBodyControls());
   }
 
@@ -59,31 +69,28 @@ export class LoginComponent extends FormViewComponent<LoginFormViewModel> implem
     const MUS_VAR = {
       input: {
         email: rawValue?.email,
-        password: rawValue?.password
-      }
-    }
+        password: rawValue?.password,
+      },
+    };
 
     const appQueryImpl$ = this.appLoginQuery(MUS_VAR);
     const pipe$ = appQueryImpl$.pipe();
     const appQueryImpl = pipe$.subscribe({
-      next:(value) => {
-        this.auth.saveUserData(null, value.accessToken);
-        this.notificationService.success('Thành công', 'Bạn đã đăng nhập thành công');
+      next: (value) => {
+        this.auth.saveUserData(null, value?.accessToken, value?.refreshToken);
+        this.notificationService.success(
+          'Thành công',
+          'Bạn đã đăng nhập thành công'
+        );
         setTimeout(() => this.router.navigate(['/home']), 2000);
       },
       error: (err: any) => {
-        console.log(localStorage.getItem(GC_AUTH_TOKEN));
-        this.notificationService.error('Thất bại', 'Sai tên đăng nhập hoặc mật khẩu');
-      }
-    }
-    //   (value) => {
-    //   this.auth.saveUserData(null, value.accessToken);
-    //   this.notificationService.success('Thành công', 'Bạn đã đăng nhập thành công');
-    // },
-    // (error) => {
-
-    // }
-    );
+        this.notificationService.error(
+          'Thất bại',
+          'Sai tên đăng nhập hoặc mật khẩu'
+        );
+      },
+    });
 
     this.subscriptions$.push(appQueryImpl);
   }
@@ -103,14 +110,13 @@ export class LoginComponent extends FormViewComponent<LoginFormViewModel> implem
       ]),
       password: this.fb.control('', [
         Validators.required,
-        Validators.minLength(8),
+        Validators.minLength(3),
         Validators.maxLength(25),
       ]),
     };
 
     return registerForm;
   }
-
 
   appLoginQuery(vars: any) {
     let queryGQL = this.appQuery;
@@ -123,15 +129,16 @@ export class LoginComponent extends FormViewComponent<LoginFormViewModel> implem
       map((result) => {
         const item = (<any>result).data;
         const accessToken = item ? (<any>item).login.accessToken : null;
+        const refreshToken = item ? (<any>item).login.refreshToken : null;
         return {
-          accessToken
-        }
+          accessToken,
+          refreshToken
+        };
       })
     );
 
     return p$;
   }
-
 
   // appCurrentUserQuery() {
   //   let queryGQL = this.appQuery;
@@ -151,21 +158,20 @@ export class LoginComponent extends FormViewComponent<LoginFormViewModel> implem
   //   return p$;
   // }
 
-
   appRouteParams() {
     return this.route.params;
   }
 
   changeTypePassword() {
-    switch(this.typePassword) {
-      case "password":
-        this.typePassword = "text"
+    switch (this.typePassword) {
+      case 'password':
+        this.typePassword = 'text';
         break;
-      case "text":
-        this.typePassword = "password"
+      case 'text':
+        this.typePassword = 'password';
         break;
       default:
-        this.typePassword = "password"
+        this.typePassword = 'password';
         break;
     }
   }

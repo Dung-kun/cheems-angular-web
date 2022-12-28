@@ -49,7 +49,7 @@ export class HotTrademarkComponent
         isDeleted: false,
       },
       skip: 0,
-      take: 8
+      take: 4
     };
     let queryGQL = this.appQuery;
     queryGQL.setVariables(vars);

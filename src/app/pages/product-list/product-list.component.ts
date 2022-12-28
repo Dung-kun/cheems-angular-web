@@ -28,7 +28,7 @@ export class ProductListComponent extends PageViewModelBasedComponent<ProductLis
   }
 
   ngOnInit(): void {
-    const onInit$  = combineLatest([this.appRouteParams()]);
+    const onInit$  = combineLatest([this.appRouteQueryParams()]);
     const onInit = onInit$.subscribe(([value]) => {
 
       let result = value as ProductTypeFilterInput;
@@ -68,7 +68,7 @@ export class ProductListComponent extends PageViewModelBasedComponent<ProductLis
   }
 
 
-  appRouteParams() {
-    return this.route.params;
+  appRouteQueryParams() {
+    return this.route.queryParams;
   }
 }

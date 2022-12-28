@@ -9,19 +9,22 @@
         <label class="status-filters__item__text">Tất cả</label>
       </div>
       <div [class.selected]="this.selected == 1" class="status-filters__item" (click)="changeSelected(1)">
-        <label class="status-filters__item__text">Vận chuyển</label>
+        <label class="status-filters__item__text">Đã xác nhận</label>
       </div>
       <div [class.selected]="this.selected == 2" class="status-filters__item" (click)="changeSelected(2)">
-        <label class="status-filters__item__text">Đang giao</label>
+        <label class="status-filters__item__text">Đang đóng gói</label>
       </div>
       <div [class.selected]="this.selected == 3" class="status-filters__item" (click)="changeSelected(3)">
-        <label class="status-filters__item__text">Hoàn Thành</label>
+        <label class="status-filters__item__text">Đang giao</label>
       </div>
       <div [class.selected]="this.selected == 4" class="status-filters__item" (click)="changeSelected(4)">
-        <label class="status-filters__item__text">Đã huỷ</label>
+        <label class="status-filters__item__text">Đã giao</label>
       </div>
       <div [class.selected]="this.selected == 5" class="status-filters__item" (click)="changeSelected(5)">
-        <label class="status-filters__item__text">Trả hàng</label>
+        <label class="status-filters__item__text">Đã thanh toán</label>
+      </div>
+      <div [class.selected]="this.selected == 6" class="status-filters__item" (click)="changeSelected(6)">
+        <label class="status-filters__item__text">Đã huỷ</label>
       </div>
     </div>
   </div>

@@ -13,6 +13,8 @@ export class ProductType {
     public medias: Media[] = [],
     public warrantyPeriod: number = null,
     public metaDatas: Metadata = null,
+    public discountPercentage: number = 0,
+    public totalAmount: number = null,
     public tags: Tag[] = []
   ){
 

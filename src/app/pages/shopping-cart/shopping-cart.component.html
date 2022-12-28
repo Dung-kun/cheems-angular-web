@@ -11,13 +11,21 @@
   </div>
 
 
-  <div class="container">
-    <div class="cart-style mx-50">
+  <div class="container" *ngIf="pageViewModel$ | async as pageViewModel">
+    <div class="cart-style mx-50" *ngIf="pageViewModel.cartItems.length > 0, else noProduct">
       <section class="cart-item-list">
         <div class="fadeInUp animated">
           <ul class="item-list">
-            <li>
-              <app-cart-card></app-cart-card>
+            <li *ngFor="let cartItem of pageViewModel.cartItems;let index = index" class="items">
+              <div class="d-flex" style="justify-content: space-between;">
+                <div class="item-checkbox">
+                  <div class="round">
+                    <input type="checkbox" checked [id]="'checkbox'+index" [formControl]="getFormControl(index)" />
+                    <label [for]="'checkbox'+index"></label>
+                  </div>
+                </div>
+                <app-cart-card [cartItem]="cartItem" (changeAmountProduct)="onChangeProductAmount($event)"></app-cart-card>
+              </div>
             </li>
           </ul>
         </div>
@@ -30,13 +38,16 @@
           </div>
           <div class="container">
             <div class="total-style">
-              Tổng phụ: <span>52.000(VND)</span>
+              Tổng: <span>{{ pageViewModel.cartItems | priceShow:"total": formCheckBox | currencyFormat }}</span>
             </div>
             <div class="total-style">
-              Tổng: <span>52.000(VND)</span>
+              Được giảm giá: <span>{{ pageViewModel.cartItems | priceShow:"discount": formCheckBox  | currencyFormat }}</span>
+            </div>
+            <div class="total-style">
+              Tiền thanh toán: <span>{{ pageViewModel.cartItems | priceShow:"": formCheckBox  | currencyFormat }}</span>
             </div>
 
-            <a type="button" class="form-control" routerLink="/shopping-cart/checkout">
+            <a type="button" class="form-control" (click)="onClickSubmit()">
               Tiến hành thanh toán
             </a>
           </div>
@@ -94,6 +105,22 @@
       <div class="property">
         Catagory: <span>Hello</span>
       </div>
+    </div>
+  </div>
+</ng-template>
+
+
+<ng-template #noProduct>
+  <div class="no-product">
+    <div class="no-product-content">
+      <div class="no-product-img">
+        <img src="https://i.imgur.com/Drj57qu.png" loading="lazy" alt=""
+          style="width: 100%; height: 100%; object-fit: inherit; position: absolute; top: 0px; left: 0px;">
+      </div>
+      <h4 style="text-align: center; margin-top: 16px; margin-bottom: 24px;">Hiện tại giỏ hàng chưa có sản phẩm nào</h4>
+      <button class="no-product-button" (click)="goToProductList()">
+        Mua sắm ngay
+      </button>
     </div>
   </div>
 </ng-template>

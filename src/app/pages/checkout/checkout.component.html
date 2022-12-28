@@ -9,24 +9,26 @@
       </div>
     </div>
   </div>
-  <div class="container m-common">
+  <div class="container m-common" *ngIf="pageViewModel$ | async as pageViewModel">
     <main class="main-content">
-      <div class="fade-in-out">
+      <div class="fadeIn animated">
         <div class="overview-sections">
           <section role="button" tabindex="0" class="section-container" aria-disabled="false">
             <h2 class="heading-style">
               <span class="font-style-20" style="font-weight: 600;">Thông tin của tôi</span>
+              <button class="button-cancel-style" (click)="onClickEdit()" *ngIf="!this.checkOpenForm"
+              style="margin: 0;padding: 0; width: auto;" type="button"><i class="ai-edit"></i></button>
             </h2>
             <div class="w-100">
               <div class="collapse-animation" role="region"
                 style="display: block; height: auto; opacity: 1; overflow: hidden;">
-                <div class="fade-in-out">
-                  <form class="" novalidate>
+                <div class="fadeInUp animated" *ngIf="this.checkOpenForm, else formValid">
+                  <form [formGroup]="this.appForm" (ngSubmit)="ngxOnSubmit()">
                     <div class="mb-15">
                       <p class="body-text"><span>Email</span></p>
-                      <p class="body-text" style="margin: 0px;">uchihadungkitty@gmail.com</p>
+                      <p class="body-text" style="margin: 0px;">{{ pageViewModel.userInfo?.email }}</p>
                     </div>
-                    <div class="form-input">
+                    <div class="form-input" formGroupName="formBody">
                       <div class="mb-15">
                         <div class="label-wrapper">
                           <label class="label-style" for="firstName">
@@ -34,16 +36,14 @@
                         </div>
                         <div class="p-relative">
                           <div class="input-wrapper">
-                            <input class="input-style" required type="text" id="firstName" name="firstName">
-                            <span class="validation-icon icon icon-valid" title="Field is valid"
-                              style="height: 48px;"></span>
+                            <input class="form-control input-style" required type="text" id="firstName" name="firstName"
+                              formControlName="fullname"
+                              [ngClass]="!validation.isFullnameInvalid ? 'is-valid':'is-invalid'">
+                            <div class="invalid-feedback"
+                              [style.display]="validation.isFullnameInvalid ? 'block': 'none'">
+                              <span *ngIf="validation.isFullname?.errors?.['required']">Vui lòng nhập tên của bạn</span>
+                            </div>
                           </div>
-                          <svg class="icon-style" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
-                            xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false">
-                            <path
-                              d="M5.938 12.979L5.92 13l-.002-.001V13l-.02-.018L2 9.762 2.653 9l3.19 2.635L13.263 4l.737.684-8.062 8.295z">
-                            </path>
-                          </svg>
                         </div>
 
                       </div>
@@ -54,22 +54,32 @@
                         </div>
 
                         <div class="p-relative">
-                          <div class="input-wrapper date-input-wrapper">
-                            <input aria-label="MM" required name="month" type="number" pattern="\d*"
-                              class="input-style date-input-style" placeholder="DD" id="dateOfBirth" maxlength="2">
+                          <div class="input-wrapper date-input-wrapper"
+                            [style.border-color]="validation.isTimeInvalid ? '#dc3545' : '#198754'">
+                            <input aria-label="MM" required name="month" type="number"
+                              onKeyPress="if(this.value.length==2) return false;" formControlName="day"
+                              class="input-style form-control date-input-style is-valid" placeholder="DD"
+                              id="dateOfBirth" [ngClass]="!validation.isDayInvalid ? 'is-valid':'is-invalid'">
                             <span>/</span>
-                            <input aria-label="DD" required name="day" type="number" pattern="\d*"
-                              class="input-style date-input-style" placeholder="MM" maxlength="2">
+                            <input aria-label="DD" required name="day" type="number"
+                              onKeyPress="if(this.value.length==2) return false;" formControlName="month"
+                              class="input-style  form-control date-input-style" placeholder="MM"
+                              [ngClass]="!validation.isMonthInvalid ? 'is-valid':'is-invalid'">
                             <span>/</span>
-                            <input aria-label="YYYY" required name="year" type="number" pattern="\d*"
-                              class="input-style date-input-style" placeholder="YYYY" maxlength="4">
+                            <input aria-label="YYYY" required name="year" type="number"
+                              onKeyPress="if(this.value.length==4) return false;" formControlName="year"
+                              class="input-style  form-control date-input-style" placeholder="YYYY"
+                              [ngClass]="!validation.isYearInvalid ? 'is-valid':'is-invalid'">
                           </div>
-                          <svg class="icon-style" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
-                            xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false">
-                            <path
-                              d="M5.938 12.979L5.92 13l-.002-.001V13l-.02-.018L2 9.762 2.653 9l3.19 2.635L13.263 4l.737.684-8.062 8.295z">
-                            </path>
-                          </svg>
+                          <div class="invalid-feedback" [style.display]="validation.isTimeInvalid ? 'block': 'none'">
+                            <span
+                              *ngIf="validation.isDay?.errors?.['required'] || validation.isMonth?.errors?.['required'] || validation.isYear?.errors?.['required'], else noRequired">Vui
+                              lòng nhập đủ ngày, tháng, năm sinh</span>
+
+                            <ng-template #noRequired>
+                              <span>Vui lòng nhập đúng định dạng ngày, tháng, năm (Yêu cầu lớn hơn 15 tuổi)</span>
+                            </ng-template>
+                          </div>
                         </div>
                       </div>
                       <div class="mb-15">
@@ -79,17 +89,16 @@
                         </div>
                         <div class="p-relative">
                           <div class="input-wrapper">
-                            <textarea class="input-style" style="height: 144px;" required rows="3" cols="3" id="address"
-                              name="address"></textarea>
-                            <span class="validation-icon icon icon-valid" title="Field is valid"
-                              style="height: 48px;"></span>
+                            <textarea class="input-style form-control" style="height: 144px;" required rows="3" cols="3"
+                              id="address" formControlName="address" name="address"
+                              [ngClass]="!validation.isAddressInvalid ? 'is-valid':'is-invalid'">
+                            </textarea>
+                            <div class="invalid-feedback"
+                              [style.display]="validation.isAddressInvalid ? 'block': 'none'">
+                              <span *ngIf="validation.isAddress?.errors?.['required']">Vui lòng nhập địa chỉ của
+                                bạn</span>
+                            </div>
                           </div>
-                          <svg class="icon-style" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
-                            xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false">
-                            <path
-                              d="M5.938 12.979L5.92 13l-.002-.001V13l-.02-.018L2 9.762 2.653 9l3.19 2.635L13.263 4l.737.684-8.062 8.295z">
-                            </path>
-                          </svg>
                         </div>
 
                       </div>
@@ -100,23 +109,22 @@
                         </div>
                         <div class="p-relative">
                           <div class="input-wrapper">
-                            <input class="input-style" required type="text" id="sdt" name="sdt">
-                            <span class="validation-icon icon icon-valid" title="Field is valid"
-                              style="height: 48px;"></span>
+                            <input class="input-style form-control" required type="text" id="sdt" name="sdt"
+                              formControlName="phone" [ngClass]="!validation.isPhoneInvalid ? 'is-valid':'is-invalid'">
+                            <div class="invalid-feedback" [style.display]="validation.isPhoneInvalid ? 'block': 'none'">
+                              <span *ngIf="validation.isPhone?.errors?.['required']">Vui lòng nhập số điện thoại của
+                                bạn</span>
+                            </div>
                           </div>
-                          <svg class="icon-style" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
-                            xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false">
-                            <path
-                              d="M5.938 12.979L5.92 13l-.002-.001V13l-.02-.018L2 9.762 2.653 9l3.19 2.635L13.263 4l.737.684-8.062 8.295z">
-                            </path>
-                          </svg>
                         </div>
 
                       </div>
                     </div>
                     <div class="button-container">
-                      <button class="button-style" type="submit"><span>Lưu</span></button>
-                      <button class="button-cancel-style" type="button">
+                      <button class="button-style" type="submit"
+                        [disabled]="validation.isSubmitInvalid"><span>Lưu</span></button>
+                      <button class="button-cancel-style" [ngClass]="checkCancelButton()? 'd-flex': 'd-none'"
+                        type="button" (click)="onClickCancel()">
                         <svg class="icon-cancel-style" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"
                           xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false">
                           <path
@@ -130,80 +138,76 @@
               </div>
             </div>
           </section>
-
-          <section role="button" tabindex="0" class="section-container" aria-disabled="false">
+          <section  class="section-container">
             <h2 class="heading-style">
-              <span class="font-style-20" style="font-weight: 600;">Phương thức vận chuyển</span>
+              <span class="font-style-20" style="font-weight: 600;">Thông tin sản phẩm</span>
             </h2>
-            <div class="mb-15" style="width: 100%;">
-              <ul class="shipping-select">
-                <ng-container *ngFor="let a of [1,2,3]">
-                  <li>
-                    <button type="button" class="button-non-border color-2" (click)="chooseShipping(a)">
-                      <span class="item">
-                        <ng-container *ngIf="checkShippingChoose == a; else anotherShipping">
-                          <svg class="color-1" style="height: 24px;" viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                            focusable="false">
-                            <path
-                              d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2zm0 1a9 9 0 100 18 9 9 0 000-18zm0 2a7 7 0 110 14 7 7 0 010-14z"
-                              fill="#fb2e86"
-                              >
-                            </path>
-                          </svg>
-                        </ng-container>
-                        <span class="font-style-14" style="margin-left: 16px; flex-shrink: 1;">
-                          <div class="font-style-16 color-2" style="font-weight: bold; margin-bottom: 5px;">Vận chuyển
-                            chậm + {{a}}</div>
-                          0 VND<span class="color-2" role="separator"> · </span>5-10 ngày
-                        </span>
-                      </span>
-                    </button>
-                  </li>
-                </ng-container>
-              </ul>
-              <div class="button-container">
-                <button class="button-style" type="submit"><span>Chọn</span></button>
+            <div class="row-img active-style-scroll">
+              <div class="column-img" *ngFor="let item of pageViewModel.cartItems; let idx = index">
+                <img [src]="item?.productTypes[0]?.medias[0]?.filePath" alt="">
+                <button class="button-cancel-style delete-button" style="top: 5px;left: 5px" (click)="deleteCartItem(idx)"><i class="ai-trash-can icon-cancel-style"></i></button>
+                <button class="button-cancel-style" style="bottom: 10px;right: 10px; cursor: auto;"><span>+{{item.amount}}</span></button>
               </div>
             </div>
           </section>
-
           <section role="button" tabindex="0" class="section-container" aria-disabled="false">
             <h2 class="heading-style">
               <span class="font-style-20" style="font-weight: 600;">Phương thức thanh toán</span>
+              <button class="button-cancel-style fadeOut animated" (click)="onClickChoose(true)" *ngIf="!this.checkOpenPaymentMethod"
+                style="margin: 0;padding: 0; width: auto;" type="button"><i class="ai-edit"></i></button>
             </h2>
             <div class="mb-15" style="width: 100%;">
-              <ul class="shipping-select">
-                <ng-container *ngFor="let a of [1,2,3]">
-                  <li [ngClass]="checkShippingChoose == a? 'li-selected' : '' ">
-                    <button type="button" class="button-non-border color-2" (click)="chooseShipping(a)">
+              <ng-container *ngIf="this.checkOpenPaymentMethod, else chosenPaymentMethod">
+                <ul class="shipping-select fadeInUp animated">
+                  <ng-container *ngFor="let a of pageViewModel.paymentMethods; let index = index">
+                    <li [ngClass]="checkShippingChoose == index? 'li-selected' : '' ">
+                      <button type="button" class="button-non-border color-2" (click)="chooseShipping(index)">
+                        <span class="item">
+                          <ng-container *ngIf="checkShippingChoose == index; else anotherShipping">
+                            <svg class="color-1" style="height: 24px;padding-left: 10px;" viewBox="0 0 24 24"
+                              xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                              focusable="false">
+                              <path
+                                d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2zm0 1a9 9 0 100 18 9 9 0 000-18zm0 2a7 7 0 110 14 7 7 0 010-14z"
+                                fill="#fb2e86">
+                              </path>
+                            </svg>
+                          </ng-container>
+                          <span class="font-style-14" style="margin-left: 16px; flex-shrink: 1;">
+                            <div class="font-style-16 color-2" style="font-weight: bold; margin-bottom: 5px;">{{ a?.name
+                              }}</div>
+                          </span>
+                        </span>
+                      </button>
+                    </li>
+                  </ng-container>
+                </ul>
+                <div class="button-container">
+                  <button class="button-style" type="button" (click)="onClickChoose(false)"><span>Chọn</span></button>
+                </div>
+              </ng-container>
+              <ng-template #chosenPaymentMethod>
+                <ul class="shipping-select fadeIn animated">
+                  <li class="li-selected">
+                    <button type="button" class="button-non-border color-2">
                       <span class="item">
-                        <ng-container *ngIf="checkShippingChoose == a; else anotherShipping">
-                          <svg class="color-1" style="height: 24px;padding-left: 10px;" viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                            focusable="false">
-                            <path
-                              d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2zm0 1a9 9 0 100 18 9 9 0 000-18zm0 2a7 7 0 110 14 7 7 0 010-14z"
-                              fill="#fb2e86"
-                              >
-                            </path>
-                          </svg>
-                        </ng-container>
+                        <svg class="color-1" style="height: 24px;padding-left: 10px;" viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                          focusable="false">
+                          <path
+                            d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2zm0 1a9 9 0 100 18 9 9 0 000-18zm0 2a7 7 0 110 14 7 7 0 010-14z"
+                            fill="#fb2e86">
+                          </path>
+                        </svg>
                         <span class="font-style-14" style="margin-left: 16px; flex-shrink: 1;">
-                          <div class="font-style-16 color-2" style="font-weight: bold; margin-bottom: 5px;">Thẻ ngân hàng + {{a}}</div>
+                          <div class="font-style-16 color-2" style="font-weight: bold; margin-bottom: 5px;">{{
+                            pageViewModel?.paymentMethods[checkShippingChoose].name }}</div>
                         </span>
                       </span>
                     </button>
                   </li>
-                  <ng-container *ngIf="checkShippingChoose == a">
-                    <ng-container *ngTemplateOutlet="bankCard"></ng-container>
-                  </ng-container>
-                </ng-container>
-              </ul>
-
-              <div class="button-container">
-                <button class="button-style" type="submit"><span>Chọn</span></button>
-              </div>
+                </ul>
+              </ng-template>
             </div>
           </section>
         </div>
@@ -220,37 +224,45 @@
             <span>Thêm mã giảm giá</span>
           </a>
         </div>
-        <div class="fade-in-out">
+        <div class="fadeIn animated">
           <table>
-            <tbody class="font-style-14">
+            <tbody class="font-style-16">
               <tr>
-                <th class="py-1 color-text-gray text-start">
-                  Vật phẩm
+                <th class="py-1 text-start">
+                  Tổng:
                 </th>
                 <td class="py-1 text-end">
-                  (VNĐ)99.00
+                  {{ pageViewModel.cartItems | priceShow:'total' | currencyFormat}}
                 </td>
               </tr>
               <tr>
-                <th class="py-1  color-text-gray text-start">
-                  Vật phẩm
+                <th class="py-1  text-start">
+                  Khuyến mãi
                 </th>
                 <td class="py-1 text-end">
-                  (VNĐ)99.00
+                  {{ pageViewModel.cartItems | priceShow:'discount' | currencyFormat }}
+                </td>
+              </tr>
+              <tr>
+                <th class="py-1  text-start">
+                  VAT(8%)
+                </th>
+                <td class="py-1 text-end">
+                  {{ pageViewModel.cartItems | priceShow:'VAT' | currencyFormat }}
                 </td>
               </tr>
             </tbody>
             <tfoot>
-              <tr class="mt-1 pt-1 pb-3">
+              <tr class="mt-1 pt-1 pb-3 font-style-16">
                 <th class="py-2 text-start" style="border-top: 1px solid #222;">
-                  Tổng</th>
+                  Giá thành</th>
                 <td class="py-2 text-end" style="border-top: 1px solid #222;">
-                  (VNĐ)79.20 </td>
+                  {{ pageViewModel.cartItems | priceShow:'' | currencyFormat }} </td>
               </tr>
             </tfoot>
           </table>
         </div>
-        <div class="fade-in-out">
+        <div class="fadeIn animated">
           <p class="">Chúng tôi sẽ xử lý dữ liệu cá nhân của bạn theo CheemsStore's
             <a class="font-style-16 color-1" tabindex="0" type="button">Privacy Notice</a>.
           </p>
@@ -265,7 +277,7 @@
               khoản thuế nào và sẽ được cộng thêm khi các mặt hàng được vận chuyển.</span>
           </p>
 
-          <button class="button-style my-4">Thanh toán</button>
+          <button class="button-style my-4" [disabled]="checkOpenForm || checkOpenPaymentMethod" (click)="createOrder()">Mua hàng</button>
           <div class="FadeInOut-module--container__1hPKG FadeInOut-module--entered__3Jpc2">
             <div class="CustomerServiceInfo--container__2J2io">
               <h3 class="sub-sub-heading light">Dịch vụ chăm sóc khách hàng</h3>
@@ -278,6 +290,24 @@
       </div>
     </aside>
 
+    <ng-template #formValid>
+      <button class="fadeInUp animated" style="border: 0; background-color: transparent;position: relative;
+      text-align: left;
+      padding: 0;" (click)="openForm()">
+        <div class="mb-15">
+          <p class="body-text" style="margin: 0px;"><span>Email: </span>{{ pageViewModel.userInfo?.email }}</p>
+        </div>
+        <div class="mb-15">
+          <p class="body-text" style="margin: 0px;"><span>Tên: </span>{{ pageViewModel.userInfo?.fullname }}</p>
+        </div>
+        <div class="mb-15">
+          <p class="body-text" style="margin: 0px;"><span>Địa chỉ: </span>{{ pageViewModel.userInfo?.address }}</p>
+        </div>
+        <div class="mb-15">
+          <p class="body-text" style="margin: 0px;"><span>Địa chỉ: </span>{{ pageViewModel.userInfo?.phone }}</p>
+        </div>
+      </button>
+    </ng-template>
   </div>
 </div>
 
@@ -290,8 +320,10 @@
   </svg>
 </ng-template>
 
+<ng-template>
 
-<ng-template #bankCard>
+</ng-template>
+<!-- <ng-template #bankCard>
   <form style="margin-top: 20px;padding: 20px; transition: height 300ms ease,opacity 300ms ease-in-out;">
     <div class="form-input">
       <div class="mb-15">
@@ -302,8 +334,7 @@
         <div class="p-relative">
           <div class="input-wrapper">
             <input class="input-style" required type="text" id="firstName" name="firstName">
-            <span class="validation-icon icon icon-valid" title="Field is valid"
-              style="height: 48px;"></span>
+            <span class="validation-icon icon icon-valid" title="Field is valid" style="height: 48px;"></span>
           </div>
           <svg class="icon-style" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
             xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false">
@@ -323,8 +354,7 @@
         <div class="p-relative">
           <div class="input-wrapper">
             <input class="input-style" required type="text" id="firstName" name="firstName">
-            <span class="validation-icon icon icon-valid" title="Field is valid"
-              style="height: 48px;"></span>
+            <span class="validation-icon icon icon-valid" title="Field is valid" style="height: 48px;"></span>
           </div>
           <svg class="icon-style" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
             xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false">
@@ -344,8 +374,7 @@
           <div class="p-relative">
             <div class="input-wrapper">
               <input class="input-style" required type="text" id="sdt" name="sdt">
-              <span class="validation-icon icon icon-valid" title="Field is valid"
-                style="height: 48px;"></span>
+              <span class="validation-icon icon icon-valid" title="Field is valid" style="height: 48px;"></span>
             </div>
             <svg class="icon-style" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
               xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false">
@@ -363,8 +392,7 @@
           <div class="p-relative">
             <div class="input-wrapper">
               <input class="input-style" required type="text" id="sdt" name="sdt">
-              <span class="validation-icon icon icon-valid" title="Field is valid"
-                style="height: 48px;"></span>
+              <span class="validation-icon icon icon-valid" title="Field is valid" style="height: 48px;"></span>
             </div>
             <svg class="icon-style" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
               xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false">
@@ -377,4 +405,5 @@
       </div>
     </div>
   </form>
-</ng-template>
+</ng-template> -->
+<app-notification></app-notification>

@@ -1,0 +1,79 @@
+<div class="overlay" (click)="closeModal()"></div>
+
+<div class="container" *ngIf="(this.pageViewModel$ | async) as pageViewModel">
+  <div class="progress_view">
+    <app-status-progress-item class="progress__item" [statusNumber]="1" [currentStatus]="getCurrentStatus(pageViewModel.order?.status)"></app-status-progress-item>
+    <app-status-progress-item class="progress__item" [statusNumber]="2" [currentStatus]="getCurrentStatus(pageViewModel.order?.status)"></app-status-progress-item>
+    <app-status-progress-item class="progress__item" [statusNumber]="3" [currentStatus]="getCurrentStatus(pageViewModel.order?.status)"></app-status-progress-item>
+    <app-status-progress-item class="progress__item" [statusNumber]="4" [currentStatus]="getCurrentStatus(pageViewModel.order?.status)"></app-status-progress-item>
+    <app-status-progress-item class="progress__item" [statusNumber]="5" [currentStatus]="getCurrentStatus(pageViewModel.order?.status)"></app-status-progress-item>
+  </div>
+  <div class="information_view">
+
+    <div class="order_information">
+
+      <!-- id -->
+      <div class="order_information__item">
+        <label class="infor_label">Mã: </label>
+        <div class="infor_text">{{ pageViewModel.order?.id }}</div>
+      </div>
+
+      <!-- user -->
+      <div class="order_information__item">
+        <label class="infor_label">Người đặt</label>
+        <div class="infor_text">{{ pageViewModel.order?.users?.fullname }}</div>
+      </div>
+
+      <!-- gmail -->
+      <div class="order_information__item">
+        <label class="infor_label">Gmail</label>
+        <div class="infor_text">{{ pageViewModel.order?.users?.email }}</div>
+      </div>
+
+      <!-- phone -->
+      <div class="order_information__item">
+        <label class="infor_label">Số điện thoại</label>
+        <div class="infor_text">{{ pageViewModel.order?.users?.phone }}</div>
+      </div>
+
+      <!-- status -->
+      <div class="order_information__item">
+        <label class="infor_label">Trạng thái: </label>
+        <div class="infor_text">{{ pageViewModel.order?.status }}</div>
+      </div>
+
+      <!-- address From -->
+      <div class="order_information__item">
+        <label class="infor_label">Địa chỉ gửi: </label>
+        <div class="infor_text">{{ pageViewModel.order?.addrressFrom }}</div>
+      </div>
+
+      <!-- address To -->
+      <div class="order_information__item">
+        <label class="infor_label">Địa chỉ đến</label>
+        <div class="infor_text">{{ pageViewModel.order?.addressTo }}</div>
+      </div>
+
+    </div>
+    <div class="receipt_information">
+
+      <!-- payment method -->
+      <div class="order_information__item">
+        <label class="infor_label">Phương thức thanh toán</label>
+        <div class="infor_text">{{ pageViewModel.order?.receipts?.payments?.customerPayments?.paymentMethods?.name }}</div>
+      </div>
+
+      <!-- total price -->
+      <div class="order_information__item">
+        <label class="infor_label">Tổng tiền</label>
+        <div class="infor_text">{{ pageViewModel.order?.receipts?.totalPrice }}đ</div>
+      </div>
+
+      <div class="product-list">
+        <div class="item" *ngFor="let receiptDetail of pageViewModel.order?.receipts?.receiptDetails">
+          <app-product-view [receiptDetail]="receiptDetail"></app-product-view>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

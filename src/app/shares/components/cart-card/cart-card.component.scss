@@ -8,6 +8,11 @@
   position: relative;
   transition: height 0.5s ease-in-out, opacity 0.1s linear 0.1s;
   width: 100%;
+  background: #fff;
+  border-bottom: 0;
+  padding: 16px 24px;
+  box-shadow: 0px 0px 25px 10px #f5f5fc;
+  position: relative;
 
   .cart-image {
     display: inline-block;
@@ -36,10 +41,14 @@
 
     .title-product {
       overflow-wrap: break-word;
+      color: #151875;
+      font-weight: bold;
     }
 
     .price-product {
-      color: darkblue;
+      color: #151875;
+      font-weight: 500;
+      line-height: 24px;
     }
 
     .cart-product-details {
@@ -52,13 +61,17 @@
       li {
         display: flex;
         flex: 1 1 50%;
-
+        margin-bottom: 15px;
         .item-title {
-          flex: 1;
+          color: #151875;
+          font-weight: bold;
+          flex: 1 1 20%;
         }
 
         .value-text {
-          flex: 1 1 20%;
+          color: #151875;
+          font-weight: 500;
+          flex: 1;
           margin-left: 16px;
         }
       }
@@ -72,14 +85,83 @@
 
   .delete-icon-button-style {
     position: absolute;
-    display: block;
-    top: 0;
-    right: 0;
+    display: flex;
+    align-items: center;
+    top: 16px;
+    right: 24px;
     background-color: transparent;
     border: 0;
-    padding: 0;
-    min-width: 20px;
-    min-height: 20px;
+    padding: 0px;
+    width: 24px;
+    height: 24px;
+
+    i {
+      padding: 2px;
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  .delete-icon-button-style:hover {
+    border: 2px solid #fb2e86;
+    border-radius: 50%;
+    i {
+      color: #fb2e86;
+    }
+  }
+
+  // .delete-icon-button-style:active {
+  //   transform: scale(1.05);
+  // }
+}
+
+.text-line-through {
+  color: rgb(130, 129, 129);
+  text-decoration: line-through;
+  span {
+    text-decoration: none;
+    color: #151875;
+  }
+}
+
+.amount-product {
+  display: flex;
+  align-items: center;
+  color: #151875;
+  button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color .1s cubic-bezier(.4,0,.6,1);
+    border: 1px solid rgba(0,0,0,.09);
+    border-radius: 2px;
+    background: transparent;
+    width: 24px;
+    height: 24px;
+    i {
+      color: #151875;
+      padding: 2px;
+      width: 20px;
+      height: 20px;
+    }
+  }
+
+  input {
+    color: #151875;
+    width: 50px;
+    height: 24px;
+    border-left: 0;
+    border-right: 0;
+    font-size: 16px;
+    font-weight: 400;
+    box-sizing: border-box;
+    text-align: center;
+    cursor: text;
+    border-radius: 0;
+    -webkit-appearance: none;
+    transition: background-color .1s cubic-bezier(.4,0,.6,1);
+    border: 1px solid rgba(0,0,0,.09);
+    background: transparent;
   }
 }
 

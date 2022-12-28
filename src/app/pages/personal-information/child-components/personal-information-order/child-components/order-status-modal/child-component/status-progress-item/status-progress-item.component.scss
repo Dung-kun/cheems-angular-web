@@ -1,0 +1,97 @@
+:host {
+  display: flex;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: stretch;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  padding: 0px;
+  flex: 1;
+
+  .progress-line__begin {
+    height: 5px;
+    flex: 1;
+
+    &.pending {
+      background-color: rgb(197, 197, 51);
+    }
+
+    &.finish {
+      background-color: rgb(38, 213, 22);
+    }
+
+    &.not-yet {
+      background-color: rgb(196, 195, 195);
+    }
+
+    &.cancel {
+      background-color: rgb(196, 28, 28);
+    }
+  }
+
+  .progress-status {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .status-icon {
+      width: 90%;
+    }
+
+    .status-text {
+      position: absolute;
+      width: 100px;
+      top: 35px;
+      right: -50px;
+      font-size: 1rem;
+      line-height: 1rem;
+    }
+
+    &.pending {
+      background-color: rgb(197, 197, 51);
+    }
+
+    &.finish {
+      background-color: rgb(38, 213, 22);
+    }
+
+    &.not-yet {
+      background-color: rgb(196, 195, 195);
+    }
+
+    &.cancel {
+      background-color: rgb(196, 28, 28);
+    }
+  }
+
+  .progress-line__end {
+    height: 5px;
+    flex: 1;
+
+    &.pending {
+      background-color: rgb(197, 197, 51);
+    }
+
+    &.finish {
+      background-color: rgb(38, 213, 22);
+    }
+
+    &.not-yet {
+      background-color: rgb(196, 195, 195);
+    }
+
+    &.cancel {
+      background-color: rgb(196, 28, 28);
+    }
+  }
+}
+
+

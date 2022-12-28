@@ -1,9 +1,9 @@
 <div class="container">
   <div class="hot-top" *ngIf="pageViewModel$ | async as pageViewModel">
-    <div id="carouselsIndicators" class="carousel slide" data-bs-ride="carousels">
+    <div [id]="carouselsId" class="carousel slide" data-bs-ride="carousels">
       <div class="carousel-indicators" style="margin-bottom: -1rem;">
         <button type="button" *ngFor="let items of pageViewModel.itemShows; let idx = index;" [ngClass]="{'active': idx === 0 }"  class="button-bottom"
-          data-bs-target="#carouselsIndicators" [attr.data-bs-slide-to]="idx"
+        [attr.data-bs-target]="'#'+ carouselsId" [attr.data-bs-slide-to]="idx"
           aria-current="true"></button>
       </div>
       <div class="carousel-inner">

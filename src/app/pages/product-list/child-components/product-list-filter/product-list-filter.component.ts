@@ -1,4 +1,9 @@
-import { LabelType, Options } from '@angular-slider/ngx-slider';
+import {
+  ChangeContext,
+  LabelType,
+  Options,
+  PointerType,
+} from '@angular-slider/ngx-slider';
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { PageViewModelBasedComponent } from '../../../../shares/base/framework/page-view-model-based-component';
 import { ProductListFilterPageViewModel } from './models/product-list-filter-page-view.model';
@@ -23,12 +28,18 @@ export class ProductListFilterComponent
   extends PageViewModelBasedComponent<ProductListFilterPageViewModel>
   implements OnInit, AfterViewInit
 {
+  public styleMoney = new Intl.NumberFormat('vi-VN', {
+    style: 'currency',
+    currency: 'VND',
+  });
   // set up range slider
   minValue: number = 0;
-  maxValue: number = 200;
+  maxValue: number = 130000000;
+  minValueShow: string = '0';
+  maxValueShow: string = this.styleMoney.format(13000000);
   options: Options = {
     floor: 0,
-    ceil: 100,
+    ceil: 130000000,
     translate: (value: number, label: LabelType): string => {
       switch (label) {
         default:
@@ -154,8 +165,8 @@ export class ProductListFilterComponent
 
   initFormGroup(data: any, name: string, title: string): FormGroup {
     let arrayNotSelect: FormArray = this.fb.array(
-      data.map(
-        (item: any) => this.fb.group({
+      data.map((item: any) =>
+        this.fb.group({
           id: new FormControl(item?.id || null),
           name: new FormControl(item.name ? item.name : item),
           value: new FormControl(false),
@@ -186,12 +197,13 @@ export class ProductListFilterComponent
     let arrayNotSelectForm = this.getFormArrayNotSelect(indexP);
     let arraySelectedForm = this.getFormArraySelected(indexP);
 
-    let data = this.pageViewModel$.getValue().filter$.getValue()
-      .productTypeFilterInput as ProductTypeFilterInput;
+    let data = {
+      ...this.pageViewModel$.getValue().filter$.getValue()
+        .productTypeFilterInput,
+    };
 
     let key = formBodyValue.name;
     let metaData = data.metaDatas;
-
 
     if (selected) {
       let arrNotSelect = arrayNotSelectForm.value;
@@ -210,26 +222,24 @@ export class ProductListFilterComponent
       let arrSelected = arraySelectedForm.value;
       arrSelected.sort((a: any, b: any) => a.name.localeCompare(b.name));
       arraySelectedForm.patchValue(arrSelected);
-
-
     } else {
       let arrSelected = arraySelectedForm.value;
 
       if (!!formBodyValue.id)
-      (metaData[key as keyof typeof metaData] as string[]) = (metaData[key as keyof typeof metaData] as string[])?.filter(
-          (value) => value != arrSelected[indexC].id
-        );
+        (metaData[key as keyof typeof metaData] as string[]) = (
+          metaData[key as keyof typeof metaData] as string[]
+        )?.filter((value) => value != arrSelected[indexC].id);
       else
-      (metaData[key as keyof typeof metaData] as string[]) = (metaData[key as keyof typeof metaData] as string[])?.filter(
-          (value) => value != arrSelected[indexC].name
-        );
+        (metaData[key as keyof typeof metaData] as string[]) = (
+          metaData[key as keyof typeof metaData] as string[]
+        )?.filter((value) => value != arrSelected[indexC].name);
 
-        arrayNotSelectForm.push(arraySelectedForm.at(indexC));
-        arraySelectedForm.removeAt(indexC);
+      arrayNotSelectForm.push(arraySelectedForm.at(indexC));
+      arraySelectedForm.removeAt(indexC);
 
-        let arrNotSelect = arrayNotSelectForm.value;
-        arrNotSelect.sort((a: any, b: any) => a.name.localeCompare(b.name));
-        arrayNotSelectForm.patchValue(arrNotSelect);
+      let arrNotSelect = arrayNotSelectForm.value;
+      arrNotSelect.sort((a: any, b: any) => a.name.localeCompare(b.name));
+      arrayNotSelectForm.patchValue(arrNotSelect);
     }
 
     this.pageViewModel$.getValue().filter$.next({
@@ -243,5 +253,22 @@ export class ProductListFilterComponent
     if (query[index].classList.contains('dropdown-button-2')) {
       query[index].classList.remove('dropdown-button-2');
     } else query[index].classList.add('dropdown-button-2');
+  }
+
+  onUserChange(event: ChangeContext) {
+    console.log(event.value);
+    if (event.pointerType === PointerType.Max)
+      this.maxValueShow = this.styleMoney.format(event.highValue);
+    else if (event.pointerType == PointerType.Min)
+      this.minValueShow = this.styleMoney.format(event.value);
+  }
+
+  onUserChangeEnd(event: ChangeContext) {
+    let data = {
+      ...this.pageViewModel$.getValue().filter$.getValue()
+        .productTypeFilterInput,
+    };
+
+
   }
 }
