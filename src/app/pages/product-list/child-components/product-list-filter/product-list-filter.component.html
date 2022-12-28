@@ -25,8 +25,8 @@
               [formGroupName]="idx2">
               <div class="form-check">
                 <input class="form-check-input" style="margin-top: 0;" type="checkbox" formControlName="value"
-                  id="flexCheckIndeterminate" (change)="sortArr(i, idx2, false)">
-                <label class="form-check-label" style="color: #151875;" for="flexCheckIndeterminate">
+                  [id]="'2flexCheckIndeterminate'+idx2" (change)="sortArr(i, idx2, false)">
+                <label class="form-check-label" style="color: #151875;" [for]="'2flexCheckIndeterminate'+idx2">
                   {{ it2.get('name').value }}
                 </label>
               </div>
@@ -38,8 +38,8 @@
               [formGroupName]="idx">
               <div class="form-check">
                 <input class="form-check-input" style="margin-top: 0;" type="checkbox" formControlName="value"
-                  id="flexCheckIndeterminate" (change)="sortArr(i, idx, true)">
-                <label class="form-check-label" style="color: #151875;" for="flexCheckIndeterminate">
+                  [id]="'1flexCheckIndeterminate'+idx" (change)="sortArr(i, idx, true)">
+                <label class="form-check-label" style="color: #151875;" [for]="'1flexCheckIndeterminate'+idx">
                   {{ it.get('name').value }}
                 </label>
               </div>
