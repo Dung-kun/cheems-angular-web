@@ -234,7 +234,6 @@ export class CheckoutComponent
             addressTo: data.userInfo.address,
             cartItemsIds: data.cartItemsIds,
             customerPaymentId: value.idPayment,
-            hashed: 'test',
           },
         };
 
@@ -245,7 +244,7 @@ export class CheckoutComponent
     const orderCreate = createCusPayment$.subscribe((value) => {
       this.notificationService.success('Thành công', 'Bạn đã mua thành công sản phẩm', 4000);
       setTimeout(() => {
-        this.router.navigate(['/shopping-cart']);
+        this.router.navigate(['/personal-information/order', data.userInfo.id]);
       }, 1000);
     })
 
