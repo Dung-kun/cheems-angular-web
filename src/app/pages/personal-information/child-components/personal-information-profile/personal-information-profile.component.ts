@@ -30,7 +30,7 @@ export class PersonalInformationProfileComponent extends FormViewComponent<Perso
   ) {
     super(_formBuilder);
 
-
+    this.appForm = this.appCreateFormGroup(this.prepareFormBodyControls());
   }
 
   ngOnInit(): void {
@@ -71,7 +71,7 @@ export class PersonalInformationProfileComponent extends FormViewComponent<Perso
   }
 
   prepareFormBodyControls(results?: any): FormGroup {
-    const bodyControl = this.scaffoldFormControl(results.currentUser);
+    const bodyControl = this.scaffoldFormControl(results?.currentUser);
     const bodyFormGroup = this._formBuilder.group(bodyControl);
 
     return bodyFormGroup;
@@ -79,12 +79,12 @@ export class PersonalInformationProfileComponent extends FormViewComponent<Perso
 
   scaffoldFormControl(anyResult?: User): BasicFormViewFormControls {
     const bodyControl: PersonalInformationProfileFormControl = {
-      id: this._formBuilder.control(anyResult.id, []),
-      fullname: this._formBuilder.control(anyResult.fullname, []),
-      email: this._formBuilder.control(anyResult.email, []),
-      phone: this._formBuilder.control(anyResult.phone, []),
-      dob: this._formBuilder.control(anyResult.dob, []),
-      medias: this._formBuilder.control(anyResult.medias, []),
+      id: this._formBuilder.control(anyResult?.id),
+      fullname: this._formBuilder.control(anyResult?.fullname),
+      email: this._formBuilder.control(anyResult?.email),
+      phone: this._formBuilder.control(anyResult?.phone),
+      dob: this._formBuilder.control(anyResult?.dob),
+      medias: this._formBuilder.control(anyResult?.medias),
     };
 
     return bodyControl;

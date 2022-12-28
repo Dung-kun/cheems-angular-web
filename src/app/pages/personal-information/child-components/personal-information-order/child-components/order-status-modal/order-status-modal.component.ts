@@ -24,7 +24,7 @@ export class OrderStatusModalComponent extends PageViewModelBasedComponent<Order
         const viewData = _viewData[0] as OrderStatusModalViewData;
         this.pageViewModel$.next({
           ...this.pageViewModel$.getValue(),
-          orderStatus: viewData.orderStatus
+          order: viewData.order
         })
 
         console.log(viewData)
@@ -34,6 +34,38 @@ export class OrderStatusModalComponent extends PageViewModelBasedComponent<Order
     const OnInit = OnInit$.subscribe((val) => {
 
     })
+  }
+
+  getCurrentStatus(status: string) {
+    switch (status) {
+      case "accept":
+        return 1;
+      break;
+
+      case "packaging":
+        return 2;
+      break;
+
+      case "shipping":
+        return 3;
+      break;
+
+      case "receive":
+        return 4;
+      break;
+
+      case "done":
+        return 5;
+      break;
+
+      case "cancel":
+        return 6;
+      break;
+
+      default:
+        return 0;
+        break;
+    }
   }
 
   closeModal() {

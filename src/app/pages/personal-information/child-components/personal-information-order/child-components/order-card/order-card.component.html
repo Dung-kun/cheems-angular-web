@@ -6,25 +6,25 @@
     <div class="main">
       <div class="info">
         <label>Mã đơn: </label>
-        <div class="text">Mã đơn hàng</div>
+        <div class="text">{{ this.order?.id }}</div>
       </div>
       <div class="info">
         <label>Trạng thái: </label>
-        <div class="text">trạng thái đơn</div>
+        <div class="text">{{ this.order?.status }}</div>
       </div>
       <div class="info">
         <label>Ngày mua: </label>
-        <div class="text">ngày mua hàng</div>
+        <div class="text">{{ this.order?.createdAt }}</div>
       </div>
     </div>
     <div class="sub">
       <div class="info">
         <label>Số lượng: </label>
-        <div class="text">số sản phẩm mua</div>
+        <div class="text">{{ this.order?.receipts?.receiptDetails?.length }}</div>
       </div>
       <div class="info">
         <label>Tổng tiền: </label>
-        <div class="text">tổng tiền đơn</div>
+        <div class="text">{{ this.order?.receipts?.totalPrice }}</div>
       </div>
     </div>
   </div>

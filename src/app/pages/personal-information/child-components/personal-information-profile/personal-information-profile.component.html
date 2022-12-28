@@ -1,9 +1,8 @@
-<form [formGroup]="this.appForm"
-  (ngSubmit)="ngxOnSubmit()">
-  <ng-container *ngIf="pageViewModel$ | async as pageViewModel">
-    <div class="container">
+<ng-container *ngIf="pageViewModel$ | async as pageViewModel">
+    <form [formGroup]="appForm" (ngSubmit)="ngxOnSubmit()">
+    <div class="container" formGroupName="formBody">
       <div class="profile-edit">
-        <div class="form-group" formGroupName="formBody">
+        <div class="form-group">
 
           <!-- Full name -->
           <div class="row mb-3 mt-3 input-wrapper">
@@ -31,7 +30,7 @@
               <label class="form-label">Số điện thoại</label>
             </div>
             <div class="col-lg-8">
-              <input type="text" class="form-control input-style" placeholder="Phone"/>
+              <input type="text" class="form-control input-style" placeholder="Phone" formControlName="phone"/>
             </div>
           </div>
 
@@ -77,5 +76,5 @@
         </div>
       </div>
     </div>
-  </ng-container>
-</form>
+  </form>
+</ng-container>
