@@ -7,6 +7,10 @@
   }
 }
 
+* {
+  box-sizing: border-box;
+}
+
 .sidebar-container {
   position: sticky;
   position: -webkit-sticky;
@@ -113,13 +117,19 @@ form {
         font-size: 16px;
         font-weight: 400;
         text-transform: none;
-        border: 1px solid;
+        border: 1px solid #d0d0d0;
         border-radius: 10px;
-        border-color: #d0d0d0;
-        box-sizing: border-box;
         height: 48px;
         padding: 8px;
         width: 100%;
+      }
+
+      .input-style.is-valid{
+        border-color: #198754;
+      }
+
+      .input-style.is-invalid{
+        border-color: #dc3545;;
       }
     }
 
@@ -139,6 +149,7 @@ form {
       }
 
       .date-input-style:focus {
+        border: 0;
         outline: none;
       }
     }

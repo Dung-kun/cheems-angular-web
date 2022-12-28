@@ -1,11 +1,14 @@
-import { PageViewModel } from '../../../shares/base/models/page-view.model';
-import { ProductType } from '../../../data/models/product-type.model';
 import { PaginationPageViewModel } from '../../../shares/base/models/pagination-page-view.model';
+import { CartItem } from '../../../data/models/cart-item.model';
+import { PageInfo } from '../../../data/models/page-info.model';
+import { FormArray } from '@angular/forms';
 
 
 export class ShoppingCartPageViewModel extends PaginationPageViewModel {
   constructor(
-    public productTypes: ProductType[] = []
+    public checkAmountChanged: boolean[] = [],
+    public cartItems: CartItem[] = [],
+    public cartId: string  =""
   ) {
     super();
   }

@@ -9,7 +9,7 @@
       </div>
     </div>
   </div>
-  <div class="container m-common">
+  <div class="container m-common" *ngIf="pageViewModel$ | async as pageViewModel">
     <main class="main-content">
       <div class="fade-in-out">
         <div class="overview-sections">
@@ -20,13 +20,13 @@
             <div class="w-100">
               <div class="collapse-animation" role="region"
                 style="display: block; height: auto; opacity: 1; overflow: hidden;">
-                <div class="fade-in-out">
-                  <form class="" novalidate>
+                <div class="fadeIn">
+                  <form [formGroup]="this.appForm">
                     <div class="mb-15">
                       <p class="body-text"><span>Email</span></p>
-                      <p class="body-text" style="margin: 0px;">uchihadungkitty@gmail.com</p>
+                      <p class="body-text" style="margin: 0px;">{{ pageViewModel.userInfo?.email }}</p>
                     </div>
-                    <div class="form-input">
+                    <div class="form-input" formGroupName="formBody">
                       <div class="mb-15">
                         <div class="label-wrapper">
                           <label class="label-style" for="firstName">
@@ -34,16 +34,14 @@
                         </div>
                         <div class="p-relative">
                           <div class="input-wrapper">
-                            <input class="input-style" required type="text" id="firstName" name="firstName">
-                            <span class="validation-icon icon icon-valid" title="Field is valid"
-                              style="height: 48px;"></span>
+                            <input class="form-control input-style" required type="text" id="firstName" name="firstName"
+                              formControlName="fullname"
+                              [ngClass]="!validation.isFullnameInvalid ? 'is-valid':'is-invalid'">
+                            <div class="invalid-feedback"
+                              [style.display]="validation.isFullnameInvalid ? 'block': 'none'">
+                              <span *ngIf="validation.isFullname?.errors?.['required']">Vui lòng nhập tên của bạn</span>
+                            </div>
                           </div>
-                          <svg class="icon-style" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
-                            xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false">
-                            <path
-                              d="M5.938 12.979L5.92 13l-.002-.001V13l-.02-.018L2 9.762 2.653 9l3.19 2.635L13.263 4l.737.684-8.062 8.295z">
-                            </path>
-                          </svg>
                         </div>
 
                       </div>
@@ -54,22 +52,31 @@
                         </div>
 
                         <div class="p-relative">
-                          <div class="input-wrapper date-input-wrapper">
-                            <input aria-label="MM" required name="month" type="number" pattern="\d*"
-                              class="input-style date-input-style" placeholder="DD" id="dateOfBirth" maxlength="2">
+                          <div class="input-wrapper date-input-wrapper" [style.border-color]="validation.isTimeInvalid ? '#dc3545' : '#198754'">
+                            <input aria-label="MM" required name="month" type="number"
+                              onKeyPress="if(this.value.length==2) return false;" formControlName="day"
+                              class="input-style form-control date-input-style is-valid" placeholder="DD"
+                              id="dateOfBirth" [ngClass]="!validation.isDayInvalid ? 'is-valid':'is-invalid'">
                             <span>/</span>
-                            <input aria-label="DD" required name="day" type="number" pattern="\d*"
-                              class="input-style date-input-style" placeholder="MM" maxlength="2">
+                            <input aria-label="DD" required name="day" type="number"
+                              onKeyPress="if(this.value.length==2) return false;" formControlName="month"
+                              class="input-style  form-control date-input-style" placeholder="MM"
+                              [ngClass]="!validation.isMonthInvalid ? 'is-valid':'is-invalid'">
                             <span>/</span>
-                            <input aria-label="YYYY" required name="year" type="number" pattern="\d*"
-                              class="input-style date-input-style" placeholder="YYYY" maxlength="4">
+                            <input aria-label="YYYY" required name="year" type="number"
+                              onKeyPress="if(this.value.length==4) return false;" formControlName="year"
+                              class="input-style  form-control date-input-style" placeholder="YYYY"
+                              [ngClass]="!validation.isYearInvalid ? 'is-valid':'is-invalid'">
                           </div>
-                          <svg class="icon-style" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
-                            xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false">
-                            <path
-                              d="M5.938 12.979L5.92 13l-.002-.001V13l-.02-.018L2 9.762 2.653 9l3.19 2.635L13.263 4l.737.684-8.062 8.295z">
-                            </path>
-                          </svg>
+                          <div class="invalid-feedback" [style.display]="validation.isTimeInvalid ? 'block': 'none'">
+                            <span
+                              *ngIf="validation.isDay?.errors?.['required'] || validation.isMonth?.errors?.['required'] || validation.isYear?.errors?.['required'], else noRequired">Vui
+                              lòng nhập đủ ngày, tháng, năm sinh</span>
+
+                            <ng-template #noRequired>
+                              <span>Vui lòng nhập đúng định dạng ngày, tháng, năm (Người dùng lớn hơn 15 tuổi)</span>
+                            </ng-template>
+                          </div>
                         </div>
                       </div>
                       <div class="mb-15">
@@ -79,17 +86,14 @@
                         </div>
                         <div class="p-relative">
                           <div class="input-wrapper">
-                            <textarea class="input-style" style="height: 144px;" required rows="3" cols="3" id="address"
-                              name="address"></textarea>
-                            <span class="validation-icon icon icon-valid" title="Field is valid"
-                              style="height: 48px;"></span>
+                            <textarea class="input-style form-control" style="height: 144px;" required rows="3" cols="3" id="address"
+                              formControlName="address" name="address"
+                              [ngClass]="!validation.isAddressInvalid ? 'is-valid':'is-invalid'">
+                            </textarea>
+                            <div class="invalid-feedback" [style.display]="validation.isAddressInvalid ? 'block': 'none'">
+                              <span *ngIf="validation.isAddress?.errors?.['required']">Vui lòng nhập địa chỉ của bạn</span>
+                            </div>
                           </div>
-                          <svg class="icon-style" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
-                            xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false">
-                            <path
-                              d="M5.938 12.979L5.92 13l-.002-.001V13l-.02-.018L2 9.762 2.653 9l3.19 2.635L13.263 4l.737.684-8.062 8.295z">
-                            </path>
-                          </svg>
                         </div>
 
                       </div>
@@ -100,16 +104,13 @@
                         </div>
                         <div class="p-relative">
                           <div class="input-wrapper">
-                            <input class="input-style" required type="text" id="sdt" name="sdt">
-                            <span class="validation-icon icon icon-valid" title="Field is valid"
-                              style="height: 48px;"></span>
+                            <input class="input-style form-control" required type="text" id="sdt" name="sdt" formControlName="phone"
+                            [ngClass]="!validation.isPhoneInvalid ? 'is-valid':'is-invalid'">
+                            <div class="invalid-feedback"
+                              [style.display]="validation.isPhoneInvalid ? 'block': 'none'">
+                              <span *ngIf="validation.isPhone?.errors?.['required']">Vui lòng nhập số điện thoại của bạn</span>
+                            </div>
                           </div>
-                          <svg class="icon-style" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
-                            xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false">
-                            <path
-                              d="M5.938 12.979L5.92 13l-.002-.001V13l-.02-.018L2 9.762 2.653 9l3.19 2.635L13.263 4l.737.684-8.062 8.295z">
-                            </path>
-                          </svg>
                         </div>
 
                       </div>
@@ -147,8 +148,7 @@
                             focusable="false">
                             <path
                               d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2zm0 1a9 9 0 100 18 9 9 0 000-18zm0 2a7 7 0 110 14 7 7 0 010-14z"
-                              fill="#fb2e86"
-                              >
+                              fill="#fb2e86">
                             </path>
                           </svg>
                         </ng-container>
@@ -184,13 +184,13 @@
                             focusable="false">
                             <path
                               d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2zm0 1a9 9 0 100 18 9 9 0 000-18zm0 2a7 7 0 110 14 7 7 0 010-14z"
-                              fill="#fb2e86"
-                              >
+                              fill="#fb2e86">
                             </path>
                           </svg>
                         </ng-container>
                         <span class="font-style-14" style="margin-left: 16px; flex-shrink: 1;">
-                          <div class="font-style-16 color-2" style="font-weight: bold; margin-bottom: 5px;">Thẻ ngân hàng + {{a}}</div>
+                          <div class="font-style-16 color-2" style="font-weight: bold; margin-bottom: 5px;">Thẻ ngân
+                            hàng + {{a}}</div>
                         </span>
                       </span>
                     </button>
@@ -302,8 +302,7 @@
         <div class="p-relative">
           <div class="input-wrapper">
             <input class="input-style" required type="text" id="firstName" name="firstName">
-            <span class="validation-icon icon icon-valid" title="Field is valid"
-              style="height: 48px;"></span>
+            <span class="validation-icon icon icon-valid" title="Field is valid" style="height: 48px;"></span>
           </div>
           <svg class="icon-style" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
             xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false">
@@ -323,8 +322,7 @@
         <div class="p-relative">
           <div class="input-wrapper">
             <input class="input-style" required type="text" id="firstName" name="firstName">
-            <span class="validation-icon icon icon-valid" title="Field is valid"
-              style="height: 48px;"></span>
+            <span class="validation-icon icon icon-valid" title="Field is valid" style="height: 48px;"></span>
           </div>
           <svg class="icon-style" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
             xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false">
@@ -344,8 +342,7 @@
           <div class="p-relative">
             <div class="input-wrapper">
               <input class="input-style" required type="text" id="sdt" name="sdt">
-              <span class="validation-icon icon icon-valid" title="Field is valid"
-                style="height: 48px;"></span>
+              <span class="validation-icon icon icon-valid" title="Field is valid" style="height: 48px;"></span>
             </div>
             <svg class="icon-style" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
               xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false">
@@ -363,8 +360,7 @@
           <div class="p-relative">
             <div class="input-wrapper">
               <input class="input-style" required type="text" id="sdt" name="sdt">
-              <span class="validation-icon icon icon-valid" title="Field is valid"
-                style="height: 48px;"></span>
+              <span class="validation-icon icon icon-valid" title="Field is valid" style="height: 48px;"></span>
             </div>
             <svg class="icon-style" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"
               xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false">

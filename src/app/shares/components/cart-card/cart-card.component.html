@@ -1,25 +1,59 @@
 <article class="cart-card">
   <a routeLink="" class="cart-image">
     <div class="image-wrapper">
-      <img class="image-style" alt="..."
-        src="https://lp2.hm.com/hmgoepprod?set=source[/ec/9a/ec9a6f31f81b5d3a4f2dd4222711a0c9d0072c81.jpg],origin[dam],category[],type[DESCRIPTIVESTILLLIFE],res[q],hmver[2]&amp;call=url[file:/product/miniature]">
+      <img class="image-style" alt="..." [src]="cartItem?.productTypes[0]?.medias[0].filePath">
     </div>
   </a>
   <div class="cart-details">
-    <h2 class="title-product">Vintage Straight High Jeans</h2>
-    <span class="price-product"> $29.99</span>
+    <h5 class="title-product">{{ cartItem?.productTypes[0]?.name }}</h5>
+    <div>
+      <span class="price-product">
+        <span style="font-weight: bold;">
+          Giá:
+        </span>
+        <span [ngClass]="cartItem?.productTypes[0]?.discountPercentage? 'text-line-through': ''"> {{
+          cartItem?.productTypes[0]?.price | currencyFormat }}
+        </span>
+        <span [ngClass]="cartItem?.productTypes[0]?.discountPercentage? '': 'd-none'"> {{
+          cartItem?.productTypes[0]?.price*(1 - cartItem?.productTypes[0]?.discountPercentage) | currencyFormat }}
+        </span>
+      </span>
+
+    </div>
     <ul class="cart-product-details">
       <li>
         <span class="item-title">
-          <span>Art.no.</span></span>
-        <span class="value-text">1026091032</span>
+          <span>Thương hiệu:</span>
+        </span>
+        <span class="value-text">{{ cartItem?.productTypes[0]?.metaDatas.manufacturers[0].name }}</span>
       </li>
-      <li><span class="item-title"><span>Color:</span></span><span class="value-text">Dark
-          gray</span></li>
-      <li><span class="item-title"><span>Size:</span></span><span class="value-text">2</span>
+      <li>
+        <span class="item-title">
+          <span>Màu sắc:</span>
+        </span>
+        <span class="value-text">{{ cartItem?.productTypes[0]?.metaDatas.color }}</span>
       </li>
-      <li><span class="item-title"><span>Total:</span></span><span class="value-text">$
-          29.99</span></li>
+      <li style="flex: 1 1 100%;">
+        <span class="item-title">
+          <span>Số lượng:</span></span><span class="value-text">
+            <div class="amount-product">
+              <button type="button" (click)="changeAmount(-1)">
+                <i class="ai-minus"></i>
+              </button>
+              <input type="text" [value]="cartItem?.amount" readonly>
+              <button type="button" (click)="changeAmount(1)">
+                <i class="ai-plus"></i>
+              </button>
+            </div>
+            <!-- {{ cartItem?.amount }} -->
+          </span>
+      </li>
+      <li style="flex: 1 1 100%;">
+        <span class="item-title">
+          <span>Tổng tiền:</span>
+        </span>
+        <span class="value-text">{{ cartItem?.productTypes[0]?.price*cartItem?.amount | currencyFormat }}</span>
+      </li>
     </ul>
   </div>
   <div class="cart-action">
@@ -55,14 +89,7 @@
       </div>
     </div> -->
   </div>
-  <button
-    class="delete-icon-button-style"
-    type="button">
-    <svg class="IconWrapper-module--icon__e4eqD IconWrapper-module--small__k8lhm" viewBox="0 0 14 16"
-      xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" focusable="false">
-      <path fill-rule="evenodd"
-        d="M14 4v1h-1v10.455c0 .3-.224.545-.5.545h-11c-.276 0-.5-.244-.5-.545V5H0V4h14zm-2 1v10H2V5h10zM9.5 0a.5.5 0 01.5.5V2h4v1H0V2h4V.5a.5.5 0 01.5-.5h5zM9 1H5v1h4V1zM5 8h1v4H5V8zm3 0h1v4H8V8z">
-      </path>
-    </svg>
+  <button class="delete-icon-button-style" type="button">
+    <i class="ai-trash-can"></i>
   </button>
 </article>

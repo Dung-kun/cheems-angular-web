@@ -17,15 +17,16 @@ query($input: ProductTypesFilterInput) {
     items {
       id
       name
+      description
+      warrantyPeriod
+      totalAmount
+      price
       medias {
           id
           filePath
           fileType
           fileSize
       }
-      description
-      warrantyPeriod
-      price
       categories {
         id
         name

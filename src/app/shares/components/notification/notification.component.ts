@@ -22,7 +22,7 @@ export class NotificationComponent implements OnInit {
 
   private _addNotification(notification: NotificationModel) {
     this.notifications.push(notification);
-    console.log('ditmemay');
+
     if (notification.timeout !== 0) {
       setTimeout(() => this.close(notification), notification.timeout);
 

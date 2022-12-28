@@ -15,7 +15,7 @@ export interface IPaginatedComponent<TPageViewModel extends PaginationPageViewMo
 @Component({template:''})
 export abstract class PaginationPageViewModelComponent<TPageViewModel extends PaginationPageViewModel> extends PageViewModelBasedComponent<TPageViewModel> implements IPaginatedComponent<TPageViewModel>, OnDestroy {
 
-  PAGE_SIZE: number = 5;
+  PAGE_SIZE: number = 12;
   CURRENT_PAGE: number = 1;
   COUNT: number = 0
 

@@ -70,7 +70,11 @@ export class ProductDetailsComponent
     );
 
     const onInit = onInit$.subscribe((value) => {
+
+
       const result = value as ProductDetailsResult;
+
+
       this.pageViewModel$.next({
         ...this.pageViewModel$.getValue(),
         ...{

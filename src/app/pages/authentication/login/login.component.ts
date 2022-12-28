@@ -77,7 +77,7 @@ export class LoginComponent
     const pipe$ = appQueryImpl$.pipe();
     const appQueryImpl = pipe$.subscribe({
       next: (value) => {
-        this.auth.saveUserData(null, value.accessToken);
+        this.auth.saveUserData(null, value?.accessToken, value?.refreshToken);
         this.notificationService.success(
           'Thành công',
           'Bạn đã đăng nhập thành công'
@@ -129,8 +129,10 @@ export class LoginComponent
       map((result) => {
         const item = (<any>result).data;
         const accessToken = item ? (<any>item).login.accessToken : null;
+        const refreshToken = item ? (<any>item).login.refreshToken : null;
         return {
           accessToken,
+          refreshToken
         };
       })
     );

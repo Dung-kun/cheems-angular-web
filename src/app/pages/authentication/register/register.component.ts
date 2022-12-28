@@ -51,7 +51,6 @@ export class RegisterComponent
       this.appForm = this.appCreateFormGroup(this.prepareFormBodyControls());
     });
 
-    console.log(this.formBody());
 
     this.subscriptions$.push(onInit);
 
@@ -87,7 +86,7 @@ export class RegisterComponent
 
   ngxOnSubmit() {
     const rawValue = this.formBody().getRawValue();
-    console.log(rawValue);
+
     const vars = {
       input: {
         email: rawValue.email,
@@ -109,7 +108,7 @@ export class RegisterComponent
         setTimeout(() => this.router.navigate(['/login']), 2000);
       },
       error: (error: any) => {
-        console.log(error);
+
         this.notificationService.error(
           'Thất bại!',
           'Lỗi Server, vui lòng thử lại!',

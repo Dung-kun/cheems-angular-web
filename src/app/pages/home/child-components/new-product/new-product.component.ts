@@ -48,7 +48,7 @@ export class NewProductComponent extends PageViewModelBasedComponent<NewProductV
   appOnInit() {
     let MUS_VAR = {
       input : {
-        tags: ['new-product']
+        tags: ['new']
       },
       skip: 0,
       take: 12

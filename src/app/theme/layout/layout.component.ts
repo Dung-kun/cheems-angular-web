@@ -12,6 +12,6 @@ export class LayoutComponent implements OnInit {
   }
 
   check(event: any) {
-    console.log('v', event);
+
   }
 }

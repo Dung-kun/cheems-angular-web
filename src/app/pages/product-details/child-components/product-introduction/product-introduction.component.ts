@@ -74,11 +74,14 @@ export class ProductIntroductionComponent
   onAddItemToCart() {
     const checkLogin$ = this.auth.isAuthenticated.pipe(
       switchMap((value) => {
-        if (!value) return of();
+        if (!value) return of(null);
         else {
           const MUS_VAR = {
-            input: this.auth.getUserId,
+            input: {
+              usersIds:  [this.auth.getUserId],
+            }
           };
+
           return this.appQueryCardId(MUS_VAR);
         }
       })
@@ -86,16 +89,17 @@ export class ProductIntroductionComponent
 
     const pipe$ = checkLogin$.pipe(
       switchMap((value) => {
-        if (!!!value) return of();
+        if (!!!value) return of(null);
         else {
           const MUS_VAR = {
             input: {
               amount: 1,
               cartsId: value.cartId,
-              productTypesId: this.pdTypeItem$.getValue().id,
+              productTypesId: this.pageViewModel$.getValue().productType.id,
             },
           };
 
+          console.log(MUS_VAR);
           return this.appMutationCardItem(MUS_VAR);
         }
       })
@@ -155,7 +159,7 @@ export class ProductIntroductionComponent
       map((result) => {
         const item = (<any>result).data;
 
-        let _item = item ? (<any>item).cartItems : (null as CartItem);
+        let _item = item ? (<any>item).addCartItem.cartItems : (null as CartItem);
         return {
           item: _item,
         };
