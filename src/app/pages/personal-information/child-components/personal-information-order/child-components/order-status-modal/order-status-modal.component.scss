@@ -112,6 +112,8 @@
         margin: 5px 0px;
         padding-left: 20px;
         flex-direction: column;
+        overflow-x:hidden !important;
+        overflow-y:auto !important;
       }
     }
   }

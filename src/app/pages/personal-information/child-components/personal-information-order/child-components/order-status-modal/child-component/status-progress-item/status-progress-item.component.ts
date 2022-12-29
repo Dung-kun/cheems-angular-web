@@ -17,12 +17,17 @@ export class StatusProgressItemComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    if(this.currentStatus == this.statusNumber) {
+    if(this.currentStatus == 6) {
+      this.statusString = "cancel";
+      this.setStatus(6,  "cancel");
+      this.statusIcon = "ic_pending.svg"
+    }
+    else if(this.currentStatus == this.statusNumber && this.currentStatus != 5) {
       this.statusString = "pending";
       this.setStatus(this.statusNumber,  "pending");
       this.statusIcon = "ic_pending.svg"
     }
-    else if(this.currentStatus > this.statusNumber) {
+    else if(this.currentStatus > this.statusNumber || this.currentStatus == 5) {
       this.statusString = "finish";
       this.setStatus(this.statusNumber,  "finish");
       this.statusIcon = "ic_tick.svg"
@@ -62,8 +67,6 @@ export class StatusProgressItemComponent implements OnInit {
 
       case 5:
         this.label = "Hoàn Thành"
-        this.statusString = "finish";
-        this.statusIcon = "ic_tick.svg"
       break;
 
       case 6:

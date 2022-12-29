@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { OrderStatusModalComponent } from './order-status-modal.component';
 import { StatusProgressItemModule } from './child-component/status-progress-item/status-progress-item.module';
 import { ProductViewModule } from './child-component/product-view/product-view.module';
+import { CurrencyShowModule } from '@app/shares/base/pipes/currency-show/currency-show.module';
 
 
 
@@ -13,7 +14,8 @@ import { ProductViewModule } from './child-component/product-view/product-view.m
   imports: [
     CommonModule,
     StatusProgressItemModule,
-    ProductViewModule
+    ProductViewModule,
+    CurrencyShowModule
   ],
   exports: [OrderStatusModalComponent]
 })

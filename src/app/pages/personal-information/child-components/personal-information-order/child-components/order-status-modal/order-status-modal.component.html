@@ -42,12 +42,6 @@
         <div class="infor_text">{{ pageViewModel.order?.status }}</div>
       </div>
 
-      <!-- address From -->
-      <div class="order_information__item">
-        <label class="infor_label">Địa chỉ gửi: </label>
-        <div class="infor_text">{{ pageViewModel.order?.addrressFrom }}</div>
-      </div>
-
       <!-- address To -->
       <div class="order_information__item">
         <label class="infor_label">Địa chỉ đến</label>
@@ -66,7 +60,7 @@
       <!-- total price -->
       <div class="order_information__item">
         <label class="infor_label">Tổng tiền</label>
-        <div class="infor_text">{{ pageViewModel.order?.receipts?.totalPrice }}đ</div>
+        <div class="infor_text">{{ pageViewModel.order?.receipts?.totalPrice | currencyFormat}}</div>
       </div>
 
       <div class="product-list">

@@ -1,4 +1,4 @@
-<div class="container m-common" *ngIf="pageViewModel$ |async as pageViewModel">
+<div class="container" style="margin-bottom: 30px;" *ngIf="pageViewModel$ |async as pageViewModel">
   <ng-container *ngIf="pageViewModel.newProductTypes.length > 0">
     <app-ow-carousel-card [carouselsId]="carouselId" [items]="{ productTypes: pageViewModel.newProductTypes }"></app-ow-carousel-card>
   </ng-container>
