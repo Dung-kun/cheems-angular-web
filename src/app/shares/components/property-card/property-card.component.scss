@@ -92,13 +92,14 @@
     position: relative;
     .icon-top {
       display: flex;
-      color:#f9fafc;
       margin: 10px;
       top: 0;
       right: 0;
       position:absolute;
       z-index: 100;
       .circle {
+        border: none;
+        color:#f9fafc;
         padding: 5px 5px 3px 5px;
         border-radius: 50%;
         background-color: #2F1AC4;

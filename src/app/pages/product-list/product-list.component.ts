@@ -53,7 +53,6 @@ export class ProductListComponent extends PageViewModelBasedComponent<ProductLis
     const onFilter$ = combineLatest([this.filterProductModel$]).pipe(
       debounceTime(500),
       map(([value]) => {
-        console.log(value);
         const _value = value as FilterProductModel;
         return _value.productTypeFilterInput;
       })

@@ -56,8 +56,17 @@ export class ShoppingCartComponent
   }
 
   ngOnInit(): void {
-    const onInit$ = combineLatest([this.appRouteParams()]).pipe(
+    const onInit$ = combineLatest([this.appQueryParams()]).pipe(
       switchMap(([value]) => {
+        const cartItemId = value['cartItemId'] || null;
+
+        if(!!cartItemId) {
+          this.pageViewModel$.next({
+            ...this.pageViewModel$.getValue(),
+            cartItemId
+          });
+        }
+
         const MUS_VAR = {
           input: {
             usersIds: [this.auth.getUserId],
@@ -72,10 +81,12 @@ export class ShoppingCartComponent
     const onInit = pipe$.subscribe((value) => {
       const cartItems = value.cartItems as CartItem[];
       const cartId = value.cartId;
+      const cartItemId = this.pageViewModel$.getValue().cartItemId;
 
       let formArray = this.fb.array([]);
       for (let i = 0; i < cartItems.length; i++) {
-        formArray.push(this.fb.control(true));
+        if(!!cartItemId && cartItemId == cartItems[i].id) formArray.push(this.fb.control(true));
+        else formArray.push(this.fb.control(false));
       }
       this.formArrayCheckBox = formArray;
 
@@ -239,7 +250,7 @@ export class ShoppingCartComponent
     return p$;
   }
 
-  appRouteParams() {
-    return this.route.params;
+  appQueryParams() {
+    return this.route.queryParams;
   }
 }

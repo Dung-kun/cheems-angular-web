@@ -62,13 +62,69 @@ export class ProductIntroductionComponent
   }
 
   onBuyNow() {
-    this.onAddItemToCart();
-    this.router.navigate(['/checkout'], {
-      queryParams: {
-        cardItems: [].push(this.pageViewModel$.getValue().cartItem),
-      },
-      queryParamsHandling: 'merge'
-    }).then(noop);
+    const checkLogin$ = this.auth.isAuthenticated.pipe(
+      switchMap((value) => {
+        if (!value) return of(null);
+        else {
+          const MUS_VAR = {
+            input: {
+              usersIds:  [this.auth.getUserId],
+            }
+          };
+
+          return this.appQueryCardId(MUS_VAR);
+        }
+      })
+    );
+
+    const pipe$ = checkLogin$.pipe(
+      switchMap((value) => {
+        if (!!!value) return of(null);
+        else {
+          const MUS_VAR = {
+            input: {
+              amount: 1,
+              cartsId: value.cartId,
+              productTypesId: this.pageViewModel$.getValue().productType.id,
+            },
+          };
+
+
+          return this.appMutationCardItem(MUS_VAR);
+        }
+      })
+    );
+
+    const checkAddItem = pipe$.subscribe((value) => {
+      if (!!value) {
+        this.pageViewModel$.next({
+          ...this.pageViewModel$.getValue(),
+          cartItem: value.item,
+        });
+
+        this.notificationService.success(
+          'Thành công',
+          'Bạn đã thêm thành công sản phẩm vào giỏ'
+        );
+
+        this.router
+        .navigate(['shopping-cart'], {
+          queryParams: {
+            cartItemId: value.item.id
+          },
+          queryParamsHandling: 'merge',
+        })
+        .then(noop);
+
+      } else {
+        this.notificationService.warning(
+          'Chú ý',
+          'Bạn cần phải đăng nhập trước'
+        );
+      }
+    });
+
+    this.subscriptions$.push(checkAddItem);
   }
 
   onAddItemToCart() {
@@ -99,7 +155,7 @@ export class ProductIntroductionComponent
             },
           };
 
-          console.log(MUS_VAR);
+
           return this.appMutationCardItem(MUS_VAR);
         }
       })

@@ -197,7 +197,7 @@ export class ProductListFilterComponent
     let formBodyValue = this.formBody.controls[indexP].value;
     let arrayNotSelectForm = this.getFormArrayNotSelect(indexP);
     let arraySelectedForm = this.getFormArraySelected(indexP);
-    console.log('formBody', formBodyValue);
+
     let data = {
       ...this.pageViewModel$.getValue().filter$.getValue()
         .productTypeFilterInput,
@@ -258,7 +258,6 @@ export class ProductListFilterComponent
   }
 
   onUserChange(event: ChangeContext) {
-    console.log(event.value);
     if (event.pointerType === PointerType.Max)
       this.maxValueShow = this.styleMoney.format(event.highValue);
     else if (event.pointerType == PointerType.Min)

@@ -38,8 +38,6 @@ export class HomeComponent extends ChildViewManagement implements OnInit {
       switchMap((value) => this.appOnInit())
     );
     const onInit = onInit$.subscribe((value) => {
-      this.auth.autoLogin();
-
       this.productType$.next({
         ...this.productType$.getValue(),
         ...{

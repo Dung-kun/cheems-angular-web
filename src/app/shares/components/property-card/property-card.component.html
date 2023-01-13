@@ -8,9 +8,9 @@
       </div>
     </div>
     <div class="icon-top">
-      <div class="circle">
+      <button class="circle" (click)="onAddItemToCart()">
         <i class="ai-cart"></i>
-      </div>
+      </button>
     </div>
   </div>
   <ng-template #noMedias>
@@ -33,9 +33,11 @@
       <p class="text-cost">
         {{styleMoney.format(pageViewModel.productType?.price || 0)}}
       </p>
-      <p *ngIf="pageViewModel.productType?.metaDatas != null" class="text-cost-km">
+      <!-- <p *ngIf="pageViewModel.productType?.metaDatas != null" class="text-cost-km">
         {{styleMoney.format(pageViewModel.productType?.price)}}
-      </p>
+      </p> -->
     </div>
   </div>
 </div>
+
+<app-notification></app-notification>
