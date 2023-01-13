@@ -1,8 +1,9 @@
-enum OrderStatus {
-  ALL = 0,
-  TRANSPORT = 1,
-  DELIVERING = 2,
-  COMPLETED = 3,
-  CANCELED = 4,
-  RETRURNED = 5
+export enum OrderStatus {
+  ALL = "",
+  ACCEPT = "accept",
+  PACKAGING = "packaging",
+  SHIPPING = "shipping",
+  RECEIVE = "receive",
+  DONE = "done",
+  CANCEL = "cancel"
 }

@@ -1,5 +1,5 @@
 <div class="container">
-  <app-order-filter-header></app-order-filter-header>
+  <app-order-filter-header [items]="filterHeaderViewData$ | async"></app-order-filter-header>
   <div class="content" *ngIf="(pageViewModel$ | async) as pageViewModel">
     <div class="order-view">
       <div class="item" *ngFor="let order of pageViewModel.orders">

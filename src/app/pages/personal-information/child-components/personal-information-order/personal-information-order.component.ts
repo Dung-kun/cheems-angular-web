@@ -4,6 +4,8 @@ import { PageViewModelBasedComponent } from '@app/shares/base/framework/page-vie
 import { Apollo } from 'apollo-angular';
 import { BehaviorSubject, combineLatest, Observable, of, throwError } from 'rxjs';
 import { catchError, map, switchMap, tap, timeout, take } from 'rxjs/operators';
+import { Filters } from './child-components/order-filter-header/models/filters.model';
+import { OrderFilterHeaderViewData } from './child-components/order-filter-header/models/order-filter-header-view-data.model';
 import { OrderStatusModalViewData } from './child-components/order-status-modal/models/order-status-modal-view-data.model';
 import { OrderStatusModalComponent } from './child-components/order-status-modal/order-status-modal.component';
 import { GET_PERSONAL_ORDERS } from './graphql/get-personal-order-list.graphql';
@@ -22,6 +24,10 @@ export class PersonalInformationOrderComponent extends PageViewModelBasedCompone
 
   public orderStatusModalViewData$: BehaviorSubject<OrderStatusModalViewData>;
 
+  public filterHeaderViewData$: BehaviorSubject<OrderFilterHeaderViewData>;
+
+  public filter$: BehaviorSubject<Filters>;
+
   constructor(
     private route: ActivatedRoute,
     private apollo: Apollo,
@@ -29,21 +35,34 @@ export class PersonalInformationOrderComponent extends PageViewModelBasedCompone
     super();
 
     this.orderStatusModalViewData$ = new BehaviorSubject<OrderStatusModalViewData>(new OrderStatusModalViewData(''));
+
+    this.filterHeaderViewData$ = new BehaviorSubject<OrderFilterHeaderViewData>(new OrderFilterHeaderViewData(null));
+
+    this.filter$ = new BehaviorSubject<Filters>(new Filters())
   }
 
   ngOnInit(): void {
-    let onInit$ = combineLatest([this.route.params])
+    let onInit$ = combineLatest([this.route.params, this.filter$])
       .pipe(
-        tap(([param]) => {
+        tap(([param, filter]) => {
           this.pageViewModel$.next({
             ...this.pageViewModel$.getValue(),
             personalIdentifier: param['userIdentifier']
           })
+          this.filterHeaderViewData$.next({
+            ...this.filterHeaderViewData$.getValue(),
+            filter$: this.filter$
+          })
         }),
-        switchMap(([viewData]) => {
+        switchMap(([viewData, filter]) => {
+          console.log(filter);
+          let orderStatus = filter.filterStatus !== "" ? filter.filterStatus : null
           let MUT_VARS = {
-            isDeleted: false,
-            usersIds: [this.pageViewModel$.getValue().personalIdentifier]
+            input: {
+              isDeleted: false,
+              usersIds: [this.pageViewModel$.getValue().personalIdentifier],
+              status: orderStatus
+            }
           }
 
           const appQueryImpl$ = this.appInitQuery(MUT_VARS);

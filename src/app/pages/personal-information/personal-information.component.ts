@@ -40,8 +40,6 @@ export class PersonalInformationComponent extends PageViewModelBasedComponent<Pe
             ...this.pageViewModel$.getValue(),
             personalIdentifier: _userId
           })
-          console.log(_userId);
-          this.router.navigate(["personal-information", "profile", _userId as string]);
         }
         else {
           this.router.navigate(["/home"]);
