@@ -193,7 +193,7 @@ export class ProductListFilterComponent
     });
   }
 
-  sortArr(indexP: number, indexC: number, selected: boolean) {
+  sortArr(indexP: number, indexC: number, selected: boolean, nameP: string) {
     let formBodyValue = this.formBody.controls[indexP].value;
     let arrayNotSelectForm = this.getFormArrayNotSelect(indexP);
     let arraySelectedForm = this.getFormArraySelected(indexP);
@@ -204,16 +204,22 @@ export class ProductListFilterComponent
     };
 
     let key = formBodyValue.name;
-    let metaData = { ...data.metaDatas } as MetadataFilter;
+    let metaDatas = { ...data.metaDatas } as MetadataFilter;
+    let categoriesIds = [];
 
     if (selected) {
       let arrNotSelect = arrayNotSelectForm.value;
       if (!!arrNotSelect[indexC]?.id) {
-        (metaData[key as keyof typeof metaData] as string[])?.push(
-          arrNotSelect[indexC].id
-        );
+        if (nameP == 'categoriesIds') {
+          categoriesIds.push(arrNotSelect[indexC].id);
+        } else {
+          (metaDatas[key as keyof typeof metaDatas] as string[])?.push(
+            arrNotSelect[indexC].id
+          );
+        }
+
       } else
-        (metaData[key as keyof typeof metaData] as string[])?.push(
+        (metaDatas[key as keyof typeof metaDatas] as string[])?.push(
           arrNotSelect[indexC].name
         );
 
@@ -227,12 +233,12 @@ export class ProductListFilterComponent
       let arrSelected = arraySelectedForm.value;
 
       if (!!formBodyValue.id)
-        (metaData[key as keyof typeof metaData] as string[]) = (
-          metaData[key as keyof typeof metaData] as string[]
+        (metaDatas[key as keyof typeof metaDatas] as string[]) = (
+          metaDatas[key as keyof typeof metaDatas] as string[]
         )?.filter((value) => value != arrSelected[indexC].id);
       else
-        (metaData[key as keyof typeof metaData] as string[]) = (
-          metaData[key as keyof typeof metaData] as string[]
+        (metaDatas[key as keyof typeof metaDatas] as string[]) = (
+          metaDatas[key as keyof typeof metaDatas] as string[]
         )?.filter((value) => value != arrSelected[indexC].name);
 
       arrayNotSelectForm.push(arraySelectedForm.at(indexC));
@@ -243,11 +249,15 @@ export class ProductListFilterComponent
       arrayNotSelectForm.patchValue(arrNotSelect);
     }
 
-    const dataSearch = { ...data, metaData };
+    const dataSearch = {
+      ...data,
+      metaDatas,
+      ...{ categoriesIds: categoriesIds },
+    };
 
-    this.pageViewModel$.getValue().filter$.next(
-      new FilterProductModel(dataSearch)
-    );
+    this.pageViewModel$
+      .getValue()
+      .filter$.next(new FilterProductModel(dataSearch));
   }
 
   addStyle(event: any, index: number) {

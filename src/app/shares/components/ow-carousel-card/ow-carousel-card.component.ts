@@ -48,9 +48,9 @@ export class OwCarouselCardComponent extends PageViewModelBasedComponent<OwCarou
     } else if (width >= 992 && width < 1200) {
       return 4;
     } else if (width >= 1200 && width < 1600) {
-      return 5;
+      return 4;
     } else {
-      return 6;
+      return 4;
     }
   }
 
